@@ -1,0 +1,13 @@
+$theme_color: #444;
+$text_color: #fff000;
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    background-color: $theme_color;
+    color: $text_color;
+}
+
+body {
+    margin: 0;
+}

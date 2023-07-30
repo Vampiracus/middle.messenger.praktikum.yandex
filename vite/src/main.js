@@ -1,0 +1,7 @@
+import Handlebars from "handlebars";
+import './style.css';
+import authPage from "./pages/authPage";
+import {error404Page, error500Page} from "./pages/errors/";
+import mainPage from './pages/mainPage';
+
+document.querySelector('#app').innerHTML = mainPage();
