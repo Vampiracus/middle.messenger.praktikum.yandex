@@ -2,7 +2,8 @@ import './sendArea.css';
 import Handlebars from "handlebars";
 import imgSrc from './../../../../../../../public/attach.png';
 import mainPageInput from './../../../mainPageInput';
-import sendButton from './sendButton/sendButton';
+import arrowButton from './../../../../../../components/arrowButton';
+import dropOutMenu from './dropOutMenuSend';
 
 export default function sendArea() {
 
@@ -12,6 +13,7 @@ export default function sendArea() {
 
     let template = Handlebars.compile(`
     <div class='sendArea'>
+        {{{dropOutMenu}}}
         <img src='{{imgSrc}}' alt="attach"/>
         <form class='sendArea__form'>
             {{{myMessageInput}}}
@@ -21,8 +23,9 @@ export default function sendArea() {
     `)
 
     return template({
+        dropOutMenu: dropOutMenu(),
         imgSrc,
         myMessageInput: mainPageInput(),
-        sendButton: sendButton('sendMessageButton', send)
+        sendButton: arrowButton('sendMessageButton', send)
     })
 }

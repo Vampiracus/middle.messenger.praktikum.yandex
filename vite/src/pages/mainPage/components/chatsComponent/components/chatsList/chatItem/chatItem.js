@@ -1,4 +1,4 @@
-import emptyAvatar from '../../../../../../../components/emptyAvatar/amptyAvatar';
+import emptyAvatar from '../../../../../../../components/emptyAvatar';
 import './chatItem.css';
 import Handlebars from "handlebars";
 import toBeRead from './toBeRead';

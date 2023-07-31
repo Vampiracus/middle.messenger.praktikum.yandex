@@ -1,1 +1,1 @@
-export {default} from './amptyAvatar.js';
+export {default} from './emptyAvatar.js';

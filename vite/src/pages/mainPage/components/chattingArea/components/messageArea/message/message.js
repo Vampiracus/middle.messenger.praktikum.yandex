@@ -7,8 +7,6 @@ import img from './../../../../../../../../public/camera.png';
 
 export default function message(msgInfo) {
 
-    console.log(msgInfo);
-
     let template = Handlebars.compile(`
     <div class='message {{iSent}}'>
         {{text}}

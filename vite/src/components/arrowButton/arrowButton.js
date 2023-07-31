@@ -1,5 +1,5 @@
-import './sendButton.css';
-import imgSrc from './../../../../../../../../public/arrow.png';
+import './arrowButton.css';
+import imgSrc from '../../../public/arrow.png';
 import Handlebars from 'handlebars';
 
 export default function sendButton(id, callback) {
@@ -11,7 +11,7 @@ export default function sendButton(id, callback) {
     }
 
     let template = Handlebars.compile(`
-    <button class='sendButton' id={{id}}>
+    <button class='arrowButton' id={{id}}>
         <img src='{{imgSrc}}' alt="send"/>
     </button>
     `)

@@ -2,6 +2,10 @@ import './mainPage.css';
 import Handlebars from "handlebars";
 import chatsComponent from "./components/chatsComponent";
 import chattingArea from './components/chattingArea/chattingArea';
+import addUserModal from './components/addUserModal';
+import popupContent from './../.../../../components/popupContent';
+import deleteUserModal from './components/deleteUserModal';
+import deleteChatModal from './components/deleteChatModal';
 
 const messages = [
     {
@@ -24,6 +28,9 @@ const messages = [
 
 export default function mainPage() {
     let template = Handlebars.compile(`
+        {{{addUserModal}}}
+        {{{deleteUserModal}}}
+        {{{deleteChatModal}}}
         <div class='mainPage'>
             {{{chatsComponent}}}
             {{{chat}}}
@@ -32,5 +39,8 @@ export default function mainPage() {
     return template({
         chatsComponent: chatsComponent(),
         chat: chattingArea(messages),
+        //addUserModal: addUserModal(),
+        //deleteUserModal: deleteUserModal(),
+        deleteChatModal: deleteChatModal(),
     });
 }
