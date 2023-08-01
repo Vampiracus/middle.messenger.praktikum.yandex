@@ -3,7 +3,6 @@ import Handlebars from "handlebars";
 import chatsComponent from "./components/chatsComponent";
 import chattingArea from './components/chattingArea/chattingArea';
 import addUserModal from './components/addUserModal';
-import popupContent from './../.../../../components/popupContent';
 import deleteUserModal from './components/deleteUserModal';
 import deleteChatModal from './components/deleteChatModal';
 

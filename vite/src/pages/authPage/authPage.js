@@ -6,5 +6,5 @@ import './authPage.css';
 
 export default function authPage() {
     let template = Handlebars.compile(popupContent(`{{{content}}}`));
-    return template({content: authorizationForm()});
+    return template({content: authPage()});
 }

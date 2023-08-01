@@ -1,6 +1,7 @@
 .profileMain {
     display: flex;
     width: 100%;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     max-height: calc(max(50%, 400px));
