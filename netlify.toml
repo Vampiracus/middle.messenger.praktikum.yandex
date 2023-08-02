@@ -7,3 +7,4 @@
 
 [build]
   publish = "vite/src" 
+  command = "npm run build"
