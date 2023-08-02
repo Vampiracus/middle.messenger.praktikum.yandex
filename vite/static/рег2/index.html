@@ -116,7 +116,11 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/mainPage/mainPage.css">.mainPage {
+    cursor: default
+}
+.errorPage a {
+        cursor: pointer;
+    }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/mainPage/mainPage.css">.mainPage {
     display: flex;
     flex-direction: row;
 }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/mainPage/components/chatsComponent/chatsComponent.css">.chatsComponent {
@@ -180,26 +184,31 @@ p {
     margin: 0 10px;
     padding: 15px 2px 7px 2px;
     border-bottom: 1px solid #454545;
-    cursor: pointer
+    cursor: pointer;
 }
-.chatItem:hover, .chatItem:active {
+
+    .chatItem:hover, .chatItem:active, .chatItem_active {
         background-color: rgba(255, 240, 0, 0.3);
         margin: 0;
         padding: 15px 12px 7px 12px;
     }
-.chatItem__text {
+
+    .chatItem__text {
         display: flex;
         flex-direction: column;
         margin: 0 10px;
         flex:2;
     }
-.chatItem__text__message {
+
+    .chatItem__text__message {
             color: #999;
         }
-.chatItem__text__chatName {
+
+    .chatItem__text__chatName {
             font-size: 1rem;
         }
-.chatItem__about {
+
+    .chatItem__about {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -208,7 +217,8 @@ p {
         font-size: 0.6rem;
         color: #999;
     }
-.chatItem__about__toBeRead {
+
+    .chatItem__about__toBeRead {
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -478,11 +488,8 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-height: calc(max(50%, 400px))
-}
-.profileMain > span {
-        margin: 10px 0;
-    }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/profilePage/components/myAvatar/myAvatar.css">.myAvatar {
+    max-height: calc(max(50%, 400px));
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/profilePage/components/myAvatar/myAvatar.css">.myAvatar {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -514,7 +521,15 @@ p {
 .myAvatar__change:hover {
             background-color: rgba(0, 0, 0, 0.5);
             color: #999;
-        }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/profilePage/components/profileMain/components/profileMainContent/profileMainContent.css"></style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/profilePage/components/changeDataForm/changeDataForm.css">.changeDataForm {
+        }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/profilePage/components/profileMain/components/profileMainContent/profileMainContent.css">.profileMainContent {
+    display: flex;
+    flex-direction: column;
+    text-align: center
+}
+.profileMainContent > a {
+        margin: 10px 0;
+        cursor: pointer;
+    }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/profilePage/components/changeDataForm/changeDataForm.css">.changeDataForm {
     width: 500px;
     display: flex;
     justify-content: center;
@@ -555,7 +570,7 @@ p {
             
         <form class="authPageForm">
             <div class="authPageForm__wrapper">
-                <p>Регистрация</p>
+                <h3>Регистрация</h3>
                 
         <label class="formInput__label" for="registrationEmailInput">Почта</label>
         <input class="formInput" id="registrationEmailInput" name="email" type="text" required="">

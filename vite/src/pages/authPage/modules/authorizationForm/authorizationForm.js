@@ -13,7 +13,7 @@ export default function authorizationForm() {
     let template = Handlebars.compile(`
     <form class='authPageForm'>
         <div class='authPageForm__wrapper'>
-            <p>Вход</p>
+            <h3>Вход</h3>
             {{{loginInput}}}
             {{{passwordInput}}}
         </div>

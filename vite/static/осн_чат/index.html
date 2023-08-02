@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0022)http://localhost:5173/ -->
+<!-- saved from url=(0178)file:///C:/Users/%D0%9C%D0%B0%D0%BA%D1%81%D0%B8%D0%BC/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/static/%D0%BE%D1%81%D0%BD_%D1%87%D0%B0%D1%82/index.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script type="module" src="./Регистрация_files/client"></script>
+    <script type="module" src="./index_files/client"></script>
 
     
     <link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
@@ -116,7 +116,11 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/mainPage/mainPage.css">.mainPage {
+    cursor: default
+}
+.errorPage a {
+        cursor: pointer;
+    }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/mainPage/mainPage.css">.mainPage {
     display: flex;
     flex-direction: row;
 }</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/vite/src/pages/mainPage/components/chatsComponent/chatsComponent.css">.chatsComponent {
@@ -180,26 +184,31 @@ p {
     margin: 0 10px;
     padding: 15px 2px 7px 2px;
     border-bottom: 1px solid #454545;
-    cursor: pointer
+    cursor: pointer;
 }
-.chatItem:hover, .chatItem:active {
+
+    .chatItem:hover, .chatItem:active, .chatItem_active {
         background-color: rgba(255, 240, 0, 0.3);
         margin: 0;
         padding: 15px 12px 7px 12px;
     }
-.chatItem__text {
+
+    .chatItem__text {
         display: flex;
         flex-direction: column;
         margin: 0 10px;
         flex:2;
     }
-.chatItem__text__message {
+
+    .chatItem__text__message {
             color: #999;
         }
-.chatItem__text__chatName {
+
+    .chatItem__text__chatName {
             font-size: 1rem;
         }
-.chatItem__about {
+
+    .chatItem__about {
         display: flex;
         flex-direction: column;
         align-items: flex-end;
@@ -208,7 +217,8 @@ p {
         font-size: 0.6rem;
         color: #999;
     }
-.chatItem__about__toBeRead {
+
+    .chatItem__about__toBeRead {
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -550,53 +560,271 @@ p {
     }</style></head>
   <body>
     <div id="app">
-    <div class="popupContent popupContent_active">
-        <div class="popupContent__content">
+        
+        
+        
+        <div class="mainPage">
             
-        <form class="authPageForm">
-            <div class="authPageForm__wrapper">
-                <p>Регистрация</p>
+        <div class="chatsComponent">
+            
+        <div class="chatsHeader">
+            <a class="chatsHeader__profileLink">Профиль <strong>&gt;</strong></a>
+            <form class="chatsHeader__searchForm">
                 
-        <label class="formInput__label" for="registrationEmailInput">Почта</label>
-        <input class="formInput" id="registrationEmailInput" name="email" type="text" required="">
+        <input class="mainPageInput" type="text" placeholder="Поиск">
     
-                
-        <label class="formInput__label" for="registrationLoginInput">Логин</label>
-        <input class="formInput" id="registrationLoginInput" name="login" type="text" required="">
+            </form>
+        </div>
     
-                
-        <label class="formInput__label" for="registrationFNameInput">Имя</label>
-        <input class="formInput" id="registrationFNameInput" name="first_name" type="text" required="">
-    
-                
-        <label class="formInput__label" for="registrationSNameInput">Фамилия</label>
-        <input class="formInput" id="registrationSNameInput" name="second_name" type="text" required="">
-    
-                
-        <label class="formInput__label" for="registrationPhoneInput">Телефон</label>
-        <input class="formInput" id="registrationPhoneInput" name="phone" type="text" required="">
-    
-                
-        <label class="formInput__label" for="registrationPasswordInput">Пароль</label>
-        <input class="formInput" id="registrationPasswordInput" name="password" type="password" required="">
-    
-                
-        <label class="formInput__label" for="registrationPaswordAgainInput">Повторите пароль</label>
-        <input class="formInput" id="registrationPaswordAgainInput" name="passwordAgagin" type="password" required="">
-    
+            
+        <div class="chatsList">
+            
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName">Андрей</span>
+                <div> <span class="chatItem__text__message">Изображение</span> </div>
             </div>
-            <div class="authPageForm__wrapper">
+            <div class="chatItem__about">
+                10:49
                 
-        <button class="formButton" id="registerButton">Регистрация</button>
+        <div class="chatItem__about__toBeRead">
+            2
+        </div>
     
-                <a class="authPageForm__bottomLink">Войти</a>
+                
             </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName">Киноклуб</span>
+                <div>Вы:  <span class="chatItem__text__message">стикер</span> </div>
+            </div>
+            <div class="chatItem__about">
+                12:00
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName">Илья</span>
+                <div> <span class="chatItem__text__message">Друзья, у меня для вас особенный выпуск...</span> </div>
+            </div>
+            <div class="chatItem__about">
+                15:12
+                
+        <div class="chatItem__about__toBeRead">
+            4
+        </div>
+    
+                
+            </div>
+        </div>
+    
+        <div class="chatItem chatItem_active">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName">Вадим</span>
+                <div>Вы:  <span class="chatItem__text__message">Круто!</span> </div>
+            </div>
+            <div class="chatItem__about">
+                Пт
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName">тет-а-теты</span>
+                <div> <span class="chatItem__text__message">И Human Interface Guidelines и Material...</span> </div>
+            </div>
+            <div class="chatItem__about">
+                Ср
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName">1, 2, 3</span>
+                <div> <span class="chatItem__text__message">Миллионы россиян ежедневно проводят...</span> </div>
+            </div>
+            <div class="chatItem__about">
+                Пт
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName"></span>
+                <div> <span class="chatItem__text__message"></span> </div>
+            </div>
+            <div class="chatItem__about">
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName"></span>
+                <div> <span class="chatItem__text__message"></span> </div>
+            </div>
+            <div class="chatItem__about">
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName"></span>
+                <div> <span class="chatItem__text__message"></span> </div>
+            </div>
+            <div class="chatItem__about">
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName"></span>
+                <div> <span class="chatItem__text__message"></span> </div>
+            </div>
+            <div class="chatItem__about">
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName"></span>
+                <div> <span class="chatItem__text__message"></span> </div>
+            </div>
+            <div class="chatItem__about">
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName"></span>
+                <div> <span class="chatItem__text__message"></span> </div>
+            </div>
+            <div class="chatItem__about">
+                
+                
+                
+            </div>
+        </div>
+    
+        <div class="chatItem">
+            <div class="emptyAvatar"></div>
+            <div class="chatItem__text">
+                <span class="chatItem__text__chatName"></span>
+                <div> <span class="chatItem__text__message"></span> </div>
+            </div>
+            <div class="chatItem__about">
+                
+                
+                
+            </div>
+        </div>
+    
+        </div>
+    
+        </div>
+    
+            
+    <div class="chattingArea">
+        
+    <div class="sendArea">
+        
+    
+    
+        <img src="./index_files/attach.png" alt="attach">
+        <form class="sendArea__form">
+            
+        <input class="mainPageInput" type="text" placeholder="">
+    
+            
+    <button class="arrowButton" id="sendMessageButton">
+        <img src="./index_files/arrow.png" alt="send">
+    </button>
+    
         </form>
+    </div>
+    
+        
+    <div class="messageArea">
+        
+    <div class="message message_iSent">
+        Круто!
+        
+        <div class="message__time"><img src="./index_files/doneAll.png">12:00</div>
+    </div>
+    
+    <div class="message ">
+        
+        <img src="./index_files/camera.png" alt="Изображение">
+        <div class="message__time">11:56</div>
+    </div>
+    
+    <div class="message ">
+        Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
+        
+        <div class="message__time">11:56</div>
+    </div>
+    
+    </div>
+    
+        
+    <div class="chatHead">
+        <div class="chatHead__name">
+            <div class="emptyAvatar"></div>
+            Вадим
+        </div>
+        
+    <div class="chatOptions">
+        ...
+    </div>
+    
+    
+    
+    
+    </div>
+    
+    </div>
     
         </div>
     </div>
-    </div>
-    <script type="module" src="./Регистрация_files/main.js.Без названия"></script>
+    <script type="module" src="./index_files/main.js.Без названия"></script>
   
 
 </body></html>

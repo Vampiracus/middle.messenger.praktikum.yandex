@@ -11,7 +11,7 @@ export default function registrationForm() {
     let template = Handlebars.compile(`
         <form class='authPageForm'>
             <div class='authPageForm__wrapper'>
-                <p>Регистрация</p>
+                <h3>Регистрация</h3>
                 {{{emailInput}}}
                 {{{loginInput}}}
                 {{{nameInput}}}

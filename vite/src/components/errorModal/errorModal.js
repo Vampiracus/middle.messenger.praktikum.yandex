@@ -7,7 +7,7 @@ import formButton from "../formButton";
 export default function errorModal(errorName, recomendation) {
     let template = Handlebars.compile(popupContent(`
         <div class='errorModal'>
-            <span class='errorModal__errorName'>{{errorName}}</span>
+            <h3 class='errorModal__errorName'>{{errorName}}</h3>
             <span class='errorModal__recomendation'>{{recomendation}}</span>
             {{{okButton}}}
         </div>

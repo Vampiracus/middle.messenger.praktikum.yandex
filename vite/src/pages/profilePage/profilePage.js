@@ -25,7 +25,7 @@ export default function profilePage() {
     `)
     return template({
         backToMainComponent: backToMainComponent(),
-        content: profileMain(me),
+        content: changePasswordForm(me),
         badFileModal: errorModal('Ошибка загрузки файла', 'Попробуйте другой файл'),
     });
 }
