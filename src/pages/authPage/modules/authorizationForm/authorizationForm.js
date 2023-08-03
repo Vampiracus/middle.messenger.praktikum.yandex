@@ -1,4 +1,3 @@
-import './authorizationForm.css';
 import Handlebars from "handlebars";
 import popupContent from './../../../../components/popupContent';
 import formButton from './../../../../components/formButton';
