@@ -1,1 +1,1 @@
-export {default} from './profileMain.js'
+export {default} from './profileMain.js';

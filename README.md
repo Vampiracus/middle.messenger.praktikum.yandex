@@ -1,6 +1,6 @@
 # Учебный проект: мессенджер
 
-Пул-реквест 1 спринт: [ссылка](https://github.com/Vampiracus/middle.messenger.praktikum.yandex/pull/2)
+Пул-реквест 1 спринт: [ссылка](https://github.com/Vampiracus/middle.messenger.praktikum.yandex/pull/3)
 
 На данном этапе только сверстаны страницы будущего веб-приложения. Прототип приложения выполнен в [Figma](https://www.figma.com/file/7UINrrRL12ICT0lXqvFVbi/Messenger-Proto?type=design&node-id=0%3A1&mode=design&t=GvKlX8atBnVE22LR-1 "кликните, чтобы перейти по ссылке")
 
