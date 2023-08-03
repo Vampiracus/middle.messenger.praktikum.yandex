@@ -1,0 +1,8 @@
+import __vite__cjsImport0_handlebars from "/@fs/C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/node_modules/.vite/deps/handlebars.js?v=21cae31b"; const Handlebars = __vite__cjsImport0_handlebars.__esModule ? __vite__cjsImport0_handlebars.default : __vite__cjsImport0_handlebars;
+import "/style.css";
+import authPage from "/pages/authPage/index.js";
+import {error404Page, error500Page} from "/pages/errors/index.js?t=1691095635710";
+import mainPage from "/pages/mainPage/index.js";
+import profilePage from "/pages/profilePage/index.js?t=1691095585867";
+
+document.querySelector('#app').innerHTML = error404Page();

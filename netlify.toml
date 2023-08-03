@@ -8,3 +8,4 @@
 [build]
   publish = "build" 
   command = "npm run-script build"
+  
