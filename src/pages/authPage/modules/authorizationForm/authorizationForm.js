@@ -10,17 +10,19 @@ function enter(e) {
 
 export default function authorizationForm() {
     let template = Handlebars.compile(`
-    <form class='authPageForm'>
-        <div class='authPageForm__wrapper'>
-            <h3>Вход</h3>
-            {{{loginInput}}}
-            {{{passwordInput}}}
-        </div>
-        <div class='authPageForm__wrapper'>
-            {{{formButton}}}
-            <a class="authPageForm__bottomLink">Регистрация</a>
-        </div>
-    </form>
+    <main>
+        <form class='authPageForm'>
+            <div class='authPageForm__wrapper'>
+                <h3>Вход</h3>
+                {{{loginInput}}}
+                {{{passwordInput}}}
+            </div>
+            <div class='authPageForm__wrapper'>
+                {{{formButton}}}
+                <a class="authPageForm__bottomLink">Регистрация</a>
+            </div>
+        </form>
+    </main>
     `);
     return template({
         formButton: formButton('Войти', 'loginFromSubmit', enter),

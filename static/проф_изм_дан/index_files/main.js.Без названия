@@ -3,6 +3,6 @@ import "/style.css";
 import authPage from "/pages/authPage/index.js?t=1691095949841";
 import {error404Page, error500Page} from "/pages/errors/index.js?t=1691095732705";
 import mainPage from "/pages/mainPage/index.js?t=1691097536760";
-import profilePage from "/pages/profilePage/index.js?t=1691095585867";
+import profilePage from "/pages/profilePage/index.js?t=1691097688405";
 
-document.querySelector('#app').innerHTML = mainPage();
+document.querySelector('#app').innerHTML = profilePage();

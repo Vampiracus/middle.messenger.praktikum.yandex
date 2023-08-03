@@ -2,7 +2,7 @@ import __vite__cjsImport0_handlebars from "/@fs/C:/Users/Максим/Downloads/
 import "/style.css";
 import authPage from "/pages/authPage/index.js?t=1691095949841";
 import {error404Page, error500Page} from "/pages/errors/index.js?t=1691095732705";
-import mainPage from "/pages/mainPage/index.js?t=1691097536760";
+import mainPage from "/pages/mainPage/index.js?t=1691097488041";
 import profilePage from "/pages/profilePage/index.js?t=1691095585867";
 
 document.querySelector('#app').innerHTML = mainPage();

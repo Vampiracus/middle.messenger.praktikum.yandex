@@ -6,6 +6,7 @@ import profileMainContent from './components/profileMainContent'
 export default function profileMain(me) {
     let template = Handlebars.compile(`
         <div class='profileMain'>
+            <br/>
             {{{myAvatar}}}
             <br/>
             {{{content}}}

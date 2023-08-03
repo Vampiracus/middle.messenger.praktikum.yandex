@@ -20,12 +20,14 @@ export default function profilePage() {
         {{{badFileModal}}}
         <div class='profilePage'>
             {{{backToMainComponent}}}
-            {{{content}}}
+            <main class='profilePage__main'>
+                {{{content}}}
+            </main>
         </div>
     `)
     return template({
         backToMainComponent: backToMainComponent(),
-        content: changePasswordForm(me),
-        badFileModal: errorModal('Ошибка загрузки файла', 'Попробуйте другой файл'),
+        content: changeDataForm(me),
+        //badFileModal: errorModal('Ошибка загрузки файла', 'Попробуйте другой файл'),
     });
 }

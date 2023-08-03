@@ -40,6 +40,6 @@ export default function mainPage() {
         chat: chattingArea(messages),
         //addUserModal: addUserModal(),
         //deleteUserModal: deleteUserModal(),
-        deleteChatModal: deleteChatModal(),
+        //deleteChatModal: deleteChatModal(),
     });
 }

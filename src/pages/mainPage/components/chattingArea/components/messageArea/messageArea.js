@@ -5,9 +5,9 @@ import Handlebars from "handlebars";
 export default function messageArea(messages) {
 
     let template = Handlebars.compile(`
-    <div class='messageArea'>
+    <main class='messageArea'>
         {{{messages}}}
-    </div>
+    </main>
     `)
     return template({
         messages: messages.reduce((prev, cur) => prev + message(cur), '')

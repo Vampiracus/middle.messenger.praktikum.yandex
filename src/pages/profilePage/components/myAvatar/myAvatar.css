@@ -12,6 +12,10 @@ $text_color_2: #999;
     position: relative;
     z-index: 1;
 
+    & > input[type='file'] {
+        display: none;
+    }
+
     & > img {
         width: 50%;
     }
@@ -29,6 +33,7 @@ $text_color_2: #999;
         align-items: center;
         text-align: center;
         transition: 0.2s;
+        cursor: pointer;
 
         &:hover {
             background-color: rgba(0, 0, 0, 0.5);

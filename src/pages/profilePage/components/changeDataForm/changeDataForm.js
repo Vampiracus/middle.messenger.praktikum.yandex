@@ -23,7 +23,7 @@ export default function changeDataForm(me) {
         loginInput: formInput('Логин', 'login', 'profileLoginInput', 'text', 'required value=\'' + me.login + '\''),
         nameInput: formInput('Имя', 'first_name', 'profileNameInput', 'text', 'required value=\'' + me.firstName + '\''),
         secondNameInput: formInput('Фамилия', 'second_name', 'profileSecondNameInput', 'text', 'required value=\'' + me.secondName + '\''),
-        chatNameInput: formInput('Имя в чате', 'chat_name', 'profileChatNameInput', 'text', 'required value=\'' + me.name + '\''),
+        chatNameInput: formInput('Имя в чате', 'display_name', 'profileChatNameInput', 'text', 'required value=\'' + me.name + '\''),
         phoneInput: formInput('Имя в чате', 'phone', 'profilePhoneInput', 'text', 'required value=\'' + me.phone + '\''),
         submitProfileDataButton: formButton('Сохранить', 'submitProfileDataButton', ()=>{alert('Сохранение данных профиля')})
     });
