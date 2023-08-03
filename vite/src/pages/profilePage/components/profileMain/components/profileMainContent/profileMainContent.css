@@ -1,0 +1,10 @@
+.profileMainContent {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    & > a {
+        margin: 10px 0;
+        cursor: pointer;
+    }
+}
