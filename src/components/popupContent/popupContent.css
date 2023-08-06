@@ -1,0 +1,25 @@
+$theme_color_2: #555;
+
+.popupContent {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    z-index: 8100;
+
+    &_active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgba(0, 0, 0, 40%);
+    }
+
+    &__content {
+        padding: 25px;
+        background-color: $theme_color_2;
+        border-radius: 12px;
+        min-width: 260px;
+    }
+}
