@@ -7,6 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'static', 'вход1')));
 app.use(express.static(path.join(__dirname, 'static', 'вход2')));
 app.use(express.static(path.join(__dirname, 'static', 'осн_доб')));
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'static', 'рег2')));
 app.use(express.static(path.join(__dirname, 'static', '404')));
 app.use(express.static(path.join(__dirname, 'static', '500')));
 
+app.get(`/`, (req, res) => {res.sendFile(__dirname + '/build/index.html');});
 app.get(`/entr1`, (req, res) => {res.sendFile(__dirname + '/static/вход1/index.html');});
 app.get(`/entr2`, (req, res) => {res.sendFile(__dirname + '/static/вход2/index.html');});
 app.get(`/main_add`, (req, res) => {res.sendFile(__dirname + '/static/осн_доб/index.html');});

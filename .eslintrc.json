@@ -1,0 +1,22 @@
+{
+    "extends": [
+        "airbnb", 
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
+    ],
+    "parser": "@typescript-eslint/parser",    
+    "plugins": [
+        "@typescript-eslint"
+    ],
+    "rules": {
+        "linebreak-style": ["error", "windows"]
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": ".ts"
+            }
+        }
+    }
+} 
