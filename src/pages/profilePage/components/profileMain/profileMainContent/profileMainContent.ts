@@ -1,8 +1,8 @@
 import './profileMainContent.css';
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
 export default function profileMainContent(me: UserInfo) {
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
     <div class='profileMainContent'>
         <span>{{me.name}}</span>
         <br/>
@@ -13,8 +13,8 @@ export default function profileMainContent(me: UserInfo) {
         <a>Изменить пароль</a>
         <a style='color: red; text-shadow: 1px 1px black'>Выйти из аккаунта</a>
     </div>
-    `)
+    `);
     return template({
-        me
+        me,
     });
 }

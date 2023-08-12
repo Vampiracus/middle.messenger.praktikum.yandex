@@ -1,14 +1,14 @@
-import Handlebars from "handlebars";
-import formButton from './../../../../components/formButton';
-import formInput from './../../../../components/formInput'
+import Handlebars from 'handlebars';
+import formButton from '../../../../components/formButton';
+import formInput from '../../../../components/formInput';
 
 function enter(e: Event) {
     e.preventDefault();
-    alert("Вход на страницу")
+    alert('Вход на страницу');
 }
 
 export default function authorizationForm() {
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
     <main>
         <form class='authPageForm'>
             <div class='authPageForm__wrapper'>
@@ -26,6 +26,6 @@ export default function authorizationForm() {
     return template({
         formButton: formButton('Войти', 'loginFromSubmit', enter),
         loginInput: formInput('Логин', 'login', 'loginInput', 'text', 'required'),
-        passwordInput: formInput('Пароль', 'password', 'passwordInput', 'password', 'required')
+        passwordInput: formInput('Пароль', 'password', 'passwordInput', 'password', 'required'),
     });
 }

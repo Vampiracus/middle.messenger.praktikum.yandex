@@ -1,1 +1,1 @@
-export {default} from './deleteUserModal';
+export { default } from './deleteUserModal';

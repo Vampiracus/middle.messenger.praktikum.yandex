@@ -1,16 +1,15 @@
 import './sendArea.css';
-import Handlebars from "handlebars";
-import mainPageInput from './../../../mainPageInput';
-import arrowButton from './../../../../../../components/arrowButton';
+import Handlebars from 'handlebars';
+import mainPageInput from '../../../mainPageInput';
+import arrowButton from '../../../../../../components/arrowButton';
 import dropOutMenu from './dropOutMenuSend';
 
 export default function sendArea() {
-
     function send() {
         alert('Отправка сообщения');
     }
 
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
     <div class='sendArea'>
         {{{dropOutMenu}}}
         <img src='{{imgSrc}}' alt="attach"/>
@@ -19,12 +18,12 @@ export default function sendArea() {
             {{{sendButton}}}
         </form>
     </div>
-    `)
+    `);
 
     return template({
         dropOutMenu: dropOutMenu(),
         imgSrc: '/attach.png',
         myMessageInput: mainPageInput('Введите сообщение'),
-        sendButton: arrowButton('sendMessageButton', send)
-    })
+        sendButton: arrowButton('sendMessageButton', send),
+    });
 }

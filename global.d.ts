@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 export {};
 
 declare global {
 
-    //Main page
+    // Main page
     type Chat = {
         name: string,
         message: string,
@@ -10,7 +11,7 @@ declare global {
         lastMessageDate: string,
         toBeRead: number
     };
-    
+
     type Message = {
         sentStatus: MessageSentStatus,
         text?: string,

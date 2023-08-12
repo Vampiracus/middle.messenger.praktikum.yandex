@@ -1,29 +1,32 @@
 import './message.css';
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
-export const enum MessageSentStatus {SENT_TO_ME, SENT, RECEIVED};
+export const MessageSentStatus: {
+    SENT_TO_ME: number,
+    SENT: number,
+    RECEIVED: number,
+} = { SENT_TO_ME: 1, SENT: 2, RECEIVED: 3, };
 
 export default function message(msgInfo: Message) {
-
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
     <div class='message {{iSent}}'>
         {{text}}
         {{{image}}}
         <div class='message__time'>{{{done}}}{{time}}</div>
     </div>
-    `)
-    let iSent = (msgInfo.sentStatus !== MessageSentStatus.SENT_TO_ME ? 'message_iSent' : '');
-    let done = (msgInfo.sentStatus === MessageSentStatus.RECEIVED ? `<img src='doneAll.png'>` : '')
+    `);
+    const iSent = (msgInfo.sentStatus !== MessageSentStatus.SENT_TO_ME ? 'message_iSent' : '');
+    const done = (msgInfo.sentStatus === MessageSentStatus.RECEIVED ? '<img src=\'doneAll.png\'>' : '');
 
     //
-    let image = msgInfo.imgLink !== undefined ? `<img src='camera.png' alt='Изображение'>` : '';
+    const image = msgInfo.imgLink !== undefined ? '<img src=\'camera.png\' alt=\'Изображение\'>' : '';
     //
 
     return template({
-        iSent: iSent,
+        iSent,
         text: msgInfo.text,
         image,
         time: msgInfo.time,
-        done
+        done,
     });
 }

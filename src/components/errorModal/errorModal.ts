@@ -1,11 +1,10 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 import './errorModal.css';
-import popupContent from './../popupContent';
-import formButton from "../formButton";
-
+import popupContent from '../popupContent';
+import formButton from '../formButton';
 
 export default function errorModal(errorName: string, recomendation: string) {
-    let template = Handlebars.compile(popupContent(`
+    const template = Handlebars.compile(popupContent(`
         <div class='errorModal'>
             <h3 class='errorModal__errorName'>{{errorName}}</h3>
             <span class='errorModal__recomendation'>{{recomendation}}</span>
@@ -13,8 +12,8 @@ export default function errorModal(errorName: string, recomendation: string) {
         </div>
     `));
     return template({
-        errorName, 
+        errorName,
         recomendation,
-        okButton: formButton('Ок', 'okErrorButton', ()=>{alert('OK')})
+        okButton: formButton('Ок', 'okErrorButton', () => { alert('OK'); }),
     });
 }

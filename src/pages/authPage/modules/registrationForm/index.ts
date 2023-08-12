@@ -1,1 +1,1 @@
-export {default} from './registrationForm'
+export { default } from './registrationForm';

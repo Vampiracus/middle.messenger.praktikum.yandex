@@ -1,8 +1,8 @@
 import './myAvatar.css';
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
 export default function profilePage() {
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
         <div class='myAvatar'>
             <img src='{{src}}' alt='мой аватар'>
             <input type='file' name='avatar' id='avatarInput'>
@@ -10,7 +10,7 @@ export default function profilePage() {
                 Поменять аватар
             </label>
         </div>
-    `)
+    `);
     return template({
         src: '/photoCamera.png',
     });

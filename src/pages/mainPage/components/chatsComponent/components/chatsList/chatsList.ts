@@ -1,18 +1,14 @@
+import Handlebars from 'handlebars';
 import chatItem from './chatItem/chatItem';
 import './chatsList.css';
-import Handlebars from "handlebars";
 
 export default function chatsList(chats: Array<Chat>) {
-    
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
         <div class='chatsList'>
             {{{chats}}}
         </div>
-    `)
+    `);
     return template({
-        chats: chats.reduce((prev, cur) => {
-            return prev += chatItem(cur);
-        }, '')
+        chats: chats.reduce((prev, cur) => prev + chatItem(cur), ''),
     });
 }
-

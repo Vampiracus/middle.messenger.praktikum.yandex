@@ -1,10 +1,10 @@
+import Handlebars from 'handlebars';
 import emptyAvatar from '../../../../../../../components/emptyAvatar';
 import './chatItem.css';
-import Handlebars from "handlebars";
 import toBeReadBubble from './toBeReadBubble';
 
 export default function chatItem(chat: Chat) {
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
         <div class='chatItem'>
             {{{avatar}}}
             <div class='chatItem__text'>
@@ -17,8 +17,8 @@ export default function chatItem(chat: Chat) {
                 
             </div>
         </div>
-    `)
-    let me = (chat.iSentLast) ? 'Вы: ' : '';
+    `);
+    const me = (chat.iSentLast) ? 'Вы: ' : '';
     return template({
         avatar: emptyAvatar(),
         chat,

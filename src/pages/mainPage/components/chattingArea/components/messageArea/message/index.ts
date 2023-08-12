@@ -1,2 +1,2 @@
-export {default} from './message';
-export {MessageSentStatus} from './message';
+export { default } from './message';
+export { MessageSentStatus } from './message';

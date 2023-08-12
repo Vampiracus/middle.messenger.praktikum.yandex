@@ -1,11 +1,11 @@
 import './changeDataForm.css';
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 import formInput from '../../../../components/formInput';
 import formButton from '../../../../components/formButton';
 import profileFormWrapper from '../profileFormWrapper';
 
 export default function changeDataForm(me: UserInfo) {
-    let template = Handlebars.compile(profileFormWrapper(`
+    const template = Handlebars.compile(profileFormWrapper(`
         <form class='changeDataForm'>
             <h2>Изменить данные</h2>
             {{{emailInput}}}
@@ -17,14 +17,14 @@ export default function changeDataForm(me: UserInfo) {
             <br/>
             {{{submitProfileDataButton}}}
         </form>
-    `))
+    `));
     return template({
-        emailInput: formInput('Почта', 'email', 'profileEmailInput', 'text', 'required value=\'' + me.email + '\''),
-        loginInput: formInput('Логин', 'login', 'profileLoginInput', 'text', 'required value=\'' + me.login + '\''),
-        nameInput: formInput('Имя', 'first_name', 'profileNameInput', 'text', 'required value=\'' + me.firstName + '\''),
-        secondNameInput: formInput('Фамилия', 'second_name', 'profileSecondNameInput', 'text', 'required value=\'' + me.secondName + '\''),
-        chatNameInput: formInput('Имя в чате', 'display_name', 'profileChatNameInput', 'text', 'required value=\'' + me.name + '\''),
-        phoneInput: formInput('Имя в чате', 'phone', 'profilePhoneInput', 'text', 'required value=\'' + me.phone + '\''),
-        submitProfileDataButton: formButton('Сохранить', 'submitProfileDataButton', ()=>{alert('Сохранение данных профиля')})
+        emailInput: formInput('Почта', 'email', 'profileEmailInput', 'text', `required value='${me.email}'`),
+        loginInput: formInput('Логин', 'login', 'profileLoginInput', 'text', `required value='${me.login}'`),
+        nameInput: formInput('Имя', 'first_name', 'profileNameInput', 'text', `required value='${me.firstName}'`),
+        secondNameInput: formInput('Фамилия', 'second_name', 'profileSecondNameInput', 'text', `required value='${me.secondName}'`),
+        chatNameInput: formInput('Имя в чате', 'display_name', 'profileChatNameInput', 'text', `required value='${me.name}'`),
+        phoneInput: formInput('Имя в чате', 'phone', 'profilePhoneInput', 'text', `required value='${me.phone}'`),
+        submitProfileDataButton: formButton('Сохранить', 'submitProfileDataButton', () => { alert('Сохранение данных профиля'); }),
     });
 }

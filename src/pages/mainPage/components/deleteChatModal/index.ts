@@ -1,1 +1,1 @@
-export {default} from './deleteChatModal';
+export { default } from './deleteChatModal';

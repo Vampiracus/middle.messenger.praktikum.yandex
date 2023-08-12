@@ -1,1 +1,1 @@
-export {default} from './changeDataForm';
+export { default } from './changeDataForm';

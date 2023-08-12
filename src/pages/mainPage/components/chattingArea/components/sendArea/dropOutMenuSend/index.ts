@@ -1,1 +1,1 @@
-export {default} from './dropOutMenuSend';
+export { default } from './dropOutMenuSend';

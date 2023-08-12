@@ -7,5 +7,5 @@ export default function dropOutMenu() {
         <div> <span> Файл </span> </div>
         <div> <span> Локация </span> </div>
     </div>
-    `
+    `;
 }

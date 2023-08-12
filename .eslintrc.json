@@ -3,20 +3,37 @@
         "airbnb", 
         "plugin:import/errors",
         "plugin:import/warnings",
-        "plugin:import/typescript"
+        "plugin:import/typescript",
+        "plugin:typescript-enum/recommended"
     ],
     "parser": "@typescript-eslint/parser",    
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "typescript-enum"
     ],
     "rules": {
-        "linebreak-style": ["error", "windows"]
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "windows"],
+        "import/extensions": [
+            "error",
+            "ignorePackages",
+            {
+              "ts": "never"
+            }
+         ],
+         "no-undef": "off", //Typescript already checks
+         "no-restricted-exports": "off",
+         "comma-dangle": [
+            "error",
+            {
+                "functions": "never", 
+                "objects": "always"
+            }
+        ]
     },
     "settings": {
         "import/resolver": {
-            "node": {
-                "extensions": ".ts"
-            }
+            "typescript": {}
         }
     }
 } 

@@ -1,16 +1,15 @@
+import Handlebars from 'handlebars';
 import dropOutMenu from './dropOutMenu';
 import './chatOptions.css';
-import Handlebars from "handlebars";
 
 export default function chatOptions() {
-
-    let template = Handlebars.compile(`
+    const template = Handlebars.compile(`
     <div class='chatOptions'>
         ...
     </div>
     {{{dropOutMenu}}}
-    `)
+    `);
     return template({
-        dropOutMenu: dropOutMenu()
+        dropOutMenu: dropOutMenu(),
     });
 }

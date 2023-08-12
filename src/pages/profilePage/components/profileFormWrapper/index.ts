@@ -1,1 +1,1 @@
-export {default} from './profileFormWrapper';
+export { default } from './profileFormWrapper';

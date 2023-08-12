@@ -5,5 +5,5 @@ export default function chatsPlug() {
     <main class='chatsPlug'>
         Выберите чат, чтобы отправить сообщение
     </main>
-    `
+    `;
 }
