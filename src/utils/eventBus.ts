@@ -1,9 +1,16 @@
 export default class EventBus {
+    private listeners: Record<string, Array<Function>>;
+
     constructor() {
         this.listeners = {};
     }
 
-    on(event, callback) {
+    /**
+     * Подписаться на событие
+     * @param event название события
+     * @param callback выполняемая функция
+     */
+    on(event: string, callback: Function) {
         if (!this.listeners[event]) {
             this.listeners[event] = [];
         }
@@ -11,22 +18,32 @@ export default class EventBus {
         this.listeners[event].push(callback);
     }
 
-    off(event, callback) {
+    /**
+     * Отписаться от события
+     * @param event название события
+     * @param callback выполняемая функция (проверяется ссылка на функцию)
+     */
+    off(event: string, callback: Function) {
         if (!this.listeners[event]) {
-            throw new Error(`Нет события: ${event}`);
+            throw new Error(`Попытка отписки от несуществующего события: ${event}`);
         }
 
         this.listeners[event] = this.listeners[event].filter(
-            (listener) => listener !== callback
+            listener => listener !== callback
         );
     }
 
-    emit(event, ...args) {
+    /**
+     * Оповестить о событии, аргументы могут быть чем угодно
+     * @param event название события
+     * @param args любые аргументы события
+     */
+    emit(event: string, ...args: any) {
         if (!this.listeners[event]) {
-            throw new Error(`Нет события: ${event}`);
+            return;
         }
 
-        this.listeners[event].forEach((listener) => {
+        this.listeners[event].forEach(listener => {
             listener(...args);
         });
     }

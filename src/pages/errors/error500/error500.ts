@@ -1,11 +1,18 @@
 import '../errors.scss';
+import Block from '../../../utils/Block';
+import FormButton from '../../../components/formButton';
 
-export default function error500Page():string {
-    return `
-    <main class='error-page'>
+export default class Error500Page extends Block<{}> {
+    constructor() {
+        super({}, 'main', [new FormButton({ text: 'На главную' })]);
+        this.addClass('error-page');
+    }
+
+    render() {
+        return Block.compile(`
         <h1>Ошибка 500</h1>
         <p>Похоже, сервер лежит</p>
-        <a>На главную</a>
-    </main>
-    `;
+        {{{button}}}
+        `, { button: this.children[0] });
+    }
 }

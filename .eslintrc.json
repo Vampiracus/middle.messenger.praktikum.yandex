@@ -31,7 +31,10 @@
                 "objects": "always-multiline",
                 "arrays": "always-multiline"
             }
-        ]
+        ],
+        "no-underscore-dangle": ["off"],
+        "no-restricted-syntax": ["off"],
+        "arrow-parens": ["error", "as-needed"]
     },
     "settings": {
         "import/resolver": {
