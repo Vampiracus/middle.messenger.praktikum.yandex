@@ -1,0 +1,22 @@
+$text-color: #fff000;
+$text-color-2: #999;
+
+.form-button {
+    border: none;
+    font: inherit;
+    background-color: $text-color;
+    border-radius: 8px;
+    color: $text-color-2;
+    width: 100%;
+    padding: 7px;
+    margin: 5px 0;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #eee111;
+    }
+    
+    &:active {
+        background-color: #ddd222;
+    }
+}

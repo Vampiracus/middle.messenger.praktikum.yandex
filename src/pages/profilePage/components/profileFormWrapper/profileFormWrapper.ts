@@ -1,9 +1,9 @@
-import './profileFormWrapper.css';
+import './profileFormWrapper.scss';
 import Handlebars from 'handlebars';
 
 export default function profileFormWrapper(content: string) {
     const template = Handlebars.compile(`
-        <div class='profileFormWrapper'>
+        <div class='profile-form-wrapper'>
             {{{content}}}
         </div>
     `);

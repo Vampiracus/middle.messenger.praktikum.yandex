@@ -1,10 +1,10 @@
 import Handlebars from 'handlebars';
 import chatItem from './chatItem/chatItem';
-import './chatsList.css';
+import './chatsList.scss';
 
 export default function chatsList(chats: Array<Chat>) {
     const template = Handlebars.compile(`
-        <div class='chatsList'>
+        <div class='chats-list'>
             {{{chats}}}
         </div>
     `);

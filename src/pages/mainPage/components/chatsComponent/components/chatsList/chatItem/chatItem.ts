@@ -1,17 +1,17 @@
 import Handlebars from 'handlebars';
 import emptyAvatar from '../../../../../../../components/emptyAvatar';
-import './chatItem.css';
+import './chatItem.scss';
 import toBeReadBubble from './toBeReadBubble';
 
 export default function chatItem(chat: Chat) {
     const template = Handlebars.compile(`
-        <div class='chatItem'>
+        <div class='chat-item'>
             {{{avatar}}}
-            <div class='chatItem__text'>
-                <span class='chatItem__text__chatName'>{{chat.name}}</span>
-                <div>{{me}} <span class='chatItem__text__message'>{{chat.message}}</span> </div>
+            <div class='chat-item__text'>
+                <span class='chat-item__text__chatName'>{{chat.name}}</span>
+                <div>{{me}} <span class='chat-item__text__message'>{{chat.message}}</span> </div>
             </div>
-            <div class='chatItem__about'>
+            <div class='chat-item__about'>
                 {{chat.lastMessageDate}}
                 {{{toBeRead}}}
                 

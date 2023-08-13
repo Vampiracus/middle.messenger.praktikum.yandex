@@ -1,4 +1,4 @@
-import './changePasswordForm.css';
+import './changePasswordForm.scss';
 import Handlebars from 'handlebars';
 import formInput from '../../../../components/formInput';
 import formButton from '../../../../components/formButton';
@@ -6,7 +6,7 @@ import profileFormWrapper from '../profileFormWrapper';
 
 export default function changeDataForm() {
     const template = Handlebars.compile(profileFormWrapper(`
-        <form class='changeDataForm'>
+        <form class='change-data-form'>
             <h2>Изменить пароль</h2>
             {{{oldPasswordInput}}}
             {{{newPasswordInput}}}

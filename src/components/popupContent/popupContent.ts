@@ -1,13 +1,13 @@
 import Handlebars from 'handlebars';
-import './popupContent.css';
+import './popupContent.scss';
 
 export default function popupContent(content: string) {
     const template = Handlebars.compile(`
-    <div class='popupContent popupContent_active'>
-        <div class='popupContent__content'>
+    <div class='popup-content popup-content_active'>
+        <div class='popup-content__content'>
             {{{content}}}
         </div>
     </div>
     `);
-    return template({ content, });
+    return template({ content });
 }

@@ -1,0 +1,25 @@
+$text-color: #fff000;
+
+.arrow-button {
+    max-height: 32px;
+    max-width: 32px;
+    min-height: 32px;
+    min-width: 32px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    background-color: $text-color;
+
+    &:hover {
+        background-color: #ddd222;
+    }
+
+    &:active {
+        background-color: #eee111;
+    }
+
+    & img {
+        max-height: 32px;
+        max-width: 32px;
+    }
+}

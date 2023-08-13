@@ -1,10 +1,10 @@
 import Handlebars from 'handlebars';
 import message from './message';
-import './messageArea.css';
+import './messageArea.scss';
 
 export default function messageArea(messages: Array<Message>) {
     const template = Handlebars.compile(`
-    <main class='messageArea'>
+    <main class='message-area'>
         {{{messages}}}
     </main>
     `);

@@ -1,4 +1,4 @@
-import './chatsComponent.css';
+import './chatsComponent.scss';
 import Handlebars from 'handlebars';
 import chatsHeader from './components/chatsHeader/chatsHeader';
 import chatsList from './components/chatsList/chatsList';
@@ -94,12 +94,12 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
-    }
+    },
 ];
 
 export default function chatsComponent() {
     const template = Handlebars.compile(`
-        <div class='chatsComponent'>
+        <div class='chats-component'>
             {{{chatsHeader}}}
             {{{chats}}}
         </div>

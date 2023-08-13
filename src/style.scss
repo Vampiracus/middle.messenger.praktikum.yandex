@@ -1,0 +1,18 @@
+$theme-color: #444;
+$text-color: #fff000;
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    letter-spacing: 1px;
+    background-color: $theme-color;
+    color: $text-color;
+    overflow: hidden;
+}
+
+body {
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}

@@ -1,9 +1,9 @@
-import './profileMainContent.css';
+import './profileMainContent.scss';
 import Handlebars from 'handlebars';
 
 export default function profileMainContent(me: UserInfo) {
     const template = Handlebars.compile(`
-    <div class='profileMainContent'>
+    <div class='profile-main-content'>
         <span>{{me.name}}</span>
         <br/>
         <br/>

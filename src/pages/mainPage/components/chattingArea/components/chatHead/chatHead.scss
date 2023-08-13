@@ -1,0 +1,17 @@
+.chat-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+
+    &__name {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        & > .empty-avatar {
+            margin-right: 15px;
+        }
+    }
+}

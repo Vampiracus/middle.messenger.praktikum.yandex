@@ -1,0 +1,10 @@
+$darker-theme: #333;
+
+.chats-component {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    min-width: 310px;
+    max-width: 310px;
+    background-color: $darker-theme;
+}

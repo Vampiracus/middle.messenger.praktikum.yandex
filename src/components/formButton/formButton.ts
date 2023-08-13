@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import './formButton.css';
+import './formButton.scss';
 
 export default function formButton(
     text: string | undefined,
@@ -16,7 +16,7 @@ export default function formButton(
     }
 
     const template = Handlebars.compile(`
-        <button class='formButton' id={{id}}>{{text}}</button>
+        <button class='form-button' id={{id}}>{{text}}</button>
     `);
-    return template({ text, id, });
+    return template({ text, id });
 }

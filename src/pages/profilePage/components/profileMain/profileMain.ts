@@ -1,11 +1,11 @@
-import './profileMain.css';
+import './profileMain.scss';
 import Handlebars from 'handlebars';
 import myAvatar from '../myAvatar';
 import profileMainContent from './profileMainContent';
 
 export default function profileMain(me: UserInfo) {
     const template = Handlebars.compile(`
-        <div class='profileMain'>
+        <div class='profile-main'>
             <br/>
             {{{myAvatar}}}
             <br/>

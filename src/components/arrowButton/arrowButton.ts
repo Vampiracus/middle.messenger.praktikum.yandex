@@ -1,4 +1,4 @@
-import './arrowButton.css';
+import './arrowButton.scss';
 import Handlebars from 'handlebars';
 
 export default function sendButton(
@@ -13,7 +13,7 @@ export default function sendButton(
     }
 
     const template = Handlebars.compile(`
-    <button class='arrowButton' id={{id}}>
+    <button class='arrow-button' id={{id}}>
         <img src='{{imgSrc}}' alt="send"/>
     </button>
     `);

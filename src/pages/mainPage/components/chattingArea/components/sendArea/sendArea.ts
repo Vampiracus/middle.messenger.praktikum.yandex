@@ -1,4 +1,4 @@
-import './sendArea.css';
+import './sendArea.scss';
 import Handlebars from 'handlebars';
 import mainPageInput from '../../../mainPageInput';
 import arrowButton from '../../../../../../components/arrowButton';
@@ -10,10 +10,10 @@ export default function sendArea() {
     }
 
     const template = Handlebars.compile(`
-    <div class='sendArea'>
+    <div class='send-area'>
         {{{dropOutMenu}}}
         <img src='{{imgSrc}}' alt="attach"/>
-        <form class='sendArea__form'>
+        <form class='send-area__form'>
             {{{myMessageInput}}}
             {{{sendButton}}}
         </form>

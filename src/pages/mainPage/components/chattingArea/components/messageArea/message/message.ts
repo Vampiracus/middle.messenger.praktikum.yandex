@@ -1,11 +1,11 @@
-import './message.css';
+import './message.scss';
 import Handlebars from 'handlebars';
 
 export const MessageSentStatus: {
     SENT_TO_ME: number,
     SENT: number,
     RECEIVED: number,
-} = { SENT_TO_ME: 1, SENT: 2, RECEIVED: 3, };
+} = { SENT_TO_ME: 1, SENT: 2, RECEIVED: 3 };
 
 export default function message(msgInfo: Message) {
     const template = Handlebars.compile(`

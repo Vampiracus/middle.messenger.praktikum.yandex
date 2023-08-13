@@ -8,5 +8,5 @@ export default function toBeRead(n: number) {
             {{n}}
         </div>
     `);
-    return template({ n, });
+    return template({ n });
 }

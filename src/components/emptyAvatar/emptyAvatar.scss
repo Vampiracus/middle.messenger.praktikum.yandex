@@ -1,0 +1,10 @@
+$theme-color-2: #555;
+
+.empty-avatar {
+    min-height: 50px;
+    max-height: 50px;
+    min-width: 50px;
+    max-width: 50px;
+    border-radius: 50%;
+    background-color: $theme-color-2;
+}

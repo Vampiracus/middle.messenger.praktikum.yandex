@@ -1,6 +1,6 @@
 import Handlebars from 'handlebars';
 import chatsPlug from './components/chatsPlug';
-import './chattingArea.css';
+import './chattingArea.scss';
 import sendArea from './components/sendArea';
 import messageArea from './components/messageArea';
 import chatHead from './components/chatHead';
@@ -11,7 +11,7 @@ export default function chattingArea(messages: Array<Message>) {
     }
 
     const template = Handlebars.compile(`
-    <div class='chattingArea'>
+    <div class='chatting-area'>
         {{{sendArea}}}
         {{{messagesArea}}}
         {{{chatOptions}}}
@@ -20,6 +20,6 @@ export default function chattingArea(messages: Array<Message>) {
     return template({
         sendArea: sendArea(),
         messagesArea: messageArea(messages),
-        chatOptions: chatHead({ name: 'Вадим', }),
+        chatOptions: chatHead({ name: 'Вадим' }),
     });
 }

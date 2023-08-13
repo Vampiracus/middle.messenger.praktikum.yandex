@@ -1,11 +1,11 @@
-import './profilePage.css';
+import './profilePage.scss';
 import Handlebars from 'handlebars';
 
 import backToMainComponent from './components/backToMainComponent';
 import profileMain from './components/profileMain';
-//  import changeDataForm from './components/changeDataForm';
-//  import changePasswordForm from './components/changePasswordForm';
-//  import errorModal from '../../components/errorModal';
+// import changeDataForm from './components/changeDataForm';
+// import changePasswordForm from './components/changePasswordForm';
+// import errorModal from '../../components/errorModal';
 
 const me: UserInfo = {
     name: 'Иван',
@@ -19,9 +19,9 @@ const me: UserInfo = {
 export default function profilePage() {
     const template = Handlebars.compile(`
         {{{badFileModal}}}
-        <div class='profilePage'>
+        <div class='profile-page'>
             {{{backToMainComponent}}}
-            <main class='profilePage__main'>
+            <main class='profile-page__main'>
                 {{{content}}}
             </main>
         </div>
@@ -29,6 +29,8 @@ export default function profilePage() {
     return template({
         backToMainComponent: backToMainComponent(),
         content: profileMain(me),
+        // content: changeDataForm(me),
+        // content: changePasswordForm(),
         // badFileModal: errorModal('Ошибка загрузки файла', 'Попробуйте другой файл'),
     });
 }

@@ -1,12 +1,12 @@
 import Handlebars from 'handlebars';
 import mainPageInput from '../../../mainPageInput/mainPageInput';
-import './chatsHeader.css';
+import './chatsHeader.scss';
 
 export default function chatsHeader() {
     const template = Handlebars.compile(`
-        <div class='chatsHeader'>
-            <a class='chatsHeader__profileLink'>Профиль <strong>></strong></a>
-            <form class='chatsHeader__searchForm'>
+        <div class='chats-header'>
+            <a class='chats-header__profileLink'>Профиль <strong>></strong></a>
+            <form class='chats-header__searchForm'>
                 {{{mainPageInput}}}
             </form>
         </div>

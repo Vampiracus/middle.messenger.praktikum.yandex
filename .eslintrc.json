@@ -18,7 +18,8 @@
             "error",
             "ignorePackages",
             {
-              "ts": "never"
+              "ts": "never",
+              "scss": "never"
             }
          ],
          "no-undef": "off", //Typescript already checks
@@ -27,7 +28,8 @@
             "error",
             {
                 "functions": "never", 
-                "objects": "always"
+                "objects": "always-multiline",
+                "arrays": "always-multiline"
             }
         ]
     },

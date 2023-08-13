@@ -1,0 +1,26 @@
+$text-color: #fff000;
+$text-color-2: #999;
+
+.form-input {
+    background: none;
+    border: none;
+    letter-spacing: 2px;
+    border-bottom: 1.5px solid #999;
+    width: 100%;
+    color: $text-color;
+    margin-bottom: 5px;
+    outline: none;
+
+    &__label {
+        align-self: flex-start;
+        font-size: 0.7rem;
+        color: $text-color_2;
+        left: 0;
+        margin: 15px 0 3px;
+
+        &_incorrect {
+            color: #FF2F2F;
+            text-shadow: 1px 1px black;
+        }
+    }
+}

@@ -1,5 +1,5 @@
-import './emptyAvatar.css';
+import './emptyAvatar.scss';
 
 export default function emptyAvatar() {
-    return '<div class=\'emptyAvatar\'></div>';
+    return '<div class=\'empty-avatar\'></div>';
 }

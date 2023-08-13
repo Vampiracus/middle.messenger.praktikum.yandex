@@ -1,0 +1,24 @@
+.send-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 20px;
+    position: relative;
+
+    & > img {
+        max-height: 35px;
+    }
+    
+    &__form {
+        display: flex;
+        flex:1;
+        flex-direction: row;
+        align-items: center;
+
+        & > input {
+            margin-right: 15px;
+        }
+    }
+}

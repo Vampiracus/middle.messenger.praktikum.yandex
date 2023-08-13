@@ -1,4 +1,4 @@
-import './deleteChatModal.css';
+import './deleteChatModal.scss';
 import Handlebars from 'handlebars';
 import actionModal from '../../../../components/actionModal';
 import formButton from '../../../../components/formButton';
@@ -8,9 +8,9 @@ export default function deleteChatModal() {
         <span>Это действие нельзя отменить</span>
         {{{addButton}}}
         {{{deleteButton}}}
-    `, 'deleteChatModal'));
+    `, 'delete-chat-modal'));
     return template({
-        addButton: formButton('Отменить', 'cancelButton', () => { alert('Отмена'); }),
-        deleteButton: formButton('Удалить', 'deleteChatButton', () => { alert('Удаление'); }),
+        addButton: formButton('Отменить', 'cancel-button', () => { alert('Отмена'); }),
+        deleteButton: formButton('Удалить', 'delete-chat-button', () => { alert('Удаление'); }),
     });
 }
