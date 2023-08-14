@@ -1,11 +1,19 @@
 import './mainPageInput.scss';
-import Handlebars from 'handlebars';
+import Block from '../../../../utils/Block';
 
-export default function mainPageInput(placeholder: string) {
-    const template = Handlebars.compile(`
-        <input class='main-page-input' name='message' type='text' placeholder='{{placeholder}}'>
-    `);
-    return template({
-        placeholder,
-    });
+interface IInput { placeholder?: string, name?: string }
+
+export default class MainPageInput extends Block<IInput> {
+    constructor(props: IInput) {
+        super(props, 'input');
+        this.addClass('main-page-input');
+
+        if (this.props.name) {
+            this.setAttribute('name', this.props.name);
+        }
+
+        if (this.props.placeholder) {
+            this.setAttribute('placeholder', this.props.placeholder);
+        }
+    }
 }

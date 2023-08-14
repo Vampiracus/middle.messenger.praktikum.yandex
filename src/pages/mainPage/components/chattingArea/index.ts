@@ -1,2 +1,2 @@
-export { default } from './chattingArea';
-export { MessageSentStatus } from './components/messageArea';
+export { default } from './ChattingArea';
+export { MessageSentStatus } from './components/MessageArea';

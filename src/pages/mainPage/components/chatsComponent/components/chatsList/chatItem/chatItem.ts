@@ -1,28 +1,41 @@
-import Handlebars from 'handlebars';
-import emptyAvatar from '../../../../../../../components/emptyAvatar';
+import EmptyAvatar from '../../../../../../../components/EmptyAvatar';
 import './chatItem.scss';
-import toBeReadBubble from './toBeReadBubble';
+import ToBeReadBubble from './ToBeReadBubble';
+import Block from '../../../../../../../utils/Block';
 
-export default function chatItem(chat: Chat) {
-    const template = Handlebars.compile(`
-        <div class='chat-item'>
-            {{{avatar}}}
-            <div class='chat-item__text'>
-                <span class='chat-item__text__chatName'>{{chat.name}}</span>
-                <div>{{me}} <span class='chat-item__text__message'>{{chat.message}}</span> </div>
-            </div>
-            <div class='chat-item__about'>
-                {{chat.lastMessageDate}}
-                {{{toBeRead}}}
-                
-            </div>
+interface IChat {
+    chat: Chat
+}
+
+export default class ChatItem extends Block<IChat> {
+    constructor(chat: Chat) {
+        super({ chat }, 'div', [new EmptyAvatar(), new ToBeReadBubble({ messagesNumber: chat.toBeRead })]);
+        this.addClass('chat-item');
+        if (chat.isActive) {
+            this.addClass('chat-item_active');
+        }
+    }
+
+    render() {
+        const me = (this.props.chat.iSentLast) ? 'Вы: ' : '';
+        return Block.compile(`
+        {{{avatar}}}
+        <div class='chat-item__text'>
+            <span class='chat-item__text__chatName'>{{chatName}}</span>
+            <div>{{me}} <span class='chat-item__text__message'>{{chatMessage}}</span> </div>
         </div>
-    `);
-    const me = (chat.iSentLast) ? 'Вы: ' : '';
-    return template({
-        avatar: emptyAvatar(),
-        chat,
-        me,
-        toBeRead: toBeReadBubble(chat.toBeRead),
-    });
+        <div class='chat-item__about'>
+            {{lastMessageDate}}
+            {{{toBeRead}}}
+            
+        </div>
+        `, {
+            chatName: this.props.chat.name,
+            me,
+            chatMessage: this.props.chat.message,
+            lastMessageDate: this.props.chat.lastMessageDate,
+            avatar: this.children[0],
+            toBeRead: this.children[1],
+        });
+    }
 }

@@ -34,7 +34,8 @@
         ],
         "no-underscore-dangle": ["off"],
         "no-restricted-syntax": ["off"],
-        "arrow-parens": ["error", "as-needed"]
+        "arrow-parens": ["error", "as-needed"],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
     },
     "settings": {
         "import/resolver": {

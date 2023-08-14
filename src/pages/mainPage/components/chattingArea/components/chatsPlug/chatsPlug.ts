@@ -1,9 +1,10 @@
+import Block from '../../../../../../utils/Block';
 import './chatsPlug.scss';
 
-export default function chatsPlug() {
-    return `
-    <main class='chats-plug'>
-        Выберите чат, чтобы отправить сообщение
-    </main>
-    `;
+export default class ChatsPlug extends Block<{}> {
+    constructor() {
+        super({}, 'main');
+        this.element.textContent = 'Выберите чат, чтобы отправить сообщение';
+        this.addClass('chats-plug');
+    }
 }

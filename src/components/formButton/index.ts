@@ -1,1 +1,1 @@
-export { default } from './formButton';
+export { default } from './FormButton';

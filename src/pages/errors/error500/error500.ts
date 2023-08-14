@@ -1,6 +1,6 @@
 import '../errors.scss';
 import Block from '../../../utils/Block';
-import FormButton from '../../../components/formButton';
+import FormButton from '../../../components/FormButton';
 
 export default class Error500Page extends Block<{}> {
     constructor() {

@@ -1,1 +1,1 @@
-export { default } from './sendArea';
+export { default } from './SendArea';

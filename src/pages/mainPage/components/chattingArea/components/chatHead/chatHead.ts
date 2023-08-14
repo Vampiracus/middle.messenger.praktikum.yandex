@@ -1,21 +1,29 @@
 import './chatHead.scss';
-import Handlebars from 'handlebars';
-import emptyAvatar from '../../../../../../components/emptyAvatar';
-import chatOptions from './chatOptions';
+import EmptyAvatar from '../../../../../../components/EmptyAvatar';
+import Block from '../../../../../../utils/Block';
+import ChatOptions from './ChatOptions';
 
-export default function chatHead(chatInfo: {name: string}) {
-    const template = Handlebars.compile(`
-    <div class='chat-head'>
+interface IChatName {
+    name: string,
+}
+
+export default class ChatHead extends Block<IChatName> {
+    constructor(props: IChatName) {
+        super(props, 'div', [new EmptyAvatar(), new ChatOptions()]);
+        this.addClass('chat-head');
+    }
+
+    render() {
+        return Block.compile(`
         <div class='chat-head__name'>
             {{{avatar}}}
             {{{name}}}
         </div>
         {{{chatOptions}}}
-    </div>
-    `);
-    return template({
-        name: chatInfo.name,
-        avatar: emptyAvatar(),
-        chatOptions: chatOptions(),
-    });
+        `, {
+            name: this.props.name,
+            avatar: this.children[0],
+            chatOptions: this.children[1],
+        });
+    }
 }

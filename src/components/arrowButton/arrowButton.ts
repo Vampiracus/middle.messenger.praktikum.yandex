@@ -1,25 +1,23 @@
+import Block from '../../utils/Block';
 import './arrowButton.scss';
-import Handlebars from 'handlebars';
 
-export default function sendButton(
+interface Props {
     id: string,
-    callback: EventListenerOrEventListenerObject | undefined
-) {
-    if (id !== undefined && callback !== undefined) {
-        document.addEventListener('DOMContentLoaded', () => {
-            const button: Element | null = document.body.querySelector(`#${id}`);
-            if (button) button.addEventListener('click', callback);
-        });
+    callback?: EventListenerOrEventListenerObject
+}
+
+export default class ArrowButton extends Block {
+    constructor(props: Props) {
+        super(props, 'button');
+        this.addClass('arrow-button');
+        this.setAttribute('id', props.id);
+
+        if (props.callback) {
+            this.element.addEventListener('click', props.callback);
+        }
     }
 
-    const template = Handlebars.compile(`
-    <button class='arrow-button' id={{id}}>
-        <img src='{{imgSrc}}' alt="send"/>
-    </button>
-    `);
-
-    return template({
-        imgSrc: '/arrow.png',
-        id,
-    });
+    render() {
+        return Block.compile('<img src="{{imgSrc}}" alt="send"/>', { imgSrc: '/arrow.png' });
+    }
 }

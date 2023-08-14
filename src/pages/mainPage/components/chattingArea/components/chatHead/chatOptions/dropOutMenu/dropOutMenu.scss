@@ -6,11 +6,14 @@ $text-color-2: #999;
     flex-direction: column;
     justify-content: space-between;
     position: absolute;
-    bottom: -110px;
+    bottom: -130px;
     right: 0;
     box-shadow: 0 0 7px inset #333;
     padding: 10px;
     border-radius: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    min-width: 16em;
 
     & > div {
         margin: 5px;

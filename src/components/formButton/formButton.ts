@@ -7,7 +7,7 @@ interface Props {
     callback?: EventListenerOrEventListenerObject
 }
 
-export default class formButton extends Block<Props> {
+export default class FormButton extends Block<Props> {
     constructor(props: Props) {
         super(props, 'button');
 

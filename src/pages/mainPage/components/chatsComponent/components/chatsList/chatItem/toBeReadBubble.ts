@@ -1,12 +1,20 @@
-import Handlebars from 'handlebars';
+import Block from '../../../../../../../utils/Block';
 
-export default function toBeRead(n: number) {
-    if (n === 0) return '';
+interface IBubble { messagesNumber: number }
 
-    const template = Handlebars.compile(`
-        <div class='chatItem__about__toBeRead'>
-            {{n}}
-        </div>
-    `);
-    return template({ n });
+export default class ToBeReadBubble extends Block<IBubble> {
+    constructor(props: IBubble) {
+        super(props, 'div');
+        this.addClass('chat-item__about__to-be-read');
+    }
+
+    render(): DocumentFragment | void {
+        if (this.props.messagesNumber === 0) {
+            this.element.style.display = 'none';
+        }
+
+        return Block.compile('{{n}}', {
+            n: this.props.messagesNumber.toString(),
+        });
+    }
 }

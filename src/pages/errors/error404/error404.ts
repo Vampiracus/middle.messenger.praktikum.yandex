@@ -1,6 +1,6 @@
 import '../errors.scss';
 import Block from '../../../utils/Block';
-import FormButton from '../../../components/formButton';
+import FormButton from '../../../components/FormButton';
 
 export default class Error404Page extends Block<{}> {
     constructor() {
@@ -11,6 +11,7 @@ export default class Error404Page extends Block<{}> {
     render() {
         return Block.compile(`
         <h1>Ошибка 404</h1>
+        <p>Ресурс не найден</p>
         {{{button}}}
         `, { button: this.children[0] });
     }

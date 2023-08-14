@@ -5,11 +5,12 @@ declare global {
 
     // Main page
     type Chat = {
-        name: string,
-        message: string,
-        iSentLast: boolean,
-        lastMessageDate: string,
-        toBeRead: number
+        name: string, // Имя чата
+        message: string, // Последнего сообщения
+        iSentLast: boolean, // Я отправил последнее сообщение?
+        lastMessageDate: string, // Дата (время) последнего сообщения
+        toBeRead: number, // Сколько у меня непрочитанных сообщений с этого чата
+        isActive: boolean // Активен ли чат
     };
 
     type Message = {

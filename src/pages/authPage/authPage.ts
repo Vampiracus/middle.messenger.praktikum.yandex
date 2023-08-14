@@ -1,11 +1,11 @@
-import Handlebars from 'handlebars';
-import popupContent from '../../components/popupContent';
-import authorizationForm from './authorizationForm';
-// import registrationForm from './registrationForm';
+import PopupContent from '../../components/PopupContent';
+import AuthorizationForm from './AuthorizationForm';
+// import RegistrationForm from './RegistrationForm';
 import './authPage.scss';
 
-export default function authPage() {
-    const template = Handlebars.compile(popupContent('{{{content}}}'));
-
-    return template({ content: authorizationForm() });
+export default class AuthPage extends PopupContent {
+    constructor() {
+        super([new AuthorizationForm()]);
+        this.setProps({ active: true });
+    }
 }

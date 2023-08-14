@@ -1,7 +1,7 @@
 import './chatsComponent.scss';
-import Handlebars from 'handlebars';
-import chatsHeader from './components/chatsHeader/chatsHeader';
-import chatsList from './components/chatsList/chatsList';
+import Block from '../../../../utils/Block';
+import ChatsHeader from './components/ChatsHeader/ChatsHeader';
+import ChatsList from './components/ChatsList/ChatsList';
 
 const chats: Array<Chat> = [
     {
@@ -10,6 +10,7 @@ const chats: Array<Chat> = [
         iSentLast: false,
         lastMessageDate: '10:49',
         toBeRead: 2,
+        isActive: false,
     },
     {
         name: 'Киноклуб',
@@ -17,6 +18,7 @@ const chats: Array<Chat> = [
         iSentLast: true,
         lastMessageDate: '12:00',
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: 'Илья',
@@ -24,6 +26,7 @@ const chats: Array<Chat> = [
         iSentLast: false,
         lastMessageDate: '15:12',
         toBeRead: 4,
+        isActive: false,
     },
     {
         name: 'Вадим',
@@ -31,6 +34,7 @@ const chats: Array<Chat> = [
         lastMessageDate: 'Пт',
         iSentLast: true,
         toBeRead: 0,
+        isActive: true,
     },
     {
         name: 'тет-а-теты',
@@ -38,6 +42,7 @@ const chats: Array<Chat> = [
         lastMessageDate: 'Ср',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '1, 2, 3',
@@ -45,6 +50,7 @@ const chats: Array<Chat> = [
         lastMessageDate: 'Пт',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '',
@@ -52,6 +58,7 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '',
@@ -59,6 +66,7 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '',
@@ -66,6 +74,7 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '',
@@ -73,6 +82,7 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '',
@@ -80,6 +90,7 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '',
@@ -87,6 +98,7 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
     {
         name: '',
@@ -94,18 +106,23 @@ const chats: Array<Chat> = [
         lastMessageDate: '',
         iSentLast: false,
         toBeRead: 0,
+        isActive: false,
     },
 ];
 
-export default function chatsComponent() {
-    const template = Handlebars.compile(`
-        <div class='chats-component'>
-            {{{chatsHeader}}}
-            {{{chats}}}
-        </div>
-    `);
-    return template({
-        chatsHeader: chatsHeader(),
-        chats: chatsList(chats),
-    });
+export default class ChatsComponent extends Block<{}> {
+    constructor() {
+        super({}, 'div', [new ChatsHeader(), new ChatsList(chats)]);
+        this.addClass('chats-component');
+    }
+
+    render() {
+        return Block.compile(`
+        {{{chatsHeader}}}
+        {{{chats}}}
+        `, {
+            chatsHeader: this.children[0],
+            chats: this.children[1],
+        });
+    }
 }

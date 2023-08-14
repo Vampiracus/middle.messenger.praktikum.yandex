@@ -93,44 +93,29 @@ export default abstract class Block<P extends Record<string, any> = any> {
     }
 
     // Если компонент изменился, надо перерендерить
-    _componentDidUpdate(oldProps: P, newProps: P) {
-        const response = this.componentDidUpdate(oldProps, newProps);
+    _componentDidUpdate(oldProps: P) {
+        const response = this.componentDidUpdate(oldProps);
         if (response) {
             this._render();
         }
     }
 
-    // Может переопределять пользователь, необязательно трогать
-    componentDidUpdate(oldProps: P, newProps: P) {
-        // check if props have actually changed
-        let changed = false;
-        for (const key of Object.keys(oldProps)) {
-            if (newProps[key] !== oldProps[key]) {
-                changed = true;
-                break;
-            }
+    /**
+     * Метод должен возвращать boolean: надо ли перерисовывать компонент
+     */
+    componentDidUpdate(oldProps: P): boolean {
+        if (oldProps !== this.props) {
+            return true;
         }
-        if (!changed) {
-            for (const key of Object.keys(newProps)) {
-                if (newProps[key] !== oldProps[key]) {
-                    changed = true;
-                    break;
-                }
-            }
-        }
-
-        return changed;
+        return false;
     }
 
     setProps = (nextProps: P) => {
-        if (!nextProps) {
-            return;
-        }
         const oldProps = {};
         Object.assign(oldProps, this.props);
 
         Object.assign(this.props, nextProps);
-        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, /* newProps */ this.props);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps);
     };
 
     get element(): HTMLElement {
@@ -151,7 +136,10 @@ export default abstract class Block<P extends Record<string, any> = any> {
         this._element.appendChild(block);
     }
 
-    static compile(template: string, props: Record<string, Block | string>): DocumentFragment {
+    static compile(
+        template: string,
+        props: Record<string, Block | string | undefined>
+    ): DocumentFragment {
         const propsAndStubs: Record<string, any> = { ...props };
 
         Object.entries(props).forEach(([key, child]) => {

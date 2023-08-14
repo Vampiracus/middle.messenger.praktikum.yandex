@@ -1,29 +1,36 @@
+import ArrowButton from '../../../../../../components/ArrowButton';
+import Block from '../../../../../../utils/Block';
+import MainPageInput from '../../../MainPageInput/MainPageInput';
+import DropOutMenuSend from './DropOutMenuSend/DropOutMenuSend';
 import './sendArea.scss';
-import Handlebars from 'handlebars';
-import mainPageInput from '../../../mainPageInput';
-import arrowButton from '../../../../../../components/arrowButton';
-import dropOutMenu from './dropOutMenuSend';
 
-export default function sendArea() {
-    function send() {
-        alert('Отправка сообщения');
+function send() {
+    alert('Отправка сообщения');
+}
+
+export default class SendArea extends Block {
+    constructor() {
+        super({}, 'div', [
+            new DropOutMenuSend(),
+            new MainPageInput({ placeholder: 'Введите сообщение', name: 'message' }),
+            new ArrowButton({ id: 'sendMessageButton', callback: send }),
+        ]);
+        this.addClass('send-area');
     }
 
-    const template = Handlebars.compile(`
-    <div class='send-area'>
+    render() {
+        return Block.compile(`
         {{{dropOutMenu}}}
         <img src='{{imgSrc}}' alt="attach"/>
         <form class='send-area__form'>
             {{{myMessageInput}}}
             {{{sendButton}}}
         </form>
-    </div>
-    `);
-
-    return template({
-        dropOutMenu: dropOutMenu(),
-        imgSrc: '/attach.png',
-        myMessageInput: mainPageInput('Введите сообщение'),
-        sendButton: arrowButton('sendMessageButton', send),
-    });
+        `, {
+            dropOutMenu: this.children[0],
+            imgSrc: '/attach.png',
+            myMessageInput: this.children[1],
+            sendButton: this.children[2],
+        });
+    }
 }

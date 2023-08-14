@@ -1,16 +1,24 @@
+import ActionModal from '../../../../components/ActionModal';
+import FormInput from '../../../../components/FormInput';
+import FormButton from '../../../../components/FormButton';
 import './addUserModal.scss';
-import Handlebars from 'handlebars';
-import actionModal from '../../../../components/actionModal';
-import formInput from '../../../../components/formInput';
-import formButton from '../../../../components/formButton';
 
-export default function addUserModal() {
-    const template = Handlebars.compile(actionModal('Добавить пользователя', `
-        {{{userInput}}}
-        {{{addButton}}}
-    `, 'add-user-form'));
-    return template({
-        userInput: formInput('Логин', 'login', 'addUserInput', 'text', 'required'),
-        addButton: formButton('Добавить', 'addUserButton', () => { alert('Добавление пользователя'); }),
-    });
+export default class AddUserModal extends ActionModal {
+    constructor() {
+        super('Добавить пользователя', 'add-user-form', '', [
+            new FormInput({
+                labelText: 'Логин',
+                name: 'login',
+                id: 'addUserInput',
+                type: 'text',
+                additionalProperies: 'required',
+                value: '',
+            }),
+            new FormButton({
+                text: 'Добавить',
+                id: 'addUserButton',
+                callback: () => { alert('Добавление пользователя'); },
+            }),
+        ]);
+    }
 }
