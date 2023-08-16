@@ -127,7 +127,10 @@ export default abstract class Block<P extends Record<string, any> = any> {
 
     private _render() {
         const block = this.render();
-        if (!block) return;
+        if (!block) {
+            this.dispatchComponentDidMount();
+            return;
+        }
 
         if (!this._element) {
             throw new Error('Попытка создать элемент, когда он ещё не определен');

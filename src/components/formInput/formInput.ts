@@ -25,15 +25,25 @@ export default class FormInput extends Block<Props> {
         return this.element.children[0] as HTMLLabelElement;
     }
 
+    componentDidUpdate(): boolean {
+        return false;
+    }
+
     componentDidMount() {
         this.inputElement.value = this.props.value;
+        this.inputElement.addEventListener('change', () => {
+            this.setProps({
+                ...this.props,
+                value: (this.element.children[1] as HTMLInputElement).value,
+            });
+        });
         this.inputElement.addEventListener('blur', e => {
             this.setProps({
                 ...this.props,
                 value: (this.element.children[1] as HTMLInputElement).value,
             });
             if (this.props.onBlur) this.props.onBlur(e);
-        }, false);
+        });
     }
 
     setCorrect() {

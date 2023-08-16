@@ -4,8 +4,14 @@ import Block from '../../../../../../utils/Block';
 
 export default class ChatsHeader extends Block<{}> {
     constructor() {
-        super({}, 'div', [new MainPageInput({ placeholder: 'Поиск', name: 'chatname' })]);
+        super({}, 'div', [new MainPageInput({
+            placeholder: 'Поиск', name: 'chatname', value: '',
+        })]);
         this.addClass('chats-header');
+    }
+
+    componentDidMount(): void {
+        this.element.children[1].addEventListener('submit', e => { e.preventDefault(); });
     }
 
     render() {
@@ -14,8 +20,6 @@ export default class ChatsHeader extends Block<{}> {
         <form class='chats-header__searchForm'>
             {{{mainPageInput}}}
         </form>
-        `, {
-            mainPageInput: this.children[0],
-        });
+        `, { mainPageInput: this.children[0] });
     }
 }

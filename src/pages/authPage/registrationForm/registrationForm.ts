@@ -6,8 +6,8 @@ import { validateEmail, validateLogin, validateName, validatePassword, validateP
 interface Props {
     email: string,
     login: string,
-    name: string,
-    secondname: string,
+    firstName: string,
+    secondName: string,
     phone: string,
     password: string,
     passwordAgain: string,
@@ -16,13 +16,18 @@ interface Props {
 export default class RegistrationForm extends Block<Props> {
     private _register(e: Event) {
         e.preventDefault();
-        const email: string = (this.children[1] as FormInput).inputElement.value;
-        const login: string = (this.children[2] as FormInput).inputElement.value;
-        const firstName: string = (this.children[3] as FormInput).inputElement.value;
-        const secondName: string = (this.children[4] as FormInput).inputElement.value;
-        const phone: string = (this.children[5] as FormInput).inputElement.value;
-        const password: string = (this.children[6] as FormInput).inputElement.value;
-        const passwordAgain: string = (this.children[7] as FormInput).inputElement.value;
+        this.setProps({
+            email: this.children[1].props.value,
+            login: this.children[2].props.value,
+            firstName: this.children[3].props.value,
+            secondName: this.children[4].props.value,
+            phone: this.children[5].props.value,
+            password: this.children[6].props.value,
+            passwordAgain: this.children[7].props.value,
+        });
+        const {
+            email, login, firstName, secondName, phone, password, passwordAgain,
+        } = this.props;
         console.log({
             email, login, firstName, secondName, phone, password, passwordAgain,
         });
@@ -30,6 +35,10 @@ export default class RegistrationForm extends Block<Props> {
         || !validateName(secondName) || !validatePhone(phone) || !validatePassword(password)
         || password !== passwordAgain) return;
         console.log('Успешная валидация');
+    }
+
+    componentDidUpdate(): boolean {
+        return false;
     }
 
     constructor() {
@@ -40,6 +49,9 @@ export default class RegistrationForm extends Block<Props> {
             type: 'text',
             additionalProperies: 'required autofocus',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, email: emailInput.props.value,
+                });
                 if (validateEmail(emailInput.props.value)) {
                     emailInput.setCorrect();
                 } else {
@@ -55,6 +67,9 @@ export default class RegistrationForm extends Block<Props> {
             type: 'text',
             additionalProperies: 'required maxlength="20"',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, login: loginInput.props.value,
+                });
                 if (validateLogin(loginInput.props.value)) {
                     loginInput.setCorrect();
                 } else {
@@ -70,6 +85,9 @@ export default class RegistrationForm extends Block<Props> {
             type: 'text',
             additionalProperies: 'required',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, firstName: firstNameInput.props.value,
+                });
                 if (validateName(firstNameInput.props.value)) {
                     firstNameInput.setCorrect();
                 } else {
@@ -85,6 +103,9 @@ export default class RegistrationForm extends Block<Props> {
             type: 'text',
             additionalProperies: 'required',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, secondName: secondNameInput.props.value,
+                });
                 if (validateName(secondNameInput.props.value)) {
                     secondNameInput.setCorrect();
                 } else {
@@ -100,6 +121,9 @@ export default class RegistrationForm extends Block<Props> {
             type: 'text',
             additionalProperies: 'required',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, phone: phoneInput.props.value,
+                });
                 if (validatePhone(phoneInput.props.value)) {
                     phoneInput.setCorrect();
                 } else {
@@ -116,6 +140,9 @@ export default class RegistrationForm extends Block<Props> {
             type: 'password',
             additionalProperies: 'required maxlength="40"',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, password: passwordInput.props.value,
+                });
                 if (validatePassword(passwordInput.props.value)) {
                     passwordInput.setCorrect();
                 } else {
@@ -137,6 +164,9 @@ export default class RegistrationForm extends Block<Props> {
             type: 'password',
             additionalProperies: 'required maxlength="40"',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, passwordAgain: passwordAgainInput.props.value,
+                });
                 if (passwordInput.props.value === passwordAgainInput.props.value) {
                     passwordAgainInput.setCorrect();
                 } else {
@@ -149,8 +179,8 @@ export default class RegistrationForm extends Block<Props> {
         super({
             email: '',
             login: '',
-            name: '',
-            secondname: '',
+            firstName: '',
+            secondName: '',
             phone: '',
             password: '',
             passwordAgain: '',

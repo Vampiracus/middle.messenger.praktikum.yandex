@@ -11,13 +11,22 @@ interface Props {
 export default class AuthorizationForm extends Block<Props> {
     _enter(e: Event) {
         e.preventDefault();
-        const login = (this.children[1] as FormInput).inputElement.value;
-        const password = (this.children[2] as FormInput).inputElement.value;
+        this.setProps({
+            login: this.children[1].props.value,
+            password: this.children[2].props.value,
+        });
+        const {
+            login, password,
+        } = this.props;
         console.log({
             login, password,
         });
         if (!validateLogin(login) || !validatePassword(password)) return;
         console.log('Успешная валидация');
+    }
+
+    componentDidUpdate(): boolean {
+        return false;
     }
 
     constructor() {
@@ -28,6 +37,9 @@ export default class AuthorizationForm extends Block<Props> {
             type: 'text',
             additionalProperies: 'required',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, login: loginInput.props.value,
+                });
                 if (validateLogin(loginInput.props.value)) {
                     loginInput.setCorrect();
                 } else {
@@ -43,6 +55,9 @@ export default class AuthorizationForm extends Block<Props> {
             type: 'password',
             additionalProperies: 'required',
             onBlur: () => {
+                this.setProps({
+                    ...this.props, password: passwordInput.props.value,
+                });
                 if (validatePassword(passwordInput.props.value)) {
                     passwordInput.setCorrect();
                 } else {

@@ -6,9 +6,11 @@ interface IWrapper {
     implementation: Record<string, Block | string | undefined>,
 }
 
-export default class ProfileFormWrapper<T extends Record<string, any>> extends Block<IWrapper | T> {
+export default class ProfileFormWrapper<T extends Record<string, any>> extends Block<IWrapper & T> {
     constructor(templateProps: IWrapper, actualProps:T, children?: Array<Block>) {
-        super({ ...templateProps, ...actualProps }, 'div', children);
+        super({
+            ...templateProps, ...actualProps,
+        }, 'div', children);
         this.addClass('profile-form-wrapper');
     }
 

@@ -7,12 +7,12 @@ import ProfileMain from './components/ProfileMain/ProfileMain';
 import './profilePage.scss';
 
 const me: UserInfo = {
-    name: 'Иван',
     email: 'pochta@yandex.ru',
     login: 'ivanivanov',
     firstName: 'Иван',
     secondName: 'Иванов',
-    phone: '+7 (800) 00 00',
+    displayName: 'Иван',
+    phone: '+78001234567',
 };
 
 export default class ProfilePage extends Block<{}> {
@@ -22,7 +22,9 @@ export default class ProfilePage extends Block<{}> {
             new ProfileMain(me),
             new ChangeDataForm(me),
             new ChangePasswordForm(),
-            new ErrorModal({ errorName: 'Ошибка загрузки файла', recomendation: 'Попробуйте другой файл' }),
+            new ErrorModal({
+                errorName: 'Ошибка загрузки файла', recomendation: 'Попробуйте другой файл',
+            }),
         ]);
         this.addClass('profile-page');
         // this.children[4].setProps({ active: true });
