@@ -1,16 +1,29 @@
 import './popupContent.scss';
 import Block from '../../utils/Block';
-import forHandlebars from '../../utils/otherScripts';
 
-interface IActive { active: boolean }
+interface IPopup {
+    active: boolean,
+    template: string,
+    implementation: Record<string, any>,
+}
 
-export default class PopupContent extends Block<IActive> {
-    constructor(children: Array<Block>) {
-        super({ active: false }, 'div', children);
+export default class PopupContent<T extends Record<string, any> = any> extends Block<IPopup & T> {
+    constructor(
+        props: T,
+        template: string,
+        implementation: Record<string, any>,
+        children?: Array<Block>
+    ) {
+        super({
+            active: false,
+            template,
+            implementation,
+            ...props,
+        }, 'div', children);
         this.addClass('popup-content');
     }
 
-    componentDidUpdate(oldProps: IActive): boolean {
+    componentDidUpdate(oldProps: { active: boolean }): boolean {
         if (this.props.active) {
             this.addClass('popup-content_active');
         } else {
@@ -23,11 +36,10 @@ export default class PopupContent extends Block<IActive> {
     }
 
     render() {
-        const [content, contentObj] = forHandlebars(this.children);
         return Block.compile(`
         <div class='popup-content__content'>
-            ${content}
+            ${this.props.template}
         </div>
-        `, contentObj);
+        `, this.props.implementation);
     }
 }

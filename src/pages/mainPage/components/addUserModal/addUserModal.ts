@@ -5,7 +5,7 @@ import './addUserModal.scss';
 
 export default class AddUserModal extends ActionModal {
     constructor() {
-        super('Добавить пользователя', 'add-user-form', '', [
+        const kids = [
             new FormInput({
                 labelText: 'Логин',
                 name: 'login',
@@ -17,8 +17,12 @@ export default class AddUserModal extends ActionModal {
             new FormButton({
                 text: 'Добавить',
                 id: 'addUserButton',
-                callback: () => { alert('Добавление пользователя'); },
+                callback: e => { e.preventDefault(); this.setProps({ active: false }); },
             }),
-        ]);
+        ];
+        super('Добавить пользователя', 'add-user-form', `
+        {{{loginInput}}}
+        {{{addButton}}}
+        `, { loginInput: kids[0], addButton: kids[1] }, kids);
     }
 }

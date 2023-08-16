@@ -1,11 +1,10 @@
+import ErrorModal from '../../components/ErrorModal';
+import Block from '../../utils/Block';
+import BackToMainComponent from './components/BackToMainComponent/BackToMainComponent';
+import ChangeDataForm from './components/ChangeDataForm';
+import ChangePasswordForm from './components/ChangePasswordForm';
+import ProfileMain from './components/ProfileMain/ProfileMain';
 import './profilePage.scss';
-import Handlebars from 'handlebars';
-
-import backToMainComponent from './components/backToMainComponent';
-import profileMain from './components/profileMain';
-// import changeDataForm from './components/changeDataForm';
-// import changePasswordForm from './components/changePasswordForm';
-// import errorModal from '../../components/errorModal';
 
 const me: UserInfo = {
     name: 'Иван',
@@ -16,21 +15,32 @@ const me: UserInfo = {
     phone: '+7 (800) 00 00',
 };
 
-export default function profilePage() {
-    const template = Handlebars.compile(`
+export default class ProfilePage extends Block<{}> {
+    constructor() {
+        super({}, 'div', [
+            new BackToMainComponent(),
+            new ProfileMain(me),
+            new ChangeDataForm(me),
+            new ChangePasswordForm(),
+            new ErrorModal({ errorName: 'Ошибка загрузки файла', recomendation: 'Попробуйте другой файл' }),
+        ]);
+        this.addClass('profile-page');
+        // this.children[4].setProps({ active: true });
+    }
+
+    render() {
+        return Block.compile(`
         {{{badFileModal}}}
-        <div class='profile-page'>
-            {{{backToMainComponent}}}
-            <main class='profile-page__main'>
-                {{{content}}}
-            </main>
-        </div>
-    `);
-    return template({
-        backToMainComponent: backToMainComponent(),
-        content: profileMain(me),
-        // content: changeDataForm(me),
-        // content: changePasswordForm(),
-        // badFileModal: errorModal('Ошибка загрузки файла', 'Попробуйте другой файл'),
-    });
+        {{{backToMainComponent}}}
+        <main class='profile-page__main'>
+            {{{content}}}
+        </main>
+        `, {
+            backToMainComponent: this.children[0],
+            // content: this.children[1],
+            // content: this.children[2],
+            content: this.children[3],
+            badFileModal: this.children[4],
+        });
+    }
 }

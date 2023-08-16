@@ -4,17 +4,22 @@ import FormButton from '../../../../components/FormButton';
 
 export default class DeleteChatModal extends ActionModal {
     constructor() {
-        super('Удалить чат', 'delete-chat-modal', '<span>Это действие нельзя отменить</span>', [
+        const kids = [
             new FormButton({
                 text: 'Отменить',
                 id: 'deleteChatCancelButton',
-                callback: () => { alert('Отмена'); },
+                callback: e => { e.preventDefault(); this.setProps({ active: false }); },
             }),
             new FormButton({
                 text: 'Удалить',
                 id: 'delete-chat-button',
-                callback: () => { alert('Удаление'); },
+                callback: e => { e.preventDefault(); this.setProps({ active: false }); },
             }),
-        ]);
+        ];
+        super('Удалить чат', 'delete-chat-modal', `
+        <span>Это действие нельзя отменить</span>
+        {{{cancelButton}}}
+        {{{deleteButton}}}
+        `, { cancelButton: kids[0], deleteButton: kids[1] }, kids);
     }
 }

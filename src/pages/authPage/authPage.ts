@@ -5,7 +5,8 @@ import './authPage.scss';
 
 export default class AuthPage extends PopupContent {
     constructor() {
-        super([new AuthorizationForm()]);
+        const theForm = new AuthorizationForm();
+        super({}, '{{{theForm}}}', { theForm }, [theForm]);
         this.setProps({ active: true });
     }
 }

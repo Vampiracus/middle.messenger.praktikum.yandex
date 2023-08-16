@@ -9,6 +9,7 @@ $text-color: #fff000;
     border: none;
     padding: 0;
     background-color: $text-color;
+    cursor: pointer;
 
     &:hover {
         background-color: #ddd222;

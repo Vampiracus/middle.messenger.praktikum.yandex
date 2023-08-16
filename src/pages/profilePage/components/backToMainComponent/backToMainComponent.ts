@@ -1,14 +1,20 @@
 import './backToMainComponent.scss';
-import Handlebars from 'handlebars';
-import arrowButton from '../../../../components/arrowButton';
+import ArrowButton from '../../../../components/ArrowButton';
+import Block from '../../../../utils/Block';
 
-export default function backToMainComponent() {
-    const template = Handlebars.compile(`
-        <div class='back-to-main-component'>
-            {{{backButton}}}
-        </div>
-    `);
-    return template({
-        backButton: arrowButton('backToMainButton', () => { alert('Возврат на главную'); }),
-    });
+export default class BackToMainComponent extends Block {
+    constructor() {
+        super({}, 'div', [new ArrowButton({ id: 'backToMainButton', callback: () => { alert('Возврат на главную'); } })]);
+        this.addClass('back-to-main-component');
+    }
+
+    render() {
+        return Block.compile('{{{backButton}}}', { backButton: this.children[0] });
+    }
 }
+
+/*
+<div class='back-to-main-component'>
+    {{{backButton}}}
+</div>
+*/

@@ -1,11 +1,7 @@
 import FormButton from '../../../components/FormButton';
 import FormInput from '../../../components/FormInput';
 import Block from '../../../utils/Block';
-
-function enter(e: Event) {
-    e.preventDefault();
-    alert('Вход на страницу');
-}
+import { validateLogin, validatePassword } from '../../../utils/validation';
 
 interface Props {
     login: string,
@@ -13,26 +9,65 @@ interface Props {
 }
 
 export default class AuthorizationForm extends Block<Props> {
+    _enter(e: Event) {
+        e.preventDefault();
+        const login = (this.children[1] as FormInput).inputElement.value;
+        const password = (this.children[2] as FormInput).inputElement.value;
+        console.log({
+            login, password,
+        });
+        if (!validateLogin(login) || !validatePassword(password)) return;
+        console.log('Успешная валидация');
+    }
+
     constructor() {
-        super({ login: '', password: '' }, 'main', [
-            new FormButton({ text: 'Войти', id: 'login-from-submit', callback: enter }),
-            new FormInput({
-                labelText: 'Логин',
-                name: 'login',
-                id: 'login-input',
-                type: 'text',
-                additionalProperies: 'required',
-                value: '',
+        const loginInput = new FormInput({
+            labelText: 'Логин',
+            name: 'login',
+            id: 'login-input',
+            type: 'text',
+            additionalProperies: 'required',
+            onBlur: () => {
+                if (validateLogin(loginInput.props.value)) {
+                    loginInput.setCorrect();
+                } else {
+                    loginInput.setIncorrect();
+                }
+            },
+            value: '',
+        });
+        const passwordInput = new FormInput({
+            labelText: 'Пароль',
+            name: 'password',
+            id: 'password-input',
+            type: 'password',
+            additionalProperies: 'required',
+            onBlur: () => {
+                if (validatePassword(passwordInput.props.value)) {
+                    passwordInput.setCorrect();
+                } else {
+                    passwordInput.setIncorrect();
+                }
+            },
+            value: '',
+        });
+
+        super({
+            login: '', password: '',
+        }, 'main', [
+            new FormButton({
+                text: 'Войти', id: 'login-from-submit',
             }),
-            new FormInput({
-                labelText: 'Пароль',
-                name: 'password',
-                id: 'password-input',
-                type: 'password',
-                additionalProperies: 'required',
-                value: '',
-            }),
+            loginInput,
+            passwordInput,
         ]);
+    }
+
+    componentDidMount(): void {
+        this.children[0].setProps({
+            ...this.children[0].props,
+            callback: this._enter.bind(this),
+        });
     }
 
     render() {

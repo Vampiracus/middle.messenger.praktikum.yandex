@@ -35,7 +35,14 @@
         "no-underscore-dangle": ["off"],
         "no-restricted-syntax": ["off"],
         "arrow-parens": ["error", "as-needed"],
-        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-param-reassign": "off",
+        "object-curly-newline": ["error", {
+            "ObjectExpression": { "multiline": true, "minProperties": 2 },
+            "ObjectPattern": { "multiline": true, "minProperties": 2 },
+            "ImportDeclaration": { "multiline": true },
+            "ExportDeclaration": { "multiline": true }
+        }]
     },
     "settings": {
         "import/resolver": {

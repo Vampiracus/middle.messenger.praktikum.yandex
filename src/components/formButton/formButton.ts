@@ -4,16 +4,12 @@ import Block from '../../utils/Block';
 interface Props {
     text?: string,
     id?: string,
-    callback?: EventListenerOrEventListenerObject
+    callback?: EventListener,
 }
 
 export default class FormButton extends Block<Props> {
     constructor(props: Props) {
         super(props, 'button');
-
-        if (props.callback) {
-            this.element.addEventListener('click', props.callback);
-        }
 
         this.addClass('form-button');
         if (props.id) {
@@ -22,5 +18,17 @@ export default class FormButton extends Block<Props> {
         if (props.text) {
             this.element.textContent = props.text;
         }
+    }
+
+    componentDidUpdate(oldProps: Props): boolean {
+        this.element.textContent = this.props.text ? this.props.text : '';
+        this.setAttribute('id', this.props.id ? this.props.id : '');
+        if (this.props.callback) {
+            this.element.onclick = this.props.callback;
+        } else if (oldProps.callback) {
+            this.element.removeEventListener('click', oldProps.callback);
+        }
+
+        return false;
     }
 }

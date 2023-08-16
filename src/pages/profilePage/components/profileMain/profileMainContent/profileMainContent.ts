@@ -1,10 +1,15 @@
+import Block from '../../../../../utils/Block';
 import './profileMainContent.scss';
-import Handlebars from 'handlebars';
 
-export default function profileMainContent(me: UserInfo) {
-    const template = Handlebars.compile(`
-    <div class='profile-main-content'>
-        <span>{{me.name}}</span>
+export default class ProfileMainContent extends Block<UserInfo> {
+    constructor(me: UserInfo) {
+        super(me, 'div');
+        this.addClass('profile-main-content');
+    }
+
+    render() {
+        return Block.compile(`
+        <span>{{name}}</span>
         <br/>
         <br/>
         <br/>
@@ -12,9 +17,6 @@ export default function profileMainContent(me: UserInfo) {
         <a>Изменить данные</a>
         <a>Изменить пароль</a>
         <a style='color: red; text-shadow: 1px 1px black'>Выйти из аккаунта</a>
-    </div>
-    `);
-    return template({
-        me,
-    });
+        `, { name: this.props.name });
+    }
 }

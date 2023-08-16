@@ -1,20 +1,20 @@
 import './profileMain.scss';
-import Handlebars from 'handlebars';
-import myAvatar from '../myAvatar';
-import profileMainContent from './profileMainContent';
+import Block from '../../../../utils/Block';
+import MyAvatar from '../MyAvatar';
+import ProfileMainContent from './ProfileMainContent';
 
-export default function profileMain(me: UserInfo) {
-    const template = Handlebars.compile(`
-        <div class='profile-main'>
-            <br/>
-            {{{myAvatar}}}
-            <br/>
-            {{{content}}}
-        </div>
-    `);
-    return template({
-        myAvatar: myAvatar(),
-        me,
-        content: profileMainContent(me),
-    });
+export default class ProfileMain extends Block<UserInfo> {
+    constructor(me: UserInfo) {
+        super(me, 'div', [new MyAvatar(), new ProfileMainContent(me)]);
+        this.addClass('profile-main');
+    }
+
+    render() {
+        return Block.compile(`
+        <br/>
+        {{{myAvatar}}}
+        <br/>
+        {{{content}}}
+        `, { myAvatar: this.children[0], content: this.children[1] });
+    }
 }

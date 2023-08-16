@@ -19,7 +19,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
 
     private _element: HTMLElement | null = null;
 
-    protected props: P;
+    public props: P;
 
     // eslint-disable-next-line no-use-before-define
     protected children: Array<Block> = [];
@@ -134,6 +134,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
         }
         this._element.innerHTML = '';
         this._element.appendChild(block);
+        this.dispatchComponentDidMount();
     }
 
     static compile(

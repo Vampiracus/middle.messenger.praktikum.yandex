@@ -4,15 +4,46 @@ import Block from '../../utils/Block';
 interface Props {
     labelText?: string,
     name?: string,
-    id?: string,
+    id: string,
     type?: string,
     additionalProperies?: string,
+    onBlur?: EventListener,
     value: string
 }
 
 export default class FormInput extends Block<Props> {
     constructor(props: Props) {
         super(props, 'div');
+        this.addClass('form-input-wrapper');
+    }
+
+    get inputElement(): HTMLInputElement {
+        return this.element.children[1] as HTMLInputElement;
+    }
+
+    get labelElement(): HTMLLabelElement {
+        return this.element.children[0] as HTMLLabelElement;
+    }
+
+    componentDidMount() {
+        this.inputElement.value = this.props.value;
+        this.inputElement.addEventListener('blur', e => {
+            this.setProps({
+                ...this.props,
+                value: (this.element.children[1] as HTMLInputElement).value,
+            });
+            if (this.props.onBlur) this.props.onBlur(e);
+        }, false);
+    }
+
+    setCorrect() {
+        this.labelElement.classList.remove('form-input__label_incorrect');
+        this.labelElement.classList.add('form-input__label_correct');
+    }
+
+    setIncorrect() {
+        this.labelElement.classList.add('form-input__label_incorrect');
+        this.labelElement.classList.remove('form-input__label_correct');
     }
 
     render() {

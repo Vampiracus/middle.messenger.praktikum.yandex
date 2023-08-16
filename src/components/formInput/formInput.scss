@@ -1,6 +1,10 @@
 $text-color: #fff000;
 $text-color-2: #999;
 
+.form-input-wrapper {
+    width: 100%;
+}
+
 .form-input {
     background: none;
     border: none;
@@ -20,6 +24,11 @@ $text-color-2: #999;
 
         &_incorrect {
             color: #FF2F2F;
+            text-shadow: 1px 1px black;
+        }
+
+        &_correct {
+            color: #2FFF2F;
             text-shadow: 1px 1px black;
         }
     }
