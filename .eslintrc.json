@@ -13,7 +13,7 @@
     ],
     "rules": {
         "indent": ["error", 4],
-        "linebreak-style": ["error", "windows"],
+        "linebreak-style": ["off"], // Проект разрабатывается на Windows, а тестируется на Unix
         "import/extensions": [
             "error",
             "ignorePackages",
@@ -22,7 +22,7 @@
               "scss": "never"
             }
          ],
-         "no-undef": "off", //Typescript already checks
+         "no-undef": "off", // Typescript проверяет
          "no-restricted-exports": "off",
          "comma-dangle": [
             "error",
