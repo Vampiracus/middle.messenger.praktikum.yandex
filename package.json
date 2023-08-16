@@ -8,6 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "npm run build && node server.js",
+    "stylelint": "npx stylelint \"**/*.scss\"",
+    "typeslint": "tsc --noEmit",
     "lint": "npx eslint --ext .ts src/",
     "lint:fix": "npx eslint --ext .ts src/ --fix",
     "lint:quiet": "npx eslint --ext .ts src/ --quiet"

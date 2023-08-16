@@ -1,16 +1,18 @@
 # Учебный проект: мессенджер
 
-Пул-реквест 1 спринт: [ссылка](https://github.com/Vampiracus/middle.messenger.praktikum.yandex/pull/3)
+Пул-реквест 2 спринт: [ссылка](https://github.com/Vampiracus/middle.messenger.praktikum.yandex/pull/4)
 
-На данном этапе только сверстаны страницы будущего веб-приложения. Прототип приложения выполнен в [Figma](https://www.figma.com/file/7UINrrRL12ICT0lXqvFVbi/Messenger-Proto?type=design&node-id=0%3A1&mode=design&t=GvKlX8atBnVE22LR-1 "кликните, чтобы перейти по ссылке")
+На данном этапе сверстаны страницы будущего веб-приложения, реализован компонентный подход, реализован класс HTTPTransport для HTTP-запросов, настроена валидация форм и вывод объектов в консоль при отправке формы.
+
+Прототип приложения выполнен в [Figma](https://www.figma.com/file/7UINrrRL12ICT0lXqvFVbi/Messenger-Proto?type=design&node-id=0%3A1&mode=design&t=GvKlX8atBnVE22LR-1 "кликните, чтобы перейти по ссылке")
 
 Использовался шаблонизатор `Handlebars`
 
-Использовался препроцессор `PostCSS` вместе с плагином `PreCSS`
+Использовался препроцессор `SASS`
 
 Сборка настроена при помощи `Vite`
 
-Настроен автодеплой на Netlify, проект можно найти по [ссылке](https://cosmic-piroshki-2466bd.netlify.app/ "кликните, чтобы перейти по ссылке"). На Netlify выложена не раздача статики, как в локале с помощью express; а само приложение. Поскольку реализация переходов между страницами не входит в первый спринт, там можно увидеть лишь одну из сверстанных страниц.
+Настроен автодеплой на Netlify, проект можно найти по [ссылке](https://cosmic-piroshki-2466bd.netlify.app/ "кликните, чтобы перейти по ссылке"). На Netlify выложена не раздача статики, как в локале с помощью express; а само приложение. Там можно увидеть лишь одну из сверстанных страниц.
 
 Рекомендуется использование браузера Google Chome версии хотя бы `115.0.5790.110`
 
@@ -32,52 +34,53 @@ npm run build
 ```
 Проект будет собран и помещен в папку build
 
+## Линтовка файлов
+
+Для запуска проверки файлов проекта на соответствие конфигурациям stylelint и ESLint необходимо запустить следующие команды:
+
+Stylelint
+```
+npm run stylelint
+```
+
+ESLint
+```
+npm run lint
+```
+
+ESLint без предупреждений
+```
+npm run lint:quiet
+```
+
+ESLint с автофиксом по возможности
+```
+npm run lint:fix
+```
+
+Проверка типов typescript
+```
+npm run typeslint
+```
+
 ## Ссылки на страницы
 
 Все сверстанные страницы находятся в директории `static` (они были сохранены туда из браузера нажатием `ctrl + S`, когда приложение работало в режиме разработки и в нем отображалась соответствующая страница). 
 
 Ниже приведены относительные пути к самим страницам, а также адреса, по которым локальный сервер раздает их (с помощью express)
 
-#### Авторизация
+- Страница входа: `static/authorization/index.html`, http://localhost:3000/authorization
 
-- Страница входа: `static/вход1/index.html`, http://localhost:3000/entr1
+- Страница регистрации: `static/registration/index.html`, http://localhost:3000/registration
 
-- Страница входа (неправильные данные): `static/вход2/index.html`, http://localhost:3000/entr2
+- Ошибка 404: `static/404/index.html`, http://localhost:3000/404
 
-- Страница регистрации: `static/рег1/index.html`, http://localhost:3000/registration1
+- Ошибка 500: `static/500/index.html`, http://localhost:3000/500
 
-- Страница регистрации (неправильные данные): `static/рег2/index.html`, http://localhost:3000/registration2
+- Страница с чатами `static/chats/index.html`, http://localhost:3000/chats
 
-#### Ошибки
+- Профиль `static/profile/index.html`, http://localhost:3000/profile
 
-- Ошибка 404: `static/404/index.html`, http://localhost:3000/error404
+- Профиль (изменение данных пользователя) `static/profiledata/index.html`, http://localhost:3000/profiledata
 
-- Ошибка 5**: `static/500/index.html`, http://localhost:3000/error500
-
-#### Главная страница
-
-- Главная страница `static/осн_загл/index.html`, http://localhost:3000/main_plug
-
-- Главная страница (чат) `static/осн_чат/index.html`, http://localhost:3000/main_chat
-
-- Главная страница (функции чата) `static/осн_фун/index.html`, http://localhost:3000/main_functions
-
-- Главная страница (поиск) `static/осн_пои/index.html`, http://localhost:3000/main_search
-
-- Главная страница (поиск) `static/осн_пои/index.html`, http://localhost:3000/main_search
-
-- Главная страница (добавить пользователя) `static/осн_доб/index.html`, http://localhost:3000/main_add
-
-- Главная страница (удалить пользователя) `static/осн_удал_пол/index.html`, http://localhost:3000/main_delete_user
-
-- Главная страница (удалить чат) `static/осн_удал_чат/index.html`, http://localhost:3000/main_delete_chat
-
-#### Профиль
-
-- Профиль `static/проф_осн/index.html`, http://localhost:3000/profile_main
-
-- Профиль (изменение данных пользователя) `static/проф_изм_дан/index.html`, http://localhost:3000/profile_change_data
-
-- Профиль (изменение пароля пользователя) `static/проф_изм_пар/index.html`, http://localhost:3000/profile_change_password
-
-- Профиль (изменение ошибка загрузки файла для аватарки) `static/проф_ошиб/index.html`, http://localhost:3000/profile_error
+- Профиль (изменение пароля пользователя) `static/profilepassword/index.html`, http://localhost:3000/profilepassword
