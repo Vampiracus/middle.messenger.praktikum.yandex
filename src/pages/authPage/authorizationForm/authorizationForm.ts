@@ -95,7 +95,7 @@ export default class AuthorizationForm extends Block<Props> {
             </div>
             <div class='auth-page-form__wrapper'>
                 {{{formButton}}}
-                <a class="auth-page-form__bottom-link">Регистрация</a>
+                <a class="auth-page-form__bottom-link" href='/registration'>Регистрация</a>
             </div>
         </form>
         `, {

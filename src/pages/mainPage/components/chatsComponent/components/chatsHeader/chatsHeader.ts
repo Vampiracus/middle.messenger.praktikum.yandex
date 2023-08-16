@@ -16,7 +16,7 @@ export default class ChatsHeader extends Block<{}> {
 
     render() {
         return Block.compile(`
-        <a class='chats-header__profileLink'>Профиль <strong>></strong></a>
+        <a class='chats-header__profileLink' href='/profile'>Профиль <strong>></strong></a>
         <form class='chats-header__searchForm'>
             {{{mainPageInput}}}
         </form>

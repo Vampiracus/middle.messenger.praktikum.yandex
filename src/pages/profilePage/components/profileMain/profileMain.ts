@@ -15,6 +15,8 @@ export default class ProfileMain extends Block<UserInfo> {
         {{{myAvatar}}}
         <br/>
         {{{content}}}
-        `, { myAvatar: this.children[0], content: this.children[1] });
+        `, {
+            myAvatar: this.children[0], content: this.children[1],
+        });
     }
 }

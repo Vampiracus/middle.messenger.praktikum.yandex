@@ -14,9 +14,9 @@ export default class ProfileMainContent extends Block<UserInfo> {
         <br/>
         <br/>
         <br/>
-        <a>Изменить данные</a>
-        <a>Изменить пароль</a>
-        <a style='color: red; text-shadow: 1px 1px black'>Выйти из аккаунта</a>
-        `, { name: this.props.name });
+        <a href='/profile/data'>Изменить данные</a>
+        <a href='/profile/password'>Изменить пароль</a>
+        <a style='color: red; text-shadow: 1px 1px black' href='authorization'>Выйти из аккаунта</a>
+        `, { name: `${this.props.firstName} ${this.props.secondName}` });
     }
 }

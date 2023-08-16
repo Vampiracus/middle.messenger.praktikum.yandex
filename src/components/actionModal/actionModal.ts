@@ -20,7 +20,9 @@ export default class ActionModal extends PopupContent {
             ${template}
         </form>
         `;
-        implementation = { ...implementation, name, formClass };
+        implementation = {
+            ...implementation, name, formClass,
+        };
         super({}, template, implementation, children);
         this.name = name;
         this.formClass = formClass;

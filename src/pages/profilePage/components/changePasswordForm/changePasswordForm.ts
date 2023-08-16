@@ -110,7 +110,6 @@ export default class ChangePasswordForm extends ProfileFormWrapper<Props> {
             new FormButton({
                 text: 'Сохранить',
                 id: 'submitPasswordButton',
-                callback: () => { alert('Сохранение данных о пароле'); },
             }),
         ];
         const templateProps: IWrapper = {

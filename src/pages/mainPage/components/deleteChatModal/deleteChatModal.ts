@@ -20,6 +20,8 @@ export default class DeleteChatModal extends ActionModal {
         <span>Это действие нельзя отменить</span>
         {{{cancelButton}}}
         {{{deleteButton}}}
-        `, { cancelButton: kids[0], deleteButton: kids[1] }, kids);
+        `, {
+            cancelButton: kids[0], deleteButton: kids[1],
+        }, kids);
     }
 }

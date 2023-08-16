@@ -23,6 +23,8 @@ export default class AddUserModal extends ActionModal {
         super('Добавить пользователя', 'add-user-form', `
         {{{loginInput}}}
         {{{addButton}}}
-        `, { loginInput: kids[0], addButton: kids[1] }, kids);
+        `, {
+            loginInput: kids[0], addButton: kids[1],
+        }, kids);
     }
 }

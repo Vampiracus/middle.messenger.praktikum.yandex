@@ -4,7 +4,9 @@ import Block from '../../../../utils/Block';
 
 export default class BackToMainComponent extends Block {
     constructor() {
-        super({}, 'div', [new ArrowButton({ id: 'backToMainButton', callback: () => { alert('Возврат на главную'); } })]);
+        super({}, 'div', [new ArrowButton({
+            id: 'backToMainButton', callback: () => { window.location.href = '/chats'; },
+        })]);
         this.addClass('back-to-main-component');
     }
 

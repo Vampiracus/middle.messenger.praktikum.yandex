@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://localhost:5173/registration -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module" src="./index_files/client"></script>
+
+    
+    <link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+  <style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/style.scss">html {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+  background-color: #444;
+  color: #fff000;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/PopupContent/popupContent.scss">.popup-content {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 8100;
+}
+.popup-content_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.popup-content__content {
+  padding: 25px;
+  background-color: #555;
+  border-radius: 12px;
+  min-width: 260px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/FormButton/formButton.scss">.form-button {
+  border: none;
+  font: inherit;
+  background-color: #fff000;
+  border-radius: 8px;
+  color: #999;
+  width: 100%;
+  padding: 7px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.form-button:hover {
+  background-color: #eee111;
+}
+.form-button:active {
+  background-color: #ddd222;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/FormInput/formInput.scss">.form-input-wrapper {
+  width: 100%;
+}
+
+.form-input {
+  background: none;
+  border: none;
+  letter-spacing: 2px;
+  border-bottom: 1.5px solid #999;
+  width: 100%;
+  color: #fff000;
+  margin-bottom: 5px;
+  outline: none;
+}
+.form-input__label {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  color: #999;
+  left: 0;
+  margin: 15px 0 3px;
+}
+.form-input__label_incorrect {
+  color: #FF2F2F;
+  text-shadow: 1px 1px black;
+}
+.form-input__label_correct {
+  color: #2FFF2F;
+  text-shadow: 1px 1px black;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/AuthPage/authPage.scss">.auth-page-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 350px;
+  max-width: 260px;
+}
+.auth-page-form__bottom-link {
+  font-size: 0.85rem;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.auth-page-form__bottom-link:hover {
+  font-size: 1.05em;
+}
+.auth-page-form__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.auth-page-form__wrapper > div {
+  width: 100%;
+}
+
+#register-button {
+  margin-top: 50px;
+}</style></head>
+  <body>
+    <div id="app"><div class="popup-content popup-content_active">
+        <div class="popup-content__content">
+            <main>
+        <form class="auth-page-form">
+            <div class="auth-page-form__wrapper">
+                <h3>Вход</h3>
+                <div class="form-input-wrapper">
+        <label class="form-input__label" for="login-input">Логин</label>
+        <input class="form-input" id="login-input" name="login" type="text" required="">
+        </div>
+                <div class="form-input-wrapper">
+        <label class="form-input__label" for="password-input">Пароль</label>
+        <input class="form-input" id="password-input" name="password" type="password" required="">
+        </div>
+            </div>
+            <div class="auth-page-form__wrapper">
+                <button class="form-button" id="login-from-submit">Войти</button>
+                <a class="auth-page-form__bottom-link" href="http://localhost:3000/registration">Регистрация</a>
+            </div>
+        </form>
+        </main>
+        </div>
+        </div></div>
+    <script type="module" src="./index_files/main.ts"></script>
+  
+
+</body></html>

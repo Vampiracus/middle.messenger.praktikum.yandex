@@ -5,7 +5,9 @@ export const MessageSentStatus: {
     SENT_TO_ME: number,
     SENT: number,
     RECEIVED: number,
-} = { SENT_TO_ME: 1, SENT: 2, RECEIVED: 3 };
+} = {
+    SENT_TO_ME: 1, SENT: 2, RECEIVED: 3,
+};
 
 export default class MessageItem extends Block<Message> {
     constructor(props: Message) {

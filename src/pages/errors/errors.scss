@@ -8,4 +8,12 @@
     & > button {
         max-width: 300px;
     }
+
+    & > a {
+        cursor: pointer;
+    }
+
+    & > p {
+        margin-bottom: 10px;
+    }
 }

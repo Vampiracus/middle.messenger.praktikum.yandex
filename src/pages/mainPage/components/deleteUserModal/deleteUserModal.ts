@@ -24,6 +24,8 @@ export default class DeleteUserModal extends ActionModal {
         super('Удалить пользователя', 'delete-user-modal', `
         {{{loginInput}}}
         {{{deleteButton}}}
-        `, { loginInput: kids[0], deleteButton: kids[1] }, kids);
+        `, {
+            loginInput: kids[0], deleteButton: kids[1],
+        }, kids);
     }
 }

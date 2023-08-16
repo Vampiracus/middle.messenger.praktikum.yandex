@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)http://localhost:5173/profile -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module" src="./index_files/client"></script>
+
+    
+    <link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+  <style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/style.scss">html {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+  background-color: #444;
+  color: #fff000;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/mainPage.scss">.main-page {
+  display: flex;
+  flex-direction: row;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChatsComponent/chatsComponent.scss">.chats-component {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-width: 310px;
+  max-width: 310px;
+  background-color: #333;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChatsComponent/components/ChatsHeader/chatsHeader.scss">.chats-header {
+  display: flex;
+  height: 70px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid #454545;
+  flex-direction: column;
+}
+.chats-header__profileLink {
+  align-self: flex-end;
+  margin: 5px 10px;
+  font-size: smaller;
+  cursor: pointer;
+  color: #999;
+}
+.chats-header__profileLink:hover {
+  text-decoration-line: underline;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/MainPageInput/mainPageInput.scss">.main-page-input {
+  outline: none;
+  border: none;
+  padding: 7px 12px;
+  box-sizing: border-box;
+  width: calc(100% - 10px);
+  border-radius: 30px;
+  margin: 5px;
+  background-color: #555;
+  color: #fff000;
+}
+.main-page-input::placeholder {
+  text-align: center;
+  color: #999;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/EmptyAvatar/emptyAvatar.scss">.empty-avatar {
+  min-height: 50px;
+  max-height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  border-radius: 50%;
+  background-color: #555;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChatsComponent/components/ChatsList/ChatItem/chatItem.scss">.chat-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: smaller;
+  max-height: 50px;
+  overflow: hidden;
+  margin: 0 10px;
+  padding: 15px 2px 7px;
+  border-bottom: 1px solid #454545;
+  cursor: pointer;
+}
+.chat-item:hover, .chat-item:active, .chat-item_active {
+  background-color: rgba(255, 240, 0, 0.3);
+  margin: 0;
+  padding: 15px 12px 7px;
+}
+.chat-item__text {
+  display: flex;
+  flex-direction: column;
+  margin: 0 10px;
+  flex: 2;
+}
+.chat-item__text__message {
+  color: #999;
+}
+.chat-item__text__chatName {
+  font-size: 1rem;
+}
+.chat-item__about {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex: 0;
+  font-size: 0.6rem;
+  color: #999;
+}
+.chat-item__about__to-be-read {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff000;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChatsComponent/components/ChatsList/chatsList.scss">.chats-list {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.chats-list::-webkit-scrollbar {
+  display: none;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/chattingArea.scss">.chatting-area {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  width: 100%;
+  height: calc(100vh - 40px);
+  padding: 20px;
+  align-items: center;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/MessageArea/messageArea.scss">.message-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column-reverse;
+  max-height: 80vh;
+  min-height: 200px;
+  width: 100%;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/MessageArea/MessageItem/message.scss">.message {
+  background-color: #555;
+  border-radius: 0 12px 12px;
+  padding: 10px 10px 15px;
+  margin: 10px 0;
+  max-width: max(40%, 400px);
+  cursor: default;
+  position: relative;
+}
+.message_iSent {
+  align-self: flex-end;
+  border-radius: 12px 12px 0;
+  background-color: rgba(255, 240, 0, 0.3);
+  padding-right: 50px;
+}
+.message > img {
+  max-height: 400px;
+  max-width: 100%;
+  border-radius: 12px;
+}
+.message__time {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  border-radius: 30px;
+  font-size: 0.7rem;
+  padding: 2px 5px;
+  margin: 0 2px 2px 0;
+}
+.message__time > img {
+  max-width: 13px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/ArrowButton/arrowButton.scss">.arrow-button {
+  max-height: 32px;
+  max-width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background-color: #fff000;
+  cursor: pointer;
+}
+.arrow-button:hover {
+  background-color: #ddd222;
+}
+.arrow-button:active {
+  background-color: #eee111;
+}
+.arrow-button img {
+  max-height: 32px;
+  max-width: 32px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/SendArea/DropOutMenuSend/dropOutMenuSend.scss">.drop-out-menu-send {
+  display: flex;
+  cursor: default;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  top: -130px;
+  left: 0;
+  box-shadow: 0 0 7px inset #333;
+  background-color: #444;
+  padding: 10px;
+  border-radius: 12px;
+  z-index: 2000;
+}
+.drop-out-menu-send > div {
+  margin: 5px;
+  display: flex;
+}
+.drop-out-menu-send > div > span:hover {
+  text-decoration: underline;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/SendArea/sendArea.scss">.send-area {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 20px;
+  position: relative;
+}
+.send-area > img {
+  max-height: 35px;
+}
+.send-area__form {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+}
+.send-area__form > input {
+  margin-right: 15px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/ChatHead/chatHead.scss">.chat-head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+}
+.chat-head__name {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: default;
+}
+.chat-head__name > .empty-avatar {
+  margin-right: 15px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/ChatHead/ChatOptions/chatOptions.scss">.chat-options {
+  font-weight: 800;
+  letter-spacing: 3px;
+  height: 2em;
+  width: 2em;
+  padding: 0 0 0 3px;
+  border-radius: 50%;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+.chat-options:hover, .chat-options:active {
+  background-color: #555;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/ChatHead/ChatOptions/DropOutMenu/dropOutMenu.scss">.drop-out-menu {
+  display: flex;
+  cursor: default;
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  bottom: -130px;
+  right: 0;
+  box-shadow: 0 0 7px inset #333;
+  padding: 10px;
+  border-radius: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  min-width: 16em;
+}
+.drop-out-menu > div {
+  margin: 5px;
+  display: flex;
+}
+.drop-out-menu > div > span:hover {
+  text-decoration: underline;
+}
+.drop-out-menu__option-picture {
+  margin-right: 11px;
+  padding: 1px 0 0 2px;
+  box-sizing: border-box;
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  border: 2px solid #999;
+  border-radius: 50%;
+  color: #999;
+}
+.drop-out-menu__option-picture_large {
+  font-size: 1.2em;
+  width: 1.5rem;
+  height: 1.5rem;
+  padding-top: 0;
+}
+.drop-out-menu__option-picture_red {
+  border-color: #F33333;
+  color: #F33333;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/ChattingArea/components/ChatsPlug/chatsPlug.scss">.chats-plug {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  color: #999;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/ActionModal/actionModal.scss">.action-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/PopupContent/popupContent.scss">.popup-content {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 8100;
+}
+.popup-content_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.popup-content__content {
+  padding: 25px;
+  background-color: #555;
+  border-radius: 12px;
+  min-width: 260px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/FormInput/formInput.scss">.form-input-wrapper {
+  width: 100%;
+}
+
+.form-input {
+  background: none;
+  border: none;
+  letter-spacing: 2px;
+  border-bottom: 1.5px solid #999;
+  width: 100%;
+  color: #fff000;
+  margin-bottom: 5px;
+  outline: none;
+}
+.form-input__label {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  color: #999;
+  left: 0;
+  margin: 15px 0 3px;
+}
+.form-input__label_incorrect {
+  color: #FF2F2F;
+  text-shadow: 1px 1px black;
+}
+.form-input__label_correct {
+  color: #2FFF2F;
+  text-shadow: 1px 1px black;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/FormButton/formButton.scss">.form-button {
+  border: none;
+  font: inherit;
+  background-color: #fff000;
+  border-radius: 8px;
+  color: #999;
+  width: 100%;
+  padding: 7px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.form-button:hover {
+  background-color: #eee111;
+}
+.form-button:active {
+  background-color: #ddd222;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/DeleteUserModal/deleteUserModal.scss">.delete-user-modal > button, .delete-user-modal > label {
+  margin-top: 30px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/DeleteChatModal/deleteChatModal.scss">.delete-chat-modal > button {
+  margin-top: 30px;
+}
+
+#delete-chat-button {
+  font-size: 0.85rem;
+  background-color: transparent;
+  margin-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#delete-chat-button:hover {
+  font-size: 1.05em;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/MainPage/components/AddUserModal/addUserModal.scss">.add-user-form > button, .add-user-form > label {
+  margin-top: 30px;
+}</style></head>
+  <body>
+    <div id="app"><div class="main-page">
+        <div class="popup-content">
+        <div class="popup-content__content">
+            
+        <form class="action-modal add-user-form">
+            <h3> Добавить пользователя </h3>
+            
+        <div class="form-input-wrapper">
+        <label class="form-input__label" for="addUserInput">Логин</label>
+        <input class="form-input" id="addUserInput" name="login" type="text" required="">
+        </div>
+        <button class="form-button" id="addUserButton">Добавить</button>
+        
+        </form>
+        
+        </div>
+        </div>
+        <div class="popup-content">
+        <div class="popup-content__content">
+            
+        <form class="action-modal delete-user-modal">
+            <h3> Удалить пользователя </h3>
+            
+        <div class="form-input-wrapper">
+        <label class="form-input__label" for="deleteUserInput">Логин</label>
+        <input class="form-input" id="deleteUserInput" name="login" type="text" required="">
+        </div>
+        <button class="form-button" id="deleteUserButton">Удалить</button>
+        
+        </form>
+        
+        </div>
+        </div>
+        <div class="popup-content">
+        <div class="popup-content__content">
+            
+        <form class="action-modal delete-chat-modal">
+            <h3> Удалить чат </h3>
+            
+        <span>Это действие нельзя отменить</span>
+        <button class="form-button" id="deleteChatCancelButton">Отменить</button>
+        <button class="form-button" id="delete-chat-button">Удалить</button>
+        
+        </form>
+        
+        </div>
+        </div>
+        <div class="chats-component">
+        <div class="chats-header">
+        <a class="chats-header__profileLink" href="http://localhost:3000/profile">Профиль <strong>&gt;</strong></a>
+        <form class="chats-header__searchForm">
+            <input class="main-page-input" name="chatname" placeholder="Поиск">
+        </form>
+        </div>
+        <div class="chats-list"><div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName">Андрей</span>
+            <div> <span class="chat-item__text__message">Изображение</span> </div>
+        </div>
+        <div class="chat-item__about">
+            10:49
+            <div class="chat-item__about__to-be-read">2</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName">Киноклуб</span>
+            <div>Вы:  <span class="chat-item__text__message">стикер</span> </div>
+        </div>
+        <div class="chat-item__about">
+            12:00
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName">Илья</span>
+            <div> <span class="chat-item__text__message">Друзья, у меня для вас особенный выпуск...</span> </div>
+        </div>
+        <div class="chat-item__about">
+            15:12
+            <div class="chat-item__about__to-be-read">4</div>
+            
+        </div>
+        </div>
+<div class="chat-item chat-item_active">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName">Вадим</span>
+            <div>Вы:  <span class="chat-item__text__message">Круто!</span> </div>
+        </div>
+        <div class="chat-item__about">
+            Пт
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName">тет-а-теты</span>
+            <div> <span class="chat-item__text__message">И Human Interface Guidelines и Material...</span> </div>
+        </div>
+        <div class="chat-item__about">
+            Ср
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName">1, 2, 3</span>
+            <div> <span class="chat-item__text__message">Миллионы россиян ежедневно проводят...</span> </div>
+        </div>
+        <div class="chat-item__about">
+            Пт
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName"></span>
+            <div> <span class="chat-item__text__message"></span> </div>
+        </div>
+        <div class="chat-item__about">
+            
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName"></span>
+            <div> <span class="chat-item__text__message"></span> </div>
+        </div>
+        <div class="chat-item__about">
+            
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName"></span>
+            <div> <span class="chat-item__text__message"></span> </div>
+        </div>
+        <div class="chat-item__about">
+            
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName"></span>
+            <div> <span class="chat-item__text__message"></span> </div>
+        </div>
+        <div class="chat-item__about">
+            
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName"></span>
+            <div> <span class="chat-item__text__message"></span> </div>
+        </div>
+        <div class="chat-item__about">
+            
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName"></span>
+            <div> <span class="chat-item__text__message"></span> </div>
+        </div>
+        <div class="chat-item__about">
+            
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+<div class="chat-item">
+        <div class="empty-avatar"></div>
+        <div class="chat-item__text">
+            <span class="chat-item__text__chatName"></span>
+            <div> <span class="chat-item__text__message"></span> </div>
+        </div>
+        <div class="chat-item__about">
+            
+            <div class="chat-item__about__to-be-read" style="display: none;">0</div>
+            
+        </div>
+        </div>
+</div>
+        </div>
+        <div class="chatting-area">
+        <div class="send-area">
+        <div class="drop-out-menu-send">
+        <div> <span> Фото или видео </span> </div>
+        <div> <span> Файл </span> </div>
+        <div> <span> Локация </span> </div>
+        </div>
+        <img src="./index_files/attach.png" alt="attach">
+        <form class="send-area__form">
+            <input class="main-page-input" name="message" placeholder="Введите сообщение">
+            <button class="arrow-button" id="sendMessageButton"><img src="./index_files/arrow.png" alt="send"></button>
+        </form>
+        </div>
+        <main class="message-area"><div class="message message_iSent">
+        Круто!
+        
+        <div class="message__time"><img src="./index_files/doneAll.png">12:00</div>
+        </div>
+<div class="message">
+        
+        <img src="./index_files/camera.png" alt="Изображение">
+        <div class="message__time">11:56</div>
+        </div>
+<div class="message">
+        Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
+        
+        <div class="message__time">11:56</div>
+        </div>
+</main>
+        <div class="chat-head">
+        <div class="chat-head__name">
+            <div class="empty-avatar"></div>
+            Вадим
+        </div>
+        <div class="chat-options">...
+<div class="drop-out-menu">
+        <div> <div class="drop-out-menu__option-picture drop-out-menu__option-picture_large">+</div> <span> Добавить пользователя </span> </div>
+        <div> <div class="drop-out-menu__option-picture">x</div> <span> Удалить пользователя </span> </div>
+        <div> <div class="drop-out-menu__option-picture drop-out-menu__option-picture_red">x</div> <span> Удалить чат </span> </div>
+        </div></div>
+        </div>
+        </div>
+        </div></div>
+    <script type="module" src="./index_files/main.ts"></script>
+  
+
+</body></html>

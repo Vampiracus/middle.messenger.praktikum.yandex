@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)http://localhost:5173/profile/logout -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module" src="./index_files/client"></script>
+
+    
+    <link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+  <style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/style.scss">html {
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+  background-color: #444;
+  color: #fff000;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/ErrorModal/errorModal.scss">.error-modal {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.error-modal > span, .error-modal > button {
+  margin: 15px 0;
+}
+.error-modal__errorName {
+  color: red;
+  text-shadow: 1px 1px black;
+  font-size: larger;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/PopupContent/popupContent.scss">.popup-content {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 8100;
+}
+.popup-content_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.popup-content__content {
+  padding: 25px;
+  background-color: #555;
+  border-radius: 12px;
+  min-width: 260px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/FormButton/formButton.scss">.form-button {
+  border: none;
+  font: inherit;
+  background-color: #fff000;
+  border-radius: 8px;
+  color: #999;
+  width: 100%;
+  padding: 7px;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.form-button:hover {
+  background-color: #eee111;
+}
+.form-button:active {
+  background-color: #ddd222;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/ProfilePage/components/BackToMainComponent/backToMainComponent.scss">.back-to-main-component {
+  width: 50px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+}
+.back-to-main-component > .arrow-button {
+  transform: rotate(180deg);
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/ArrowButton/arrowButton.scss">.arrow-button {
+  max-height: 32px;
+  max-width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background-color: #fff000;
+  cursor: pointer;
+}
+.arrow-button:hover {
+  background-color: #ddd222;
+}
+.arrow-button:active {
+  background-color: #eee111;
+}
+.arrow-button img {
+  max-height: 32px;
+  max-width: 32px;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/components/FormInput/formInput.scss">.form-input-wrapper {
+  width: 100%;
+}
+
+.form-input {
+  background: none;
+  border: none;
+  letter-spacing: 2px;
+  border-bottom: 1.5px solid #999;
+  width: 100%;
+  color: #fff000;
+  margin-bottom: 5px;
+  outline: none;
+}
+.form-input__label {
+  align-self: flex-start;
+  font-size: 0.7rem;
+  color: #999;
+  left: 0;
+  margin: 15px 0 3px;
+}
+.form-input__label_incorrect {
+  color: #FF2F2F;
+  text-shadow: 1px 1px black;
+}
+.form-input__label_correct {
+  color: #2FFF2F;
+  text-shadow: 1px 1px black;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/ProfilePage/components/ProfileFormWrapper/profileFormWrapper.scss">.profile-form-wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/ProfilePage/components/ProfileMain/profileMain.scss">.profile-main {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-height: max(50%, 400px);
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/ProfilePage/components/MyAvatar/myAvatar.scss">.my-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  background-color: #555;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+.my-avatar > input[type=file] {
+  display: none;
+}
+.my-avatar > img {
+  width: 50%;
+}
+.my-avatar__change {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: transparent;
+  color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.my-avatar__change:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #999;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/ProfilePage/components/ProfileMain/ProfileMainContent/profileMainContent.scss">.profile-main-content {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.profile-main-content > a {
+  margin: 10px 0;
+  cursor: pointer;
+}</style><style type="text/css" data-vite-dev-id="C:/Users/Максим/Downloads/Practicum/Messenger/middle.messenger.praktikum.yandex/src/pages/ProfilePage/profilePage.scss">.profile-page {
+  height: 100vh;
+  display: flex;
+}
+.profile-page__main {
+  width: 100%;
+}
+
+.change-data-form {
+  width: min(500px, 100%);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20%;
+}</style></head>
+  <body>
+    <div id="app"><div class="profile-page">
+        <div class="popup-content">
+        <div class="popup-content__content">
+            
+        <div class="error-modal">
+            <h3 class="error-modal__errorName">Ошибка загрузки файла</h3>
+            <span class="error-modal__recomendation">Попробуйте другой файл</span>
+            <button class="form-button" id="okErrorButton">Ок</button>
+        </div>
+        
+        </div>
+        </div>
+        <div class="back-to-main-component"><button class="arrow-button" id="backToMainButton"><img src="./index_files/arrow.png" alt="send"></button></div>
+        <main class="profile-page__main">
+            <div class="profile-form-wrapper">
+            <form class="change-data-form">
+                <h2>Изменить пароль</h2>
+                <div class="form-input-wrapper">
+        <label class="form-input__label" for="oldPasswordInput">Старый пароль</label>
+        <input class="form-input" id="oldPasswordInput" name="oldPassword" type="password" required="" maxlength="40">
+        </div>
+                <div class="form-input-wrapper">
+        <label class="form-input__label" for="newPasswordInput">Новый пароль</label>
+        <input class="form-input" id="newPasswordInput" name="newPassword" type="password" required="" maxlength="40">
+        </div>
+                <div class="form-input-wrapper">
+        <label class="form-input__label" for="newPasswordAgainInput">Новый пароль (ещё раз)</label>
+        <input class="form-input" id="newPasswordAgainInput" name="newPasswordAgain" type="password" required="" maxlength="40">
+        </div>
+                <br>
+                <button class="form-button" id="submitPasswordButton">Сохранить</button>
+            </form>
+            </div>
+        </main>
+        </div></div>
+    <script type="module" src="./index_files/main.ts"></script>
+  
+
+</body></html>

@@ -13,8 +13,6 @@ export default class ToBeReadBubble extends Block<IBubble> {
             this.element.style.display = 'none';
         }
 
-        return Block.compile('{{n}}', {
-            n: this.props.messagesNumber.toString(),
-        });
+        return Block.compile('{{n}}', { n: this.props.messagesNumber.toString() });
     }
 }
