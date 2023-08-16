@@ -1,6 +1,6 @@
-import ActionModal from '../../../../components/ActionModal';
-import FormInput from '../../../../components/FormInput';
-import FormButton from '../../../../components/FormButton';
+import ActionModal from '../../../../components/actionModal';
+import FormInput from '../../../../components/formInput';
+import FormButton from '../../../../components/formButton';
 import './addUserModal.scss';
 
 export default class AddUserModal extends ActionModal {

@@ -1,1 +1,1 @@
-export { default } from './BackToMainComponent';
+export { default } from './backToMainComponent';

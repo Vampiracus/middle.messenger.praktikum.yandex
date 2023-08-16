@@ -1,5 +1,5 @@
-import FormButton from '../../../components/FormButton';
-import FormInput from '../../../components/FormInput';
+import FormButton from '../../../components/formButton';
+import FormInput from '../../../components/formInput';
 import Block from '../../../utils/Block';
 import { validateLogin, validatePassword } from '../../../utils/validation';
 

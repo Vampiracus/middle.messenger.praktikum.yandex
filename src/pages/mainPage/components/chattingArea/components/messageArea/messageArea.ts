@@ -1,5 +1,5 @@
 import './messageArea.scss';
-import MessageItem from './MessageItem';
+import MessageItem from './messageItem';
 import Block from '../../../../../../utils/Block';
 import forHandlebars from '../../../../../../utils/otherScripts';
 

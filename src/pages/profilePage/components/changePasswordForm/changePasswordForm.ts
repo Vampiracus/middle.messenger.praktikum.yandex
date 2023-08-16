@@ -1,7 +1,7 @@
-import ProfileFormWrapper from '../ProfileFormWrapper';
+import ProfileFormWrapper from '../profileFormWrapper';
 import Block from '../../../../utils/Block';
-import FormInput from '../../../../components/FormInput';
-import FormButton from '../../../../components/FormButton';
+import FormInput from '../../../../components/formInput';
+import FormButton from '../../../../components/formButton';
 import { validatePassword } from '../../../../utils/validation';
 
 interface IWrapper {

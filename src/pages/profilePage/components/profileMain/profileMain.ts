@@ -1,7 +1,7 @@
 import './profileMain.scss';
 import Block from '../../../../utils/Block';
-import MyAvatar from '../MyAvatar';
-import ProfileMainContent from './ProfileMainContent';
+import MyAvatar from '../myAvatar';
+import ProfileMainContent from './profileMainContent';
 
 export default class ProfileMain extends Block<UserInfo> {
     constructor(me: UserInfo) {

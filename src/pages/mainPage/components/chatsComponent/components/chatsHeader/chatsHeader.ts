@@ -1,5 +1,5 @@
 import './chatsHeader.scss';
-import MainPageInput from '../../../MainPageInput';
+import MainPageInput from '../../../mainPageInput';
 import Block from '../../../../../../utils/Block';
 
 export default class ChatsHeader extends Block<{}> {

@@ -1,9 +1,9 @@
-import ErrorModal from '../../components/ErrorModal';
+import ErrorModal from '../../components/errorModal';
 import Block from '../../utils/Block';
-import BackToMainComponent from './components/BackToMainComponent/BackToMainComponent';
-import ChangeDataForm from './components/ChangeDataForm';
-import ChangePasswordForm from './components/ChangePasswordForm';
-import ProfileMain from './components/ProfileMain/ProfileMain';
+import BackToMainComponent from './components/backToMainComponent';
+import ChangeDataForm from './components/changeDataForm';
+import ChangePasswordForm from './components/changePasswordForm';
+import ProfileMain from './components/profileMain';
 import './profilePage.scss';
 
 const me: UserInfo = {

@@ -1,1 +1,1 @@
-export { default } from './ProfileMainContent';
+export { default } from './profileMainContent';

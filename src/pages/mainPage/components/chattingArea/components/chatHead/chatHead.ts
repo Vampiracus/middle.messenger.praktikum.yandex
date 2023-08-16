@@ -1,7 +1,7 @@
 import './chatHead.scss';
-import EmptyAvatar from '../../../../../../components/EmptyAvatar';
+import EmptyAvatar from '../../../../../../components/emptyAvatar';
 import Block from '../../../../../../utils/Block';
-import ChatOptions from './ChatOptions';
+import ChatOptions from './chatOptions';
 
 interface IChatName {
     name: string,

@@ -1,6 +1,6 @@
 import './chatOptions.scss';
 import Block from '../../../../../../../utils/Block';
-import DropOutMenu from './DropOutMenu';
+import DropOutMenu from './dropOutMenu';
 
 export default class ChatOptions extends Block<{}> {
     constructor() {

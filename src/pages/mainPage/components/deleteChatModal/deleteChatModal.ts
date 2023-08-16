@@ -1,6 +1,6 @@
 import './deleteChatModal.scss';
-import ActionModal from '../../../../components/ActionModal';
-import FormButton from '../../../../components/FormButton';
+import ActionModal from '../../../../components/actionModal';
+import FormButton from '../../../../components/formButton';
 
 export default class DeleteChatModal extends ActionModal {
     constructor() {

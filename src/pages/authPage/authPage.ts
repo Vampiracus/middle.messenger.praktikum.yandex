@@ -1,5 +1,5 @@
-import PopupContent from '../../components/PopupContent';
-import AuthorizationForm from './AuthorizationForm';
+import PopupContent from '../../components/popupContent';
+import AuthorizationForm from './authorizationForm';
 // import RegistrationForm from './RegistrationForm';
 import './authPage.scss';
 

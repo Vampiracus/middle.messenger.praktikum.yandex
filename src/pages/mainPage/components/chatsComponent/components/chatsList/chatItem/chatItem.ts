@@ -1,6 +1,6 @@
-import EmptyAvatar from '../../../../../../../components/EmptyAvatar';
+import EmptyAvatar from '../../../../../../../components/emptyAvatar';
 import './chatItem.scss';
-import ToBeReadBubble from './ToBeReadBubble';
+import ToBeReadBubble from './toBeReadBubble';
 import Block from '../../../../../../../utils/Block';
 
 interface IChat {

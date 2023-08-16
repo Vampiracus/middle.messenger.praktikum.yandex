@@ -1,6 +1,6 @@
-import FormInput from '../../../../components/FormInput';
-import FormButton from '../../../../components/FormButton';
-import ProfileFormWrapper from '../ProfileFormWrapper';
+import FormInput from '../../../../components/formInput';
+import FormButton from '../../../../components/formButton';
+import ProfileFormWrapper from '../profileFormWrapper';
 import Block from '../../../../utils/Block';
 import { validateEmail, validateLogin, validateName, validatePhone } from '../../../../utils/validation';
 

@@ -1,6 +1,6 @@
 import './errorModal.scss';
-import PopupContent from '../PopupContent';
-import FormButton from '../FormButton';
+import PopupContent from '../popupContent';
+import FormButton from '../formButton';
 
 interface IError {
     errorName: string,

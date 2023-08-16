@@ -1,6 +1,6 @@
 import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
-import EventBus from './EventBus';
+import EventBus from './eventBus';
 
 export default abstract class Block<P extends Record<string, any> = any> {
     /**

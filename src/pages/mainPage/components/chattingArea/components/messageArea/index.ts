@@ -1,2 +1,2 @@
-export { default } from './MessageArea';
-export { MessageSentStatus } from './MessageItem';
+export { default } from './messageArea';
+export { MessageSentStatus } from './messageItem';

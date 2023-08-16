@@ -1,10 +1,9 @@
 import './chattingArea.scss';
-import { MessageSentStatus } from './components/MessageArea';
+import MessageArea, { MessageSentStatus } from './components/messageArea';
 import Block from '../../../../utils/Block';
-import SendArea from './components/SendArea';
-import MessageArea from './components/MessageArea/MessageArea';
-import ChatHead from './components/ChatHead';
-import ChatsPlug from './components/ChatsPlug';
+import SendArea from './components/sendArea';
+import ChatHead from './components/chatHead';
+import ChatsPlug from './components/chatsPlug';
 
 const messages: Array<Message> = [
     {

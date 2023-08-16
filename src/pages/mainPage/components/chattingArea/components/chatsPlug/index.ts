@@ -1,1 +1,1 @@
-export { default } from './ChatsPlug.js';
+export { default } from './chatsPlug.js';

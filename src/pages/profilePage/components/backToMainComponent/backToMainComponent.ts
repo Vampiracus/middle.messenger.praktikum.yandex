@@ -1,5 +1,5 @@
 import './backToMainComponent.scss';
-import ArrowButton from '../../../../components/ArrowButton';
+import ArrowButton from '../../../../components/arrowButton';
 import Block from '../../../../utils/Block';
 
 export default class BackToMainComponent extends Block {

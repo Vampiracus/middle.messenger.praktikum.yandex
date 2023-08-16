@@ -1,8 +1,8 @@
 import './style.scss';
-// import AuthPage from './pages/AuthPage';
+// import AuthPage from './pages/authPage';
 // import { Error404Page, Error500Page } from './pages/errors';
-// import MainPage from './pages/MainPage';
-import ProfilePage from './pages/ProfilePage';
+// import MainPage from './pages/mainPage';
+import ProfilePage from './pages/profilePage';
 
 const app: Element | null = document.querySelector('#app');
 if (app) {

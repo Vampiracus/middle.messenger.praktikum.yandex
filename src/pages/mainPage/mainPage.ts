@@ -1,12 +1,12 @@
 import './mainPage.scss';
-import ChatsComponent from './components/ChatsComponent';
-import ChattingArea from './components/ChattingArea';
+import ChatsComponent from './components/chatsComponent';
+import ChattingArea from './components/chattingArea';
 // import addUserModal from './components/addUserModal';
-import DeleteUserModal from './components/DeleteUserModal';
+import DeleteUserModal from './components/deleteUserModal';
 // import deleteChatModal from './components/deleteChatModal';
 import Block from '../../utils/Block';
-import DeleteChatModal from './components/DeleteChatModal/deleteChatModal';
-import AddUserModal from './components/AddUserModal/addUserModal';
+import DeleteChatModal from './components/deleteChatModal';
+import AddUserModal from './components/addUserModal';
 
 export default class MainPage extends Block<{}> {
     constructor() {

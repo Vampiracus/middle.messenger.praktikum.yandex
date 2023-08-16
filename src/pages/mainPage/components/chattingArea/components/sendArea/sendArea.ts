@@ -1,7 +1,7 @@
-import ArrowButton from '../../../../../../components/ArrowButton';
+import ArrowButton from '../../../../../../components/arrowButton';
 import Block from '../../../../../../utils/Block';
-import MainPageInput from '../../../MainPageInput/MainPageInput';
-import DropOutMenuSend from './DropOutMenuSend/DropOutMenuSend';
+import MainPageInput from '../../../mainPageInput';
+import DropOutMenuSend from './dropOutMenuSend';
 import './sendArea.scss';
 
 export default class SendArea extends Block<{}> {

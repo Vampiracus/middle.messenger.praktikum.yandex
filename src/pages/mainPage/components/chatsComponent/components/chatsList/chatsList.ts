@@ -1,4 +1,4 @@
-import ChatItem from './ChatItem';
+import ChatItem from './chatItem';
 import './chatsList.scss';
 import Block from '../../../../../../utils/Block';
 import forHandlebars from '../../../../../../utils/otherScripts';

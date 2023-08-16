@@ -1,5 +1,5 @@
 import './actionModal.scss';
-import PopupContent from '../PopupContent';
+import PopupContent from '../popupContent';
 import Block from '../../utils/Block';
 
 export default class ActionModal extends PopupContent {

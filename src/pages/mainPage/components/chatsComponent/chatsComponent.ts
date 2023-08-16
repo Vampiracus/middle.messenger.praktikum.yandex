@@ -1,7 +1,7 @@
 import './chatsComponent.scss';
 import Block from '../../../../utils/Block';
-import ChatsHeader from './components/ChatsHeader/ChatsHeader';
-import ChatsList from './components/ChatsList/ChatsList';
+import ChatsHeader from './components/chatsHeader';
+import ChatsList from './components/chatsList';
 
 const chats: Array<Chat> = [
     {
