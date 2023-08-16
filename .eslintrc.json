@@ -15,6 +15,14 @@
         "indent": ["error", 4],
         "linebreak-style": ["off"], // Проект разрабатывается на Windows, а тестируется на Unix
         "import/extensions": "off",
+        // [
+        //     "error",
+        //     "ignorePackages",
+        //     {
+        //       "ts": "never",
+        //       "scss": "never"
+        //     }
+        //  ],
          "no-undef": "off", // Typescript проверяет
          "no-restricted-exports": "off",
          "comma-dangle": [
