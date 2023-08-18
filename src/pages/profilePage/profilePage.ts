@@ -15,11 +15,16 @@ const me: UserInfo = {
     phone: '+78001234567',
 };
 
-export default class ProfilePage extends Block<{}> {
+interface IProfile {
+    content: ProfileMain | ChangeDataForm | ChangePasswordForm,
+}
+
+export default class ProfilePage extends Block<IProfile> {
     constructor() {
-        super({}, 'div', [
+        const main = new ProfileMain(me);
+        super({ content: main }, 'div', [
             new BackToMainComponent(),
-            new ProfileMain(me),
+            main,
             new ChangeDataForm(me),
             new ChangePasswordForm(),
             new ErrorModal({
@@ -27,6 +32,19 @@ export default class ProfilePage extends Block<{}> {
             }),
         ]);
         this.addClass('profile-page');
+
+        Object.assign(globalThis, {
+            toProfMain: () => {
+                this.setProps({ content: (this.children[1] as ProfileMain) });
+            },
+            toChangeData: () => {
+                this.setProps({ content: (this.children[2] as ChangeDataForm) });
+            },
+            toChangePassword: () => {
+                this.setProps({ content: (this.children[3] as ChangePasswordForm) });
+            },
+        });
+
         // this.children[4].setProps({ active: true });
     }
 
@@ -39,9 +57,7 @@ export default class ProfilePage extends Block<{}> {
         </main>
         `, {
             backToMainComponent: this.children[0],
-            // content: this.children[1],
-            // content: this.children[2],
-            content: this.children[3],
+            content: this.props.content,
             badFileModal: this.children[4],
         });
     }

@@ -35,6 +35,7 @@ export default class ChattingArea extends Block<{}> {
         if (activeChat.name === '') {
             return Block.compile('{{{chatsPlug}}}', { chatsPlug: this.children[0] });
         }
+        // flex-direction: column-reverse
         return Block.compile(`
         {{{sendArea}}}
         {{{messagesArea}}}

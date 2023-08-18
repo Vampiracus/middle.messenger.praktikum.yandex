@@ -1,11 +1,26 @@
 import './mainPageInput.scss';
 import Block from '../../../../utils/Block';
 
-interface IInput { placeholder?: string, name?: string, onBlur?: EventListener, value: string }
+interface IInput {
+    placeholder?: string,
+    name?: string,
+    classes?: string[],
+    events?: Array<[string, EventListener]>,
+    value: string
+}
 
 export default class MainPageInput extends Block<IInput> {
     constructor(props: IInput) {
-        super(props, 'input');
+        const { events = [] } = props;
+        events.push(['change', () => {
+            this.setProps({
+                ...this.props, value: (this.element as HTMLInputElement).value,
+            });
+        }]);
+        super({
+            ...props,
+            events,
+        }, 'input');
         this.addClass('main-page-input');
 
         if (this.props.name) {
@@ -19,16 +34,5 @@ export default class MainPageInput extends Block<IInput> {
 
     componentDidUpdate(): boolean {
         return false;
-    }
-
-    componentDidMount(): void {
-        if (this.props.onBlur) {
-            this.element.addEventListener('blur', this.props.onBlur);
-            this.element.addEventListener('change', () => {
-                this.setProps({
-                    ...this.props, value: (this.element as HTMLInputElement).value,
-                });
-            });
-        }
     }
 }

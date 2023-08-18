@@ -3,6 +3,11 @@
     flex-direction: column;
     text-align: center;
 
+    & .red {
+        color: red; 
+        text-shadow: 1px 1px black
+    }
+
     & > a {
         margin: 10px 0;
         cursor: pointer;

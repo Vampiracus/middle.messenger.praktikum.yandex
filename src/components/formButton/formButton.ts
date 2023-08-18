@@ -4,7 +4,8 @@ import Block from '../../utils/Block';
 interface Props {
     text?: string,
     id?: string,
-    callback?: EventListener,
+    events?: Array<[string, EventListener]>,
+    classes?: string[],
 }
 
 export default class FormButton extends Block<Props> {
@@ -23,11 +24,7 @@ export default class FormButton extends Block<Props> {
     componentDidUpdate(oldProps: Props): boolean {
         this.element.textContent = this.props.text ? this.props.text : '';
         this.setAttribute('id', this.props.id ? this.props.id : '');
-        if (this.props.callback) {
-            this.element.onclick = this.props.callback;
-        } else if (oldProps.callback) {
-            this.element.removeEventListener('click', oldProps.callback);
-        }
+        if (oldProps.events !== this.props.events) return true;
 
         return false;
     }

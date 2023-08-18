@@ -1,12 +1,25 @@
 import './chatsHeader.scss';
 import MainPageInput from '../../../mainPageInput';
 import Block from '../../../../../../utils/Block';
+import MyA from '../../../../../../components/myA/myA';
 
 export default class ChatsHeader extends Block<{}> {
     constructor() {
-        super({}, 'div', [new MainPageInput({
-            placeholder: 'Поиск', name: 'chatname', value: '',
-        })]);
+        super({}, 'div', [
+            new MainPageInput({
+                placeholder: 'Поиск', name: 'chatname', value: '',
+            }),
+            new MyA({
+                text: 'Профиль <strong>></strong>',
+                classes: ['chats-header__profileLink'],
+                events: [
+                    ['click', () => {
+                        (globalThis as any).toProf();
+                        (globalThis as any).toProfMain();
+                    }],
+                ],
+            }),
+        ]);
         this.addClass('chats-header');
     }
 
@@ -16,10 +29,13 @@ export default class ChatsHeader extends Block<{}> {
 
     render() {
         return Block.compile(`
-        <a class='chats-header__profileLink' href='/profile'>Профиль <strong>></strong></a>
+        {{{AToProf}}}
         <form class='chats-header__searchForm'>
             {{{mainPageInput}}}
         </form>
-        `, { mainPageInput: this.children[0] });
+        `, {
+            AToProf: this.children[1],
+            mainPageInput: this.children[0],
+        });
     }
 }

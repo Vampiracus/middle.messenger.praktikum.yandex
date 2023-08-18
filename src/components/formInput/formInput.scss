@@ -21,6 +21,7 @@ $text-color-2: #999;
         color: $text-color_2;
         left: 0;
         margin: 15px 0 3px;
+        white-space: pre-wrap;
 
         &_incorrect {
             color: #FF2F2F;

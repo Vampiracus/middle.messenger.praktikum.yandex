@@ -19,18 +19,21 @@ export default class ChangePasswordForm extends ProfileFormWrapper<Props> {
         e.preventDefault();
         this.setProps({
             ...this.props,
-            oldPassword: this.children[0].props.value,
-            newPassword: this.children[1].props.value,
-            newPasswordAgain: this.children[2].props.value,
+            oldPassword: this.children[0].props.inputProps.value,
+            newPassword: this.children[1].props.inputProps.value,
+            newPasswordAgain: this.children[2].props.inputProps.value,
         });
         const {
-            newPassword, newPasswordAgain, oldPassword,
+            oldPassword, newPassword, newPasswordAgain,
         } = this.props;
         console.log({
-            newPassword, newPasswordAgain, oldPassword,
+            oldPassword, newPassword, newPasswordAgain,
         });
-        if (!validatePassword(oldPassword) || !validatePassword(newPassword)
-        || newPassword !== newPasswordAgain) {
+        let validated: boolean = true;
+        for (let i = 0; i < 3; i++) {
+            validated = (this.children[i] as FormInput).validate() && validated;
+        }
+        if (!validated) {
             console.log('Валидация не удалась');
             return;
         }
@@ -44,64 +47,59 @@ export default class ChangePasswordForm extends ProfileFormWrapper<Props> {
     constructor() {
         const oldPasswordInput = new FormInput({
             labelText: 'Старый пароль',
-            name: 'oldPassword',
-            id: 'oldPasswordInput',
-            type: 'password',
-            additionalProperies: 'required maxlength="40"',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, newPassword: oldPasswordInput.props.value,
-                });
-                if (validatePassword(oldPasswordInput.props.value)) {
-                    oldPasswordInput.setCorrect();
-                } else {
-                    oldPasswordInput.setIncorrect();
-                }
+            validationFunction: validatePassword,
+            inputProps: {
+                name: 'oldPassword',
+                id: 'oldPasswordInput',
+                type: 'password',
+                additionalProperties: [['required', 'true'], ['maxlength', '40']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, newPassword: oldPasswordInput.props.inputProps.value,
+                    });
+                }]],
+                value: '',
             },
-            value: '',
         });
         /* eslint-disable no-use-before-define */
         const passwordInput = new FormInput({
             labelText: 'Новый пароль',
-            name: 'newPassword',
-            id: 'newPasswordInput',
-            type: 'password',
-            additionalProperies: 'required maxlength="40"',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, newPassword: passwordInput.props.value,
-                });
-                if (validatePassword(passwordInput.props.value)) {
-                    passwordInput.setCorrect();
-                } else {
-                    passwordInput.setIncorrect();
-                }
-                if (passwordInput.props.value === passwordAgainInput.props.value) {
-                    passwordAgainInput.setCorrect();
-                } else {
-                    passwordAgainInput.setIncorrect();
-                }
+            validationFunction: validatePassword,
+            inputProps: {
+                name: 'newPassword',
+                id: 'newPasswordInput',
+                type: 'password',
+                additionalProperties: [['required', 'true'], ['maxlength', '40']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, newPassword: passwordInput.props.inputProps.value,
+                    });
+                    passwordAgainInput.validate();
+                }]],
+                value: '',
             },
-            value: '',
         });
         /* eslint-enable no-use-before-define */
         const passwordAgainInput = new FormInput({
             labelText: 'Новый пароль (ещё раз)',
-            name: 'newPasswordAgain',
-            id: 'newPasswordAgainInput',
-            type: 'password',
-            additionalProperies: 'required maxlength="40"',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, newPasswordAgain: passwordAgainInput.props.value,
-                });
-                if (passwordInput.props.value === passwordAgainInput.props.value) {
-                    passwordAgainInput.setCorrect();
-                } else {
-                    passwordAgainInput.setIncorrect();
+            validationFunction: (word: string): boolean | string => {
+                if (word === passwordInput.props.inputProps.value) {
+                    return true;
                 }
+                return 'Пароли не совпадают';
             },
-            value: '',
+            inputProps: {
+                name: 'newPasswordAgain',
+                id: 'newPasswordAgainInput',
+                type: 'password',
+                additionalProperties: [['required', 'true'], ['maxlength', '40']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, newPasswordAgain: passwordAgainInput.props.inputProps.value,
+                    });
+                }]],
+                value: '',
+            },
         });
         const kids = [
             oldPasswordInput,
@@ -139,6 +137,7 @@ export default class ChangePasswordForm extends ProfileFormWrapper<Props> {
     }
 
     componentDidMount(): void {
-        this.children[3].element.addEventListener('click', this._save.bind(this));
+        const { events = [] } = this.children[3].props;
+        this.children[3].setProps({ events: [...events, ['click', this._save.bind(this)]] });
     }
 }

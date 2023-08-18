@@ -1,9 +1,7 @@
 import './mainPage.scss';
 import ChatsComponent from './components/chatsComponent';
 import ChattingArea from './components/chattingArea';
-// import addUserModal from './components/addUserModal';
 import DeleteUserModal from './components/deleteUserModal';
-// import deleteChatModal from './components/deleteChatModal';
 import Block from '../../utils/Block';
 import DeleteChatModal from './components/deleteChatModal';
 import AddUserModal from './components/addUserModal';

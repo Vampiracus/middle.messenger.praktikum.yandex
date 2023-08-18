@@ -14,12 +14,12 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
         e.preventDefault();
         this.setProps({
             ...this.props,
-            email: this.children[0].props.value,
-            login: this.children[1].props.value,
-            firstName: this.children[2].props.value,
-            secondName: this.children[3].props.value,
-            displayName: this.children[4].props.value,
-            phone: this.children[5].props.value,
+            email: this.children[0].props.inputProps.value,
+            login: this.children[1].props.inputProps.value,
+            firstName: this.children[2].props.inputProps.value,
+            secondName: this.children[3].props.inputProps.value,
+            displayName: this.children[4].props.inputProps.value,
+            phone: this.children[5].props.inputProps.value,
         });
         const {
             email, login, firstName, secondName, phone, displayName,
@@ -27,8 +27,12 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
         console.log({
             email, login, firstName, secondName, phone, displayName,
         });
-        if (!validateEmail(email) || !validateLogin(login) || !validateName(firstName)
-        || !validateName(secondName) || !validateName(displayName) || !validatePhone(phone)) {
+
+        let validated: boolean = true;
+        for (let i = 0; i < 6; i++) {
+            validated = (this.children[i] as FormInput).validate() && validated;
+        }
+        if (!validated) {
             console.log('Валидация не удалась');
             return;
         }
@@ -38,111 +42,99 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
     constructor(me: UserInfo) {
         const emailInput = new FormInput({
             labelText: 'Почта',
-            name: 'email',
-            id: 'profileEmailInput',
-            type: 'text',
-            additionalProperies: 'required autofocus',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, email: emailInput.props.value,
-                });
-                if (validateEmail(emailInput.props.value)) {
-                    emailInput.setCorrect();
-                } else {
-                    emailInput.setIncorrect();
-                }
+            validationFunction: validateEmail,
+            inputProps: {
+                name: 'email',
+                id: 'profileEmailInput',
+                type: 'text',
+                additionalProperties: [['required', 'true'], ['autofocus', 'true']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, email: emailInput.props.inputProps.value,
+                    });
+                }]],
+                value: me.email,
             },
-            value: me.email,
         });
         const loginInput = new FormInput({
             labelText: 'Логин',
-            name: 'login',
-            id: 'profileLoginInput',
-            type: 'text',
-            additionalProperies: 'required',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, login: loginInput.props.value,
-                });
-                if (validateLogin(loginInput.props.value)) {
-                    loginInput.setCorrect();
-                } else {
-                    loginInput.setIncorrect();
-                }
+            validationFunction: validateLogin,
+            inputProps: {
+                name: 'login',
+                id: 'profileLoginInput',
+                type: 'text',
+                additionalProperties: [['required', 'true']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, login: loginInput.props.inputProps.value,
+                    });
+                }]],
+                value: me.login,
             },
-            value: me.login,
         });
         const firstNameInput = new FormInput({
             labelText: 'Имя',
-            name: 'first_name',
-            id: 'profileNameInput',
-            type: 'text',
-            additionalProperies: 'required',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, firstName: firstNameInput.props.value,
-                });
-                if (validateName(firstNameInput.props.value)) {
-                    firstNameInput.setCorrect();
-                } else {
-                    firstNameInput.setIncorrect();
-                }
+            validationFunction: validateName,
+            inputProps: {
+                name: 'first_name',
+                id: 'profileNameInput',
+                type: 'text',
+                additionalProperties: [['required', 'true']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, firstName: firstNameInput.props.inputProps.value,
+                    });
+                }]],
+                value: me.firstName,
             },
-            value: me.firstName,
         });
         const secondNameInput = new FormInput({
             labelText: 'Фамилия',
-            name: 'second_name',
-            id: 'profileSecondNameInput',
-            type: 'text',
-            additionalProperies: 'required',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, secondName: secondNameInput.props.value,
-                });
-                if (validateName(secondNameInput.props.value)) {
-                    secondNameInput.setCorrect();
-                } else {
-                    secondNameInput.setIncorrect();
-                }
+            validationFunction: validateName,
+            inputProps: {
+                name: 'second_name',
+                id: 'profileSecondNameInput',
+                type: 'text',
+                additionalProperties: [['required', 'true']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, secondName: secondNameInput.props.inputProps.value,
+                    });
+                }]],
+                value: me.secondName,
             },
-            value: me.secondName,
         });
         const displayNameInput = new FormInput({
             labelText: 'Имя в чате',
-            name: 'display_name',
-            id: 'profileChatNameInput',
-            type: 'text',
-            additionalProperies: 'required',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, displayName: displayNameInput.props.value,
-                });
-                if (validateName(displayNameInput.props.value)) {
-                    displayNameInput.setCorrect();
-                } else {
-                    displayNameInput.setIncorrect();
-                }
+            validationFunction: validateName,
+            inputProps: {
+                name: 'display_name',
+                id: 'profileChatNameInput',
+                type: 'text',
+                additionalProperties: [['required', 'true']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, displayName: displayNameInput.props.inputProps.value,
+                    });
+                }]],
+                value: me.firstName,
             },
-            value: me.firstName,
         });
         const phoneInput = new FormInput({
             labelText: 'Телефон',
-            name: 'phone',
-            id: 'profilePhoneInput',
-            type: 'text',
-            additionalProperies: 'required',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, phone: phoneInput.props.value,
-                });
-                if (validatePhone(phoneInput.props.value)) {
-                    phoneInput.setCorrect();
-                } else {
-                    phoneInput.setIncorrect();
-                }
+            validationFunction: validatePhone,
+            inputProps: {
+                name: 'phone',
+                id: 'profilePhoneInput',
+                type: 'text',
+                additionalProperties: [['required', 'true']],
+                events: [['blur', () => {
+                    this.setProps({
+                        ...this.props, phone: phoneInput.props.inputProps.value,
+                    });
+                }]],
+                value: me.phone,
             },
-            value: me.phone,
         });
 
         const kids = [
@@ -189,6 +181,7 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
     }
 
     componentDidMount(): void {
-        this.children[6].element.addEventListener('click', this._save.bind(this));
+        const { events = [] } = this.children[6].props;
+        this.children[6].setProps({ events: [...events, ['click', this._save.bind(this)]] });
     }
 }

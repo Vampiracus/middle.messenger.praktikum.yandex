@@ -23,13 +23,14 @@ export default class PopupContent<T extends Record<string, any> = any> extends B
         this.addClass('popup-content');
     }
 
-    componentDidUpdate(oldProps: { active: boolean }): boolean {
+    componentDidUpdate(oldProps: IPopup): boolean {
         if (this.props.active) {
             this.addClass('popup-content_active');
         } else {
             this.removeClass('popup-content_active');
         }
-        if (oldProps.active !== this.props.active) {
+        if (oldProps.active !== this.props.active
+            || oldProps.implementation !== this.props.implementation) {
             return true;
         }
         return false;

@@ -3,7 +3,7 @@ import './arrowButton.scss';
 
 interface Props {
     id: string,
-    callback?: EventListenerOrEventListenerObject
+    events?: Array<[string, EventListener]>,
 }
 
 export default class ArrowButton extends Block {
@@ -11,19 +11,11 @@ export default class ArrowButton extends Block {
         super(props, 'button');
         this.addClass('arrow-button');
         this.setAttribute('id', props.id);
-
-        if (props.callback) {
-            this.element.addEventListener('click', props.callback);
-        }
     }
 
     componentDidUpdate(oldProps: Props): boolean {
         this.setAttribute('id', this.props.id ? this.props.id : '');
-        if (this.props.callback) {
-            this.element.onclick = this.props.callback;
-        } else if (oldProps.callback) {
-            this.element.removeEventListener('click', oldProps.callback);
-        }
+        if (oldProps.events !== this.props.events) return true;
 
         return false;
     }

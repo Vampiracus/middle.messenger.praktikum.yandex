@@ -5,7 +5,8 @@ import Block from '../../../../utils/Block';
 export default class BackToMainComponent extends Block {
     constructor() {
         super({}, 'div', [new ArrowButton({
-            id: 'backToMainButton', callback: () => { window.location.href = '/chats'; },
+            id: 'backToMainButton',
+            events: [['click', () => { (globalThis as any).toMain(); }]],
         })]);
         this.addClass('back-to-main-component');
     }

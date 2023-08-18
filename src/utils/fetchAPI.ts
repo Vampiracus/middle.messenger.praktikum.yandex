@@ -18,6 +18,8 @@ type OptionsWithoutMethod = {
     data?: Record<string, any>,
 }
 
+type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<unknown>
+
 export default class HTTPTransport {
     static queryStringify(data: Record<string, any>) {
         let res = '';
@@ -28,38 +30,22 @@ export default class HTTPTransport {
         return res;
     }
 
-    static get(url: string, options: OptionsWithoutMethod): Promise<unknown> {
-        const timeout = options.timeout ? options.timeout : undefined;
-        return HTTPTransport.request(url, {
-            ...options, method: 'GET',
-        }, timeout);
-    }
+    static get: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+        ...options, method: 'GET',
+    }, options.timeout);
 
-    static put(url: string, options: OptionsWithoutMethod): Promise<unknown> {
-        const timeout = options.timeout ? options.timeout : undefined;
-        return HTTPTransport.request(url, {
-            ...options, method: 'PUT',
-        }, timeout);
-    }
+    static put: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+        ...options, method: 'PUT',
+    }, options.timeout);
 
-    static post(url: string, options: OptionsWithoutMethod): Promise<unknown> {
-        const timeout = options.timeout ? options.timeout : undefined;
-        return HTTPTransport.request(url, {
-            ...options, method: 'POST',
-        }, timeout);
-    }
+    static post: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+        ...options, method: 'POST',
+    }, options.timeout);
 
-    static delete(url: string, options: OptionsWithoutMethod): Promise<unknown> {
-        const timeout = options.timeout ? options.timeout : undefined;
-        return HTTPTransport.request(url, {
-            ...options, method: 'DELETE',
-        }, timeout);
-    }
-    // PUT, POST, DELETE
+    static delete: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+        ...options, method: 'DELETE',
+    }, options.timeout);
 
-    // options:
-    // headers — obj
-    // data — obj
     static request(
         url: string,
         options: Options = { method: METHODS.GET },

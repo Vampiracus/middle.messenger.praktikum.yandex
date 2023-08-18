@@ -2,7 +2,14 @@ import { v4 as makeUUID } from 'uuid';
 import Handlebars from 'handlebars';
 import EventBus from './eventBus';
 
-export default abstract class Block<P extends Record<string, any> = any> {
+export default abstract class Block<P extends
+    Record<string, any>
+    & {
+        events?: Array<[string, EventListener]>,
+        classes?: string[],
+        additionalProperties?: [string, string][],
+    } = any
+    > {
     /**
      * Названия событий
      */
@@ -36,6 +43,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
      */
     constructor(props: P, tagName: string, children?: Array<Block>) {
         const eventBus = new EventBus();
+        props = { ...props };
         this._meta = {
             tagName,
             props,
@@ -73,6 +81,7 @@ export default abstract class Block<P extends Record<string, any> = any> {
 
     init() {
         this._createResources();
+        this._addEvents();
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
@@ -127,16 +136,16 @@ export default abstract class Block<P extends Record<string, any> = any> {
 
     private _render() {
         const block = this.render();
-        if (!block) {
-            this.dispatchComponentDidMount();
-            return;
-        }
 
-        if (!this._element) {
-            throw new Error('Попытка создать элемент, когда он ещё не определен');
+        this._removeEvents();
+        if (block) {
+            this.element.innerHTML = '';
+            this.element.appendChild(block);
         }
-        this._element.innerHTML = '';
-        this._element.appendChild(block);
+        this._addEvents();
+        this._addClasses();
+        this._setProperties();
+
         this.dispatchComponentDidMount();
     }
 
@@ -176,33 +185,75 @@ export default abstract class Block<P extends Record<string, any> = any> {
         return document.createElement(tagName);
     }
 
+    _removeEvents() {
+        const { events = [] } = this.props;
+
+        events.forEach(val => {
+            this.element.removeEventListener(val[0], val[1]);
+        });
+    }
+
+    _setProperties() {
+        const { additionalProperties = [] } = this.props;
+
+        additionalProperties.forEach((prop: [string, string]) => {
+            this.setAttribute(prop[0], prop[1]);
+        });
+    }
+
+    _addClasses() {
+        const { classes = [] } = this.props;
+
+        classes.forEach(className => {
+            this.addClass(className);
+        });
+    }
+
+    _addEvents() {
+        const { events = [] } = this.props;
+
+        events.forEach(val => {
+            this.element.addEventListener(val[0], val[1]);
+        });
+    }
+
     /**
      * Добавить элементу класс
      */
     addClass(className: string) {
-        if (!this._element) {
-            throw new Error('Попытка добавить класс в элемент, когда он ещё не определен');
+        const { classes = [] } = this.props;
+        if (!classes.includes(className)) {
+            classes.push(className);
         }
-        this._element.classList.add(className);
+        this.props.classes = classes;
+        this.element.classList.add(className);
     }
 
     /**
      * Изменить элементу атрибут
      */
     setAttribute(attribute: string, value: string) {
-        if (!this._element) {
-            throw new Error('Попытка добавить класс в элемент, когда он ещё не определен');
+        const { additionalProperties = [] } = this.props;
+        let present: boolean = false;
+        additionalProperties.forEach(prop => {
+            if (prop[0] === attribute) {
+                present = true;
+            }
+        });
+        if (!present) {
+            additionalProperties.push([attribute, value]);
         }
-        this._element.setAttribute(attribute, value);
+        this.props.additionalProperties = additionalProperties;
+        this.element.setAttribute(attribute, value);
     }
 
     /**
      * Удалить элементу класс
      */
     removeClass(className: string) {
-        if (!this._element) {
-            throw new Error('Попытка убрать класс из элемента, когда он ещё не определен');
-        }
-        this._element.classList.remove(className);
+        let { classes = [] } = this.props;
+        classes = classes.filter(cls => cls !== className);
+        this.props.classes = classes;
+        this.element.classList.remove(className);
     }
 }

@@ -1,5 +1,6 @@
 import FormButton from '../../../components/formButton';
 import FormInput from '../../../components/formInput';
+import MyA from '../../../components/myA/myA';
 import Block from '../../../utils/Block';
 import { validateLogin, validatePassword } from '../../../utils/validation';
 
@@ -8,23 +9,27 @@ interface Props {
     password: string
 }
 
-export default class AuthorizationForm extends Block<Props> {
-    _enter(e: Event) {
-        e.preventDefault();
-        this.setProps({
-            login: this.children[1].props.value,
-            password: this.children[2].props.value,
-        });
-        const {
-            login, password,
-        } = this.props;
-        console.log({
-            login, password,
-        });
-        if (!validateLogin(login) || !validatePassword(password)) return;
-        console.log('Успешная валидация');
+// eslint-disable-next-line no-use-before-define
+function enter(this: AuthorizationForm, e: Event) {
+    e.preventDefault();
+    this.setProps({
+        login: this.children[1].props.inputProps.value,
+        password: this.children[2].props.inputProps.value,
+    });
+    const {
+        login, password,
+    } = this.props;
+    console.log({
+        login, password,
+    });
+    if (validateLogin(login) !== true || validatePassword(password) !== true) {
+        console.log('Валидация не удалась');
+        return;
     }
+    console.log('Успешная валидация');
+}
 
+export default class AuthorizationForm extends Block<Props> {
     componentDidUpdate(): boolean {
         return false;
     }
@@ -32,56 +37,69 @@ export default class AuthorizationForm extends Block<Props> {
     constructor() {
         const loginInput = new FormInput({
             labelText: 'Логин',
-            name: 'login',
-            id: 'login-input',
-            type: 'text',
-            additionalProperies: 'required',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, login: loginInput.props.value,
-                });
-                if (validateLogin(loginInput.props.value)) {
-                    loginInput.setCorrect();
-                } else {
-                    loginInput.setIncorrect();
-                }
+            validationFunction: validateLogin,
+            inputProps: {
+                name: 'login',
+                id: 'login-input',
+                type: 'text',
+                additionalProperties: [['required', 'true'], ['autofocus', 'true']],
+                events: [
+                    ['blur', () => {
+                        this.setProps({
+                            ...this.props, login: loginInput.props.inputProps.value,
+                        });
+                    }],
+                ],
+                value: '',
             },
-            value: '',
         });
         const passwordInput = new FormInput({
             labelText: 'Пароль',
-            name: 'password',
-            id: 'password-input',
-            type: 'password',
-            additionalProperies: 'required',
-            onBlur: () => {
-                this.setProps({
-                    ...this.props, password: passwordInput.props.value,
-                });
-                if (validatePassword(passwordInput.props.value)) {
-                    passwordInput.setCorrect();
-                } else {
-                    passwordInput.setIncorrect();
-                }
+            validationFunction: validatePassword,
+            inputProps: {
+                name: 'password',
+                id: 'password-input',
+                type: 'password',
+                additionalProperties: [['required', 'true']],
+                events: [
+                    ['blur', () => {
+                        this.setProps({
+                            ...this.props, password: passwordInput.props.inputProps.value,
+                        });
+                    }],
+                ],
+                value: '',
             },
-            value: '',
         });
 
         super({
             login: '', password: '',
         }, 'main', [
             new FormButton({
-                text: 'Войти', id: 'login-from-submit',
+                text: 'Войти',
+                id: 'login-from-submit',
+                events: [
+                    ['click', () => { (globalThis as any).toMain(); }],
+                ],
             }),
             loginInput,
             passwordInput,
+            new MyA({
+                text: 'Регистрация',
+                classes: ['auth-page-form__bottom-link'],
+                events: [
+                    ['click', () => { (globalThis as any).toReg(); }],
+                ],
+            }),
         ]);
     }
 
     componentDidMount(): void {
+        let events = [];
+        if (this.children[0].props.events) events = this.children[0].props.events;
         this.children[0].setProps({
             ...this.children[0].props,
-            callback: this._enter.bind(this),
+            events: [...events, ['click', enter.bind(this)]],
         });
     }
 
@@ -95,13 +113,14 @@ export default class AuthorizationForm extends Block<Props> {
             </div>
             <div class='auth-page-form__wrapper'>
                 {{{formButton}}}
-                <a class="auth-page-form__bottom-link" href='/registration'>Регистрация</a>
+                {{{AToReg}}}
             </div>
         </form>
         `, {
             formButton: this.children[0],
             loginInput: this.children[1],
             passwordInput: this.children[2],
+            AToReg: this.children[3],
         });
     }
 }

@@ -22,11 +22,11 @@ export default class ErrorModal extends PopupContent<IError> {
             okButton: new FormButton({
                 text: 'Ок',
                 id: 'okErrorButton',
-                callback: () => {
+                events: [['click', () => {
                     this.setProps({
                         ...this.props, active: false,
                     });
-                },
+                }]],
             }),
         };
         super(props, template, implementation, [implementation.okButton]);

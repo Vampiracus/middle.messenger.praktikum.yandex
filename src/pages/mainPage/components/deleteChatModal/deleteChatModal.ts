@@ -8,12 +8,12 @@ export default class DeleteChatModal extends ActionModal {
             new FormButton({
                 text: 'Отменить',
                 id: 'deleteChatCancelButton',
-                callback: e => { e.preventDefault(); this.setProps({ active: false }); },
+                events: [['click', e => { e.preventDefault(); this.setProps({ active: false }); }]],
             }),
             new FormButton({
                 text: 'Удалить',
                 id: 'delete-chat-button',
-                callback: e => { e.preventDefault(); this.setProps({ active: false }); },
+                events: [['click', e => { e.preventDefault(); this.setProps({ active: false }); }]],
             }),
         ];
         super('Удалить чат', 'delete-chat-modal', `

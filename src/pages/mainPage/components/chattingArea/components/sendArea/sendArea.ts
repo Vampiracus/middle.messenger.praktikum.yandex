@@ -18,11 +18,11 @@ export default class SendArea extends Block<{}> {
         const inpt = new MainPageInput({
             placeholder: 'Введите сообщение',
             name: 'message',
-            onBlur: () => {
+            events: [['blur', () => {
                 if (inpt.props.value === '') {
                     console.log('Валидация не удалась');
                 } else console.log('Успешная валидация');
-            },
+            }]],
             value: '',
         });
 
@@ -35,10 +35,7 @@ export default class SendArea extends Block<{}> {
     }
 
     componentDidMount(): void {
-        this.children[2].setProps({
-            ...this.children[2].props,
-            callback: this._send.bind(this),
-        });
+        this.children[2].setProps({ events: [['click', this._send.bind(this)]] });
     }
 
     render() {
