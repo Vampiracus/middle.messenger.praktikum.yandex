@@ -26,5 +26,5 @@ Object.assign(globalThis, {
 });
 
 if (app) {
-    app.appendChild(main.element);
+    app.appendChild(err404.element);
 }
