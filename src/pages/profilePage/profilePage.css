@@ -1,8 +1,0 @@
-.profilePage {
-    height: 100vh;
-    display: flex;
-
-    &__main {
-        width: 100%;
-    }
-}

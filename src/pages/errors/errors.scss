@@ -1,0 +1,19 @@
+.error-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+
+    & > button {
+        max-width: 300px;
+    }
+
+    & > a {
+        cursor: pointer;
+    }
+
+    & > p {
+        margin-bottom: 10px;
+    }
+}

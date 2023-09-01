@@ -1,9 +1,0 @@
-.chattingArea {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    width: 100%;
-    height: calc(100vh - 40px);
-    padding: 20px;
-    align-items: center;
-}

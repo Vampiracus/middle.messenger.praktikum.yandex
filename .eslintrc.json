@@ -1,0 +1,56 @@
+{
+    "extends": [
+        "airbnb", 
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript",
+        "plugin:typescript-enum/recommended"
+    ],
+    "parser": "@typescript-eslint/parser",    
+    "plugins": [
+        "@typescript-eslint",
+        "typescript-enum"
+    ],
+    "rules": {
+        "indent": ["error", 4],
+        "linebreak-style": ["off"], // Проект разрабатывается на Windows, а тестируется на Unix
+        "import/extensions": "off",
+        // [
+        //     "error",
+        //     "ignorePackages",
+        //     {
+        //       "ts": "never",
+        //       "scss": "never"
+        //     }
+        //  ],
+        "no-unused-vars": "off", // Typescript проверяет
+        "no-undef": "off", // Typescript проверяет
+         "no-restricted-exports": "off",
+         "comma-dangle": [
+            "error",
+            {
+                "functions": "never", 
+                "objects": "always-multiline",
+                "arrays": "always-multiline"
+            }
+        ],
+        "no-underscore-dangle": ["off"],
+        "no-restricted-syntax": ["off"],
+        "arrow-parens": ["error", "as-needed"],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+        "no-param-reassign": "off",
+        "object-curly-newline": ["error", {
+            "ObjectExpression": { "multiline": true, "minProperties": 2 },
+            "ObjectPattern": { "multiline": true, "minProperties": 2 },
+            "ImportDeclaration": { "multiline": true },
+            "ExportDeclaration": { "multiline": true }
+        }],
+        "no-console": "off",
+        "import/no-unresolved": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {}
+        }
+    }
+} 

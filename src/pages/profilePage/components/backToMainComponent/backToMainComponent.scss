@@ -1,0 +1,14 @@
+$darker-theme: #333;
+
+.back-to-main-component {
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $darker-theme;
+
+    & > .arrow-button {
+        transform: rotate(180deg);
+    }
+}

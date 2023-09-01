@@ -1,0 +1,17 @@
+.delete-chat-modal {
+    & > button{
+        margin-top: 30px;
+    }
+}
+
+#delete-chat-button {
+    font-size: 0.85rem;
+    background-color: transparent;
+    margin-top: 5px;
+    cursor:pointer;
+    transition: 0.3s;
+    
+    &:hover {
+        font-size: 1.05em;
+    }
+}

@@ -1,0 +1,36 @@
+.message {
+    background-color: #555;
+    border-radius: 0 12px 12px;
+    padding: 10px 10px 15px;
+    margin: 10px 0;
+    max-width: calc(max(40%, 400px));
+    cursor: default;
+    position: relative;
+
+    &_iSent {
+        align-self: flex-end;
+        border-radius: 12px 12px 0;
+        background-color: rgba(255 240 0 / 30%);
+        padding-right: 50px;
+    }
+
+    & > img {
+        max-height: 400px;
+        max-width: 100%;
+        border-radius: 12px;
+    }
+
+    &__time {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        border-radius: 30px;
+        font-size: 0.7rem;
+        padding: 2px 5px;
+        margin: 0 2px 2px 0;
+
+        & > img {
+            max-width: 13px;
+        }
+    }
+}
