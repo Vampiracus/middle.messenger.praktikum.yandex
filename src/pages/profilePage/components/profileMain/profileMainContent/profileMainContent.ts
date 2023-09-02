@@ -1,6 +1,9 @@
 import MyA from '../../../../../components/myA/myA';
 import Block from '../../../../../utils/Block';
+import Router from '../../../../../utils/Router';
 import './profileMainContent.scss';
+
+const router = Router;
 
 export default class ProfileMainContent extends Block<UserInfo> {
     constructor(me: UserInfo) {
@@ -8,23 +11,20 @@ export default class ProfileMainContent extends Block<UserInfo> {
             new MyA({
                 text: 'Изменить данные',
                 events: [
-                    ['click', () => { (globalThis as any).toChangeData(); }],
+                    ['click', () => { router.go('/settings/data'); }],
                 ],
             }),
             new MyA({
                 text: 'Изменить пароль',
                 events: [
-                    ['click', () => { (globalThis as any).toChangePassword(); }],
+                    ['click', () => { router.go('/settings/password'); }],
                 ],
             }),
             new MyA({
                 text: 'Выйти из аккаунта',
                 classes: ['red'],
                 events: [
-                    ['click', () => {
-                        (globalThis as any).toAuth();
-                        (globalThis as any).toEntr();
-                    }],
+                    ['click', () => { router.go('/'); }],
                 ],
             }),
         ]);

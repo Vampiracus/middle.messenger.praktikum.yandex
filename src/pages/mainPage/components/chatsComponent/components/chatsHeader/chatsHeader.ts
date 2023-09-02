@@ -2,6 +2,9 @@ import './chatsHeader.scss';
 import MainPageInput from '../../../mainPageInput';
 import Block from '../../../../../../utils/Block';
 import MyA from '../../../../../../components/myA/myA';
+import Router from '../../../../../../utils/Router';
+
+const router = Router;
 
 export default class ChatsHeader extends Block<{}> {
     constructor() {
@@ -13,10 +16,7 @@ export default class ChatsHeader extends Block<{}> {
                 text: 'Профиль <strong>></strong>',
                 classes: ['chats-header__profileLink'],
                 events: [
-                    ['click', () => {
-                        (globalThis as any).toProf();
-                        (globalThis as any).toProfMain();
-                    }],
+                    ['click', () => { router.go('/settings'); }],
                 ],
             }),
         ]);

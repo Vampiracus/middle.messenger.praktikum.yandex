@@ -1,5 +1,5 @@
 export default class EventBus {
-    private listeners: Record<string, Array<Function>>;
+    protected listeners: Record<string, Array<Function>>;
 
     constructor() {
         this.listeners = {};

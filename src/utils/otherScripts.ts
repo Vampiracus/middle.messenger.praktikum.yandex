@@ -23,3 +23,24 @@ export default function forHandlebars(blocks: Block[]): [string, Record<string, 
     }
     return [content, contentObj];
 }
+
+function checkKeys(a: Record<string, any>, b: Record<string, any>): boolean {
+    for (const key of Object.keys(a)) {
+        if (typeof b[key] !== typeof a[key]) return false;
+        if (!(a[key] === undefined && b[key] === undefined)) {
+            if (typeof a[key] === 'object' && !isEqual(a[key], b[key])) return false;
+            if (typeof a[key] !== 'object' && a[key] !== b[key]) return false;
+        }
+    }
+    return true;
+}
+
+export function isEqual(a: object, b: object): boolean {
+    if (a === null || b === null) {
+        if (a !== null || b != null) { return false; }
+        return true;
+    }
+
+    if (!checkKeys(a, b) || !checkKeys(b, a)) { return false; }
+    return true;
+}

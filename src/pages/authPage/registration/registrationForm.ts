@@ -3,6 +3,9 @@ import FormButton from '../../../components/formButton';
 import Block from '../../../utils/Block';
 import { validateEmail, validateLogin, validateName, validatePassword, validatePhone } from '../../../utils/validation';
 import MyA from '../../../components/myA/myA';
+import Router from '../../../utils/Router';
+
+const router = Router;
 
 interface Props {
     email: string,
@@ -180,7 +183,7 @@ export default class RegistrationForm extends Block<Props> {
                 text: 'Регистрация',
                 id: 'register-button',
                 events: [
-                    ['click', () => { (globalThis as any).toEntr(); }],
+                    ['click', () => { router.go('/'); }],
                 ],
             }),
             emailInput,
@@ -194,7 +197,7 @@ export default class RegistrationForm extends Block<Props> {
                 text: 'Войти',
                 classes: ['auth-page-form__bottom-link'],
                 events: [
-                    ['click', () => { (globalThis as any).toEntr(); }],
+                    ['click', () => { router.go('/'); }],
                 ],
             }),
         ]);

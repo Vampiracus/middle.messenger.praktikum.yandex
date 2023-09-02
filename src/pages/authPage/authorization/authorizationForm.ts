@@ -3,6 +3,9 @@ import FormInput from '../../../components/formInput';
 import MyA from '../../../components/myA/myA';
 import Block from '../../../utils/Block';
 import { validateLogin, validatePassword } from '../../../utils/validation';
+import Router from '../../../utils/Router';
+
+const router = Router;
 
 interface Props {
     login: string,
@@ -79,7 +82,7 @@ export default class AuthorizationForm extends Block<Props> {
                 text: 'Войти',
                 id: 'login-from-submit',
                 events: [
-                    ['click', () => { (globalThis as any).toMain(); }],
+                    ['click', () => { router.go('/messages'); }],
                 ],
             }),
             loginInput,
@@ -88,7 +91,7 @@ export default class AuthorizationForm extends Block<Props> {
                 text: 'Регистрация',
                 classes: ['auth-page-form__bottom-link'],
                 events: [
-                    ['click', () => { (globalThis as any).toReg(); }],
+                    ['click', () => { router.go('/sign-up'); }],
                 ],
             }),
         ]);

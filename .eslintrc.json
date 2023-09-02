@@ -45,8 +45,14 @@
             "ImportDeclaration": { "multiline": true },
             "ExportDeclaration": { "multiline": true }
         }],
-        "no-console": "off",
-        "import/no-unresolved": "off"
+        // "no-console": "off",
+        "import/no-unresolved": "off",
+        "no-use-before-define": ["error", {
+            "functions": false,
+            "classes": true,
+            "variables": true,
+            "allowNamedExports": false
+        }]
     },
     "settings": {
         "import/resolver": {
