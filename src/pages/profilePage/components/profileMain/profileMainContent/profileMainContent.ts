@@ -1,13 +1,23 @@
+import AuthAPI from '../../../../../api/AuthAPI';
 import MyA from '../../../../../components/myA/myA';
 import Block from '../../../../../utils/Block';
 import Router from '../../../../../utils/Router';
+import store from '../../../../../utils/Store';
 import './profileMainContent.scss';
 
 const router = Router;
 
-export default class ProfileMainContent extends Block<UserInfo> {
-    constructor(me: UserInfo) {
-        super(me, 'div', [
+function leave() {
+    AuthAPI.logout();
+    router.go('/');
+}
+
+export default class ProfileMainContent extends Block<{ firstName: string, secondName: string }> {
+    constructor() {
+        super({
+            firstName: store.user.first_name,
+            secondName: store.user.second_name,
+        }, 'div', [
             new MyA({
                 text: 'Изменить данные',
                 events: [
@@ -24,11 +34,17 @@ export default class ProfileMainContent extends Block<UserInfo> {
                 text: 'Выйти из аккаунта',
                 classes: ['red'],
                 events: [
-                    ['click', () => { router.go('/'); }],
+                    ['click', leave],
                 ],
             }),
         ]);
         this.addClass('profile-main-content');
+        store.addOnUserChange(user => {
+            this.setProps({
+                firstName: user.first_name,
+                secondName: user.second_name,
+            });
+        });
     }
 
     render() {

@@ -4,6 +4,7 @@ import MyA from '../../../components/myA/myA';
 import Block from '../../../utils/Block';
 import { validateLogin, validatePassword } from '../../../utils/validation';
 import Router from '../../../utils/Router';
+import AuthAPI from '../../../api/AuthAPI';
 
 const router = Router;
 
@@ -27,9 +28,19 @@ function enter(this: AuthorizationForm, e: Event) {
     });
     if (validateLogin(login) !== true || validatePassword(password) !== true) {
         console.log('Валидация не удалась');
-        return;
+        // return;
     }
     console.log('Успешная валидация');
+
+    AuthAPI.signin({
+        login: this.props.login,
+        password: this.props.password,
+    })
+        .then(xhr => xhr.response)
+        .then(res => {
+            if (res === 'OK') router.go('/messages');
+            AuthAPI.putUserInfoIntoApplication();
+        });
 }
 
 export default class AuthorizationForm extends Block<Props> {
@@ -81,9 +92,6 @@ export default class AuthorizationForm extends Block<Props> {
             new FormButton({
                 text: 'Войти',
                 id: 'login-from-submit',
-                events: [
-                    ['click', () => { router.go('/messages'); }],
-                ],
             }),
             loginInput,
             passwordInput,

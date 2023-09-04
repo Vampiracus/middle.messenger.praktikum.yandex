@@ -3,9 +3,9 @@ import Block from '../../../../utils/Block';
 import MyAvatar from '../myAvatar';
 import ProfileMainContent from './profileMainContent';
 
-export default class ProfileMain extends Block<UserInfo> {
-    constructor(me: UserInfo) {
-        super(me, 'div', [new MyAvatar(), new ProfileMainContent(me)]);
+export default class ProfileMain extends Block<{}> {
+    constructor() {
+        super({}, 'div', [new MyAvatar(), new ProfileMainContent()]);
         this.addClass('profile-main');
     }
 

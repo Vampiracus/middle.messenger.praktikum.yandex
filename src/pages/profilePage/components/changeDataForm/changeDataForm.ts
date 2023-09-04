@@ -1,31 +1,39 @@
+/* eslint-disable camelcase */
 import FormInput from '../../../../components/formInput';
 import FormButton from '../../../../components/formButton';
 import ProfileFormWrapper from '../profileFormWrapper';
 import Block from '../../../../utils/Block';
 import { validateEmail, validateLogin, validateName, validatePhone } from '../../../../utils/validation';
+import UserAPI from '../../../../api/UserAPI';
+import Router from '../../../../utils/Router';
+import AuthAPI from '../../../../api/AuthAPI';
+import store from '../../../../utils/Store';
+import { userAvatarNormalized } from '../../../../utils/fetchAPI';
+
+const router = Router;
 
 interface IWrapper {
     template: string,
     implementation: Record<string, Block | string | undefined>,
 }
 
-export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
+export default class ChangeDataForm extends ProfileFormWrapper<UserWithoutIdAndAvatar> {
     private _save(e: Event) {
         e.preventDefault();
         this.setProps({
             ...this.props,
             email: this.children[0].props.inputProps.value,
             login: this.children[1].props.inputProps.value,
-            firstName: this.children[2].props.inputProps.value,
-            secondName: this.children[3].props.inputProps.value,
-            displayName: this.children[4].props.inputProps.value,
+            first_name: this.children[2].props.inputProps.value,
+            second_name: this.children[3].props.inputProps.value,
+            display_name: this.children[4].props.inputProps.value,
             phone: this.children[5].props.inputProps.value,
         });
         const {
-            email, login, firstName, secondName, phone, displayName,
+            email, login, first_name, second_name, phone, display_name,
         } = this.props;
         console.log({
-            email, login, firstName, secondName, phone, displayName,
+            email, login, first_name, second_name, phone, display_name,
         });
 
         let validated: boolean = true;
@@ -37,9 +45,25 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
             return;
         }
         console.log('Успешная валидация');
+
+        UserAPI.changeData({
+            email,
+            first_name,
+            second_name,
+            display_name,
+            login,
+            phone,
+        })
+            .then(res => userAvatarNormalized(res))
+            .then(res => {
+                if (res.id !== undefined) {
+                    AuthAPI.putUserInfoIntoApplication(res);
+                    router.go('/messages');
+                }
+            });
     }
 
-    constructor(me: UserInfo) {
+    constructor() {
         const emailInput = new FormInput({
             labelText: 'Почта',
             validationFunction: validateEmail,
@@ -53,7 +77,7 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
                         ...this.props, email: emailInput.props.inputProps.value,
                     });
                 }]],
-                value: me.email,
+                value: store.user.email,
             },
         });
         const loginInput = new FormInput({
@@ -69,7 +93,7 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
                         ...this.props, login: loginInput.props.inputProps.value,
                     });
                 }]],
-                value: me.login,
+                value: store.user.login,
             },
         });
         const firstNameInput = new FormInput({
@@ -82,10 +106,10 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
                 additionalProperties: [['required', 'true']],
                 events: [['blur', () => {
                     this.setProps({
-                        ...this.props, firstName: firstNameInput.props.inputProps.value,
+                        ...this.props, first_name: firstNameInput.props.inputProps.value,
                     });
                 }]],
-                value: me.firstName,
+                value: store.user.first_name,
             },
         });
         const secondNameInput = new FormInput({
@@ -98,10 +122,10 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
                 additionalProperties: [['required', 'true']],
                 events: [['blur', () => {
                     this.setProps({
-                        ...this.props, secondName: secondNameInput.props.inputProps.value,
+                        ...this.props, second_name: secondNameInput.props.inputProps.value,
                     });
                 }]],
-                value: me.secondName,
+                value: store.user.second_name,
             },
         });
         const displayNameInput = new FormInput({
@@ -114,10 +138,10 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
                 additionalProperties: [['required', 'true']],
                 events: [['blur', () => {
                     this.setProps({
-                        ...this.props, displayName: displayNameInput.props.inputProps.value,
+                        ...this.props, display_name: displayNameInput.props.inputProps.value,
                     });
                 }]],
-                value: me.firstName,
+                value: store.user.display_name,
             },
         });
         const phoneInput = new FormInput({
@@ -133,7 +157,7 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
                         ...this.props, phone: phoneInput.props.inputProps.value,
                     });
                 }]],
-                value: me.phone,
+                value: store.user.phone,
             },
         });
 
@@ -173,7 +197,46 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserInfo> {
                 submitProfileDataButton: kids[6],
             },
         };
-        super(templateProps, me, kids);
+        super(templateProps, { ...store.user }, kids);
+
+        store.addOnUserChange(user => {
+            this.children[0].setProps({
+                inputProps: {
+                    ...this.children[0].props.inputProps,
+                    value: user.email,
+                },
+            });
+            this.children[1].setProps({
+                inputProps: {
+                    ...this.children[1].props.inputProps,
+                    value: user.login,
+                },
+            });
+            this.children[2].setProps({
+                inputProps: {
+                    ...this.children[2].props.inputProps,
+                    value: user.first_name,
+                },
+            });
+            this.children[3].setProps({
+                inputProps: {
+                    ...this.children[3].props.inputProps,
+                    value: user.second_name,
+                },
+            });
+            this.children[4].setProps({
+                inputProps: {
+                    ...this.children[4].props.inputProps,
+                    value: user.display_name,
+                },
+            });
+            this.children[5].setProps({
+                inputProps: {
+                    ...this.children[5].props.inputProps,
+                    value: user.phone,
+                },
+            });
+        });
     }
 
     componentDidUpdate(): boolean {

@@ -20,12 +20,25 @@ declare global {
         time: string,
     };
 
-    type UserInfo = {
-        email: string,
-        login: string,
-        firstName: string,
-        secondName: string,
-        displayName: string,
-        phone: string,
+    type User = {
+        id: number;
+        first_name: string;
+        second_name: string;
+        display_name: string,
+        login: string;
+        email: string;
+        phone: string;
+        avatar: string;
+    }
+
+    type UserWithoutIdAndAvatar = Omit<Omit<User, 'id'>, 'avatar'>;
+
+    type SignupData = {
+        first_name: string;
+        second_name: string;
+        login: string;
+        email: string;
+        password: string;
+        phone: string;
     }
 }

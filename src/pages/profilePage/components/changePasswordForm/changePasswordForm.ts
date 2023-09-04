@@ -3,6 +3,10 @@ import Block from '../../../../utils/Block';
 import FormInput from '../../../../components/formInput';
 import FormButton from '../../../../components/formButton';
 import { validatePassword } from '../../../../utils/validation';
+import UserAPI from '../../../../api/UserAPI';
+import Router from '../../../../utils/Router';
+
+const router = Router;
 
 interface IWrapper {
     template: string,
@@ -38,6 +42,17 @@ export default class ChangePasswordForm extends ProfileFormWrapper<Props> {
             return;
         }
         console.log('Успешная валидация');
+
+        UserAPI.changePassword({
+            oldPassword,
+            newPassword,
+        })
+            .then(res => {
+                console.log(res);
+                if (res === 'OK') {
+                    router.go('/messages');
+                }
+            });
     }
 
     componentDidUpdate(): boolean {

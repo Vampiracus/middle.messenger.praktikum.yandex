@@ -9,18 +9,23 @@ type Options = {
     method: string,
     timeout?: number // В милисекундах
     headers?: Record<string, string>,
-    data?: Record<string, any>,
+        data?: Record<string, any> | FormData,
+    isFormData?: boolean,
 }
 
-type OptionsWithoutMethod = {
-    timeout?: number // В милисекундах
-    headers?: Record<string, string>,
-    data?: Record<string, any>,
-}
+type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-type HTTPMethod = (url: string, options?: OptionsWithoutMethod) => Promise<unknown>
+type HTTPMethod = (path: string, options?: OptionsWithoutMethod) => Promise<XMLHttpRequest>
 
 export default class HTTPTransport {
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
+
+    protected endpoint: string;
+
+    constructor(endpoint: string) {
+        this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+    }
+
     static queryStringify(data: Record<string, any>) {
         let res = '';
         for (const key of Object.keys(data)) {
@@ -30,19 +35,19 @@ export default class HTTPTransport {
         return res;
     }
 
-    static get: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+    get: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
         ...options, method: 'GET',
     }, options.timeout);
 
-    static put: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+    put: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
         ...options, method: 'PUT',
     }, options.timeout);
 
-    static post: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+    post: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
         ...options, method: 'POST',
     }, options.timeout);
 
-    static delete: HTTPMethod = (url, options = {}) => HTTPTransport.request(url, {
+    delete: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
         ...options, method: 'DELETE',
     }, options.timeout);
 
@@ -50,7 +55,7 @@ export default class HTTPTransport {
         url: string,
         options: Options = { method: METHODS.GET },
         timeout = 5000
-    ): Promise<unknown> {
+    ): Promise<XMLHttpRequest> {
         return new Promise((resolve, reject) => {
             const xhr = new XMLHttpRequest();
 
@@ -65,6 +70,8 @@ export default class HTTPTransport {
                     xhr.setRequestHeader(name, header);
                 }
             }
+            xhr.withCredentials = true;
+            if (!options.isFormData) xhr.setRequestHeader('Content-Type', 'application/json');
 
             // eslint-disable-next-line func-names
             xhr.onload = function () {
@@ -83,9 +90,18 @@ export default class HTTPTransport {
 
             if (options.method === METHODS.GET || !options.data) {
                 xhr.send();
+            } else if (options.isFormData && options.data !== undefined) {
+                xhr.send(options.data as FormData);
             } else {
                 xhr.send(JSON.stringify(options.data));
             }
         });
     }
+}
+
+export function userAvatarNormalized(user: User): User {
+    return {
+        ...user,
+        avatar: user.avatar ? `${HTTPTransport.API_URL}/resources${user.avatar}` : '/photoCamera.png',
+    };
 }

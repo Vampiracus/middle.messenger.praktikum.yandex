@@ -17,8 +17,8 @@ class Router {
         this._rootQuery = rootQuery;
     }
 
-    use<T extends Block>(pathname: RegExp, block: new () => T) {
-        const route = new Route(pathname, block, { rootQuery: this._rootQuery });
+    use<T extends Block>(pathname: RegExp, block: new () => T, title: string = 'Мессенджер') {
+        const route = new Route(pathname, block, { rootQuery: this._rootQuery }, title);
         this.routes.push(route);
         return this;
     }
@@ -38,9 +38,9 @@ class Router {
     }
 
     start() {
-        window.onpopstate = event => {
+        window.addEventListener('popstate', event => {
             this._onRoute((event.currentTarget as Window).location.pathname);
-        };
+        });
         this._onRoute(window.location.pathname);
     }
 

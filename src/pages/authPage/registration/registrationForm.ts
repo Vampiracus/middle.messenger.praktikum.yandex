@@ -4,6 +4,7 @@ import Block from '../../../utils/Block';
 import { validateEmail, validateLogin, validateName, validatePassword, validatePhone } from '../../../utils/validation';
 import MyA from '../../../components/myA/myA';
 import Router from '../../../utils/Router';
+import AuthAPI from '../../../api/AuthAPI';
 
 const router = Router;
 
@@ -44,6 +45,22 @@ export default class RegistrationForm extends Block<Props> {
             return;
         }
         console.log('Успешная валидация');
+
+        AuthAPI.signup({
+            email,
+            first_name: firstName,
+            second_name: secondName,
+            login,
+            password,
+            phone,
+        })
+            .then(res => JSON.parse(res.response))
+            .then(res => {
+                if (!res.reason) {
+                    router.go('/messages');
+                    AuthAPI.putUserInfoIntoApplication();
+                }
+            });
     }
 
     componentDidUpdate(): boolean {
@@ -182,9 +199,6 @@ export default class RegistrationForm extends Block<Props> {
             new FormButton({
                 text: 'Регистрация',
                 id: 'register-button',
-                events: [
-                    ['click', () => { router.go('/'); }],
-                ],
             }),
             emailInput,
             loginInput,

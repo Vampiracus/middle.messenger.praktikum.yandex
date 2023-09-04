@@ -1,19 +1,41 @@
+import AuthAPI from '../../../../api/AuthAPI';
+import UserAPI from '../../../../api/UserAPI';
 import Block from '../../../../utils/Block';
+import store from '../../../../utils/Store';
 import './myAvatar.scss';
 
-export default class MyAvatar extends Block<{}> {
+function changeAvatar(e: Event) {
+    const curForm = e.currentTarget as HTMLFormElement;
+    UserAPI.changeAvatar(new FormData(curForm))
+        .then(res => {
+            AuthAPI.putUserInfoIntoApplication(res);
+        });
+}
+
+export default class MyAvatar extends Block<{ imgSrc: string, events: [string, EventListener][] }> {
     constructor() {
-        super({}, 'div');
+        super({
+            imgSrc: '/photoCamera.png',
+            events: [
+                ['change', changeAvatar],
+            ],
+        }, 'form');
         this.addClass('my-avatar');
+        store.addOnUserChange(user => {
+            this.setProps({
+                ...this.props,
+                imgSrc: user.avatar,
+            });
+        });
     }
 
     render() {
         return Block.compile(`
         <img src='{{src}}' alt='мой аватар'>
-        <input type='file' name='avatar' id='avatarInput'>
+        <input type='file' name='avatar' id='avatarInput' accept='image/*'>
         <label for='avatarInput' class='my-avatar__change'>
             Поменять аватар
         </label>
-        `, { src: '/photoCamera.png' });
+        `, { src: this.props.imgSrc });
     }
 }
