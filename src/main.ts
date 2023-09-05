@@ -5,6 +5,7 @@ import MainPage from './pages/mainPage';
 import { DataSettingsPage, ProfileMainPage, PasswordSettingPage } from './pages/profilePage';
 import Router from './utils/Router';
 import AuthAPI from './api/AuthAPI';
+import ChatsAPI from './api/ChatsAPI';
 
 Object.assign(window, { sentForUserInfo: true });
 
@@ -38,3 +39,5 @@ router
 // });
 
 AuthAPI.putUserInfoIntoApplication();
+ChatsAPI.read({ title: '', limit: 10, offset: 0 })
+    .then(xhr => console.log(JSON.parse(xhr.response)));

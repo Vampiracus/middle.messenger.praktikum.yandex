@@ -32,15 +32,22 @@ function enter(this: AuthorizationForm, e: Event) {
     }
     console.log('Успешная валидация');
 
-    AuthAPI.signin({
-        login: this.props.login,
-        password: this.props.password,
-    })
-        .then(xhr => xhr.response)
-        .then(res => {
-            if (res === 'OK') router.go('/messages');
-            AuthAPI.putUserInfoIntoApplication();
-        });
+    AuthAPI.logout().then(() => {
+        AuthAPI.signin({
+            login: this.props.login,
+            password: this.props.password,
+        })
+            .then(xhr => xhr.response)
+            .then(res => {
+                if (res === 'OK') {
+                    router.go('/messages');
+                } else {
+                    (this.children[1] as FormInput).setIncorrect();
+                    (this.children[2] as FormInput).setIncorrect();
+                }
+                AuthAPI.putUserInfoIntoApplication();
+            });
+    });
 }
 
 export default class AuthorizationForm extends Block<Props> {

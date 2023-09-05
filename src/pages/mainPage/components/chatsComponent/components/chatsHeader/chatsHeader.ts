@@ -32,6 +32,7 @@ export default class ChatsHeader extends Block<{}> {
         {{{AToProf}}}
         <form class='chats-header__searchForm'>
             {{{mainPageInput}}}
+            {{{createChatButton}}}
         </form>
         `, {
             AToProf: this.children[1],

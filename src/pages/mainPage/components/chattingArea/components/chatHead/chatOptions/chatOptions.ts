@@ -4,7 +4,11 @@ import DropOutMenu from './dropOutMenu';
 
 export default class ChatOptions extends Block<{}> {
     constructor() {
-        super({}, 'div', [new DropOutMenu()]);
+        super({
+            events: [
+                ['mouseover', () => { (this.children[0] as DropOutMenu).show(); }],
+            ],
+        }, 'div', [new DropOutMenu()]);
         this.addClass('chat-options');
     }
 

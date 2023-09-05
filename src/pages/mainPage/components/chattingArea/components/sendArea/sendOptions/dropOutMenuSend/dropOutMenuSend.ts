@@ -1,10 +1,23 @@
 import './dropOutMenuSend.scss';
-import Block from '../../../../../../../utils/Block';
+import Block from '../../../../../../../../utils/Block';
 
 export default class DropOutMenuSend extends Block<{}> {
     constructor() {
-        super({}, 'div');
+        super({
+            events: [
+                ['mouseout', () => { this.hide(); }],
+            ],
+        }, 'div');
         this.addClass('drop-out-menu-send');
+        this.addClass('drop-out-menu__hidden');
+    }
+
+    hide() {
+        this.addClass('drop-out-menu__hidden');
+    }
+
+    show() {
+        this.removeClass('drop-out-menu__hidden');
     }
 
     render() {

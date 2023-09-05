@@ -3,8 +3,21 @@ import './dropOutMenu.scss';
 
 export default class DropOutMenu extends Block<{}> {
     constructor() {
-        super({}, 'div');
+        super({
+            events: [
+                ['mouseout', () => { this.hide(); }],
+            ],
+        }, 'div');
         this.addClass('drop-out-menu');
+        this.addClass('drop-out-menu__hidden');
+    }
+
+    hide() {
+        this.addClass('drop-out-menu__hidden');
+    }
+
+    show() {
+        this.removeClass('drop-out-menu__hidden');
     }
 
     render() {

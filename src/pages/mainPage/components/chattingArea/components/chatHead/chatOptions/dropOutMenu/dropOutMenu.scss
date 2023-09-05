@@ -16,6 +16,10 @@ $text-color-2: #999;
     min-width: 16em;
     background-color: rgba(64 64 64 / 100%);
 
+    &__hidden {
+        display: none;
+    }
+
     & > div {
         margin: 5px;
         display: flex;
