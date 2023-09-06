@@ -24,7 +24,7 @@ $text-color-2: #999;
         margin: 5px;
         display: flex;
         
-        & > span:hover {
+        & > a:hover {
             text-decoration: underline;
         }
     }

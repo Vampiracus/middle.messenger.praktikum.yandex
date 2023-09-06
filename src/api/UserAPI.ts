@@ -29,6 +29,17 @@ class UserAPI extends BaseAPI {
             .then(res => userAvatarNormalized(JSON.parse(res.response)));
     }
 
+    getUserIDByLogin(login: string): Promise<number> {
+        return this.http.post('/search', { data: { login } })
+            .then(xhr => JSON.parse(xhr.response))
+            .then(res => {
+                if (res.reason !== undefined) return -1;
+                res = res.filter((user: User) => user.login === login);
+                if (res.length === 0) return -1;
+                return res[0].id;
+            });
+    }
+
     create = undefined;
 
     update = undefined;

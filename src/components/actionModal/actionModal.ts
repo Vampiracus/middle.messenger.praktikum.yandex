@@ -7,6 +7,10 @@ export default class ActionModal extends PopupContent {
 
     formClass: string;
 
+    private _hideListener(e: Event) {
+        if ((e.target as HTMLElement).firstElementChild?.classList.contains('popup-content__content')) this.setProps({ active: false });
+    }
+
     constructor(
         name: string,
         formClass: string,
@@ -26,6 +30,15 @@ export default class ActionModal extends PopupContent {
         super({}, template, implementation, children);
         this.name = name;
         this.formClass = formClass;
+
+        const { events = [] } = this.props;
+        this.setProps({
+            ...this.props,
+            events: [
+                ...events,
+                ['click', this._hideListener.bind(this)],
+            ],
+        });
     }
 
     // render() {

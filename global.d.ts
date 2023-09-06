@@ -3,23 +3,6 @@ export {};
 
 declare global {
 
-    // Main page
-    type Chat = {
-        name: string, // Имя чата
-        message: string, // Последнего сообщения
-        iSentLast: boolean, // Я отправил последнее сообщение?
-        lastMessageDate: string, // Дата (время) последнего сообщения
-        toBeRead: number, // Сколько у меня непрочитанных сообщений с этого чата
-        isActive: boolean // Активен ли чат
-    };
-
-    type Message = {
-        sentStatus: MessageSentStatus,
-        text?: string,
-        imgLink?: string,
-        time: string,
-    };
-
     type User = {
         id: number;
         first_name: string;
@@ -30,6 +13,22 @@ declare global {
         phone: string;
         avatar: string;
     }
+
+    type Message = {
+        user: User,
+        time: string,
+        content: string,
+    };
+
+    // Main page
+    type Chat = {
+        id: number,
+        title: string,
+        avatar: string,
+        unread_count: number, // Сколько у меня непрочитанных сообщений с этого чата
+        created_by: number,
+        last_message: Message,
+    };
 
     type UserWithoutIdAndAvatar = Omit<Omit<User, 'id'>, 'avatar'>;
 

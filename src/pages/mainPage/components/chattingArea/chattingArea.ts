@@ -4,6 +4,7 @@ import Block from '../../../../utils/Block';
 import SendArea from './components/sendArea';
 import ChatHead from './components/chatHead';
 import ChatsPlug from './components/chatsPlug';
+import store, { emptyChat } from '../../../../utils/Store';
 
 const messages: Array<Message> = [
     {
@@ -25,14 +26,21 @@ const messages: Array<Message> = [
 
 const activeChat = { name: 'Вадим' };
 
-export default class ChattingArea extends Block<{}> {
+export default class ChattingArea extends Block<{ showingPlug: boolean }> {
     constructor() {
-        super({}, 'div', [new ChatsPlug(), new SendArea(), new MessageArea(messages), new ChatHead(activeChat)]);
+        super({ showingPlug: false }, 'div', [new ChatsPlug(), new SendArea(), new MessageArea(messages), new ChatHead(activeChat)]);
         this.addClass('chatting-area');
+
+        const showPlug = (chatId: number) => {
+            if (chatId === -1) this.setProps({ showingPlug: true });
+            else this.setProps({ showingPlug: false });
+        };
+        store.addOnSelectedChatChange(showPlug);
+        showPlug(store.selectedChat.id);
     }
 
     render() {
-        if (activeChat.name === '') {
+        if (this.props.showingPlug) {
             return Block.compile('{{{chatsPlug}}}', { chatsPlug: this.children[0] });
         }
         // flex-direction: column-reverse

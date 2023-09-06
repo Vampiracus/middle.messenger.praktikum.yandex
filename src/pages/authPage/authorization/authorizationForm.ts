@@ -5,6 +5,7 @@ import Block from '../../../utils/Block';
 import { validateLogin, validatePassword } from '../../../utils/validation';
 import Router from '../../../utils/Router';
 import AuthAPI from '../../../api/AuthAPI';
+import ChatsAPI from '../../../api/ChatsAPI';
 
 const router = Router;
 
@@ -46,6 +47,7 @@ function enter(this: AuthorizationForm, e: Event) {
                     (this.children[2] as FormInput).setIncorrect();
                 }
                 AuthAPI.putUserInfoIntoApplication();
+                ChatsAPI.putChatsIntoApplication();
             });
     });
 }

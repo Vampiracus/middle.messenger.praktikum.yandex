@@ -23,21 +23,6 @@ router
     .use(/^.*$/, Error404Page)
     .start();
 
-// Автоперенаправление на вход, если пользователь не авторизован, на главную -- если авторизован.
-// План -- перенаправлять на самих страничках
-// window.addEventListener('popstate', () => {
-//     if (!(window as Window & typeof globalThis & {sentForUserInfo?: boolean}).sentForUserInfo) {
-//         const curpath = window.location.pathname;
-//         if (!(window as Window & typeof globalThis & {User?: Record<string, any>}).User) {
-//             if (curpath !== '/sign-up' && curpath !== '/') {
-//                 router.go('/');
-//             }
-//         } else if (curpath === '/sign-up' || curpath === '/') {
-//             router.go('/messages');
-//         }
-//     }
-// });
-
 AuthAPI.putUserInfoIntoApplication();
-ChatsAPI.read({ title: '', limit: 10, offset: 0 })
-    .then(xhr => console.log(JSON.parse(xhr.response)));
+
+ChatsAPI.putChatsIntoApplication();
