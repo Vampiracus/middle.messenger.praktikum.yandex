@@ -15,7 +15,7 @@ function changeAvatar(e: Event) {
 export default class MyAvatar extends Block<{ imgSrc: string, events: [string, EventListener][] }> {
     constructor() {
         super({
-            imgSrc: '/photoCamera.png',
+            imgSrc: store.user.avatar ? store.user.avatar : '/photoCamera.png',
             events: [
                 ['change', changeAvatar],
             ],
