@@ -17,7 +17,7 @@ export default class ChatHead extends Block<{ title: string }> {
         return Block.compile(`
         <div class='chat-head__name'>
             {{{avatar}}}
-            {{{name}}}
+            {{name}}
         </div>
         {{{chatOptions}}}
         `, {

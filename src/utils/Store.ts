@@ -126,6 +126,14 @@ class Store {
     addOnSocketClosed(callback: () => void) {
         this._eventBus.on(Store.EVENTS.SOCKET_CLOSED, callback);
     }
+
+    offSocketInit(callback: () => void) {
+        this._eventBus.off(Store.EVENTS.SOCKET_INIT, callback);
+    }
+
+    offSocketClosed(callback: () => void) {
+        this._eventBus.off(Store.EVENTS.SOCKET_CLOSED, callback);
+    }
 }
 
 const store = new Store();

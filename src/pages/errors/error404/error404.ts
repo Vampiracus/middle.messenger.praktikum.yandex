@@ -1,6 +1,8 @@
 import '../errors.scss';
 import Block from '../../../utils/Block';
 import MyA from '../../../components/myA/myA';
+import Router from '../../../utils/Router';
+import store from '../../../utils/Store';
 
 export default class Error404Page extends Block<{}> {
     constructor() {
@@ -8,8 +10,8 @@ export default class Error404Page extends Block<{}> {
             new MyA({
                 text: 'На главную',
                 events: [['click', () => {
-                    (globalThis as any).toAuth();
-                    (globalThis as any).toEntr();
+                    if (store.user.id === -1) Router.go('/');
+                    else Router.go('/messages');
                 }]],
             }),
         ]);

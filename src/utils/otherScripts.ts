@@ -44,3 +44,20 @@ export function isEqual(a: object, b: object): boolean {
     if (!checkKeys(a, b) || !checkKeys(b, a)) { return false; }
     return true;
 }
+
+const weekDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+export function timeToReadable(time: string): string {
+    const regex = /^\d\d\d\d-\d\d-\d\d[A-Z]\d\d:\d\d:\d\d\+\d\d:\d\d$/;
+    if (!regex.test(time)) return time;
+    const msgTime = Date.parse(time);
+    let timePassed = Math.ceil((Date.now() - msgTime) / 60000);
+    if (timePassed < 60) return `${timePassed} min`;
+    timePassed = Math.floor(timePassed / 60);
+    if (timePassed < 24) return `${timePassed} h`;
+    timePassed = Math.floor(timePassed / 24);
+    const date = new Date(msgTime);
+    if (timePassed < 7) return `${weekDay[date.getDay()]}`;
+    return `${date.getDate() < 10 ? '0' : ''}${date.getDate()} ${month[date.getMonth()]}`;
+}

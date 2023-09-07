@@ -33,6 +33,7 @@ export default class MainPageInput extends Block<IInput> {
     }
 
     componentDidUpdate(): boolean {
+        (this.element as HTMLInputElement).value = this.props.value;
         return false;
     }
 }

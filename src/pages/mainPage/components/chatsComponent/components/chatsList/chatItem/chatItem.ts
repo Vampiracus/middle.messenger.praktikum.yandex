@@ -4,6 +4,7 @@ import ToBeReadBubble from './toBeReadBubble';
 import Block from '../../../../../../../utils/Block';
 import store from '../../../../../../../utils/Store';
 import ChatsAPI from '../../../../../../../api/ChatsAPI';
+import { timeToReadable } from '../../../../../../../utils/otherScripts';
 
 interface IChat {
     chat: Chat,
@@ -20,6 +21,27 @@ export default class ChatItem extends Block<IChat> {
         };
         store.addOnSelectedChatChange(removeCls);
 
+        const onInit = () => {
+            const onClosed = () => {
+                store.offSocketInit(onInit);
+                store.offSocketClosed(onClosed);
+            };
+            store.addOnSocketClosed(onClosed);
+
+            store.curSocket?.addOnMessage(e => {
+                let data = JSON.parse(e.data);
+                if (data.type !== 'message') return;
+                data = data as WSMessage;
+                this.setProps({
+                    chat: {
+                        ...this.props.chat,
+                        last_message: data,
+                    },
+                });
+            });
+        };
+        store.addOnSocketInit(onInit);
+
         // Закрытие текущего сокета, если есть
         if (store.curSocket !== null) store.curSocket.close();
         ChatsAPI.getToken(this.props.chat.id)
@@ -29,6 +51,13 @@ export default class ChatItem extends Block<IChat> {
     }
 
     constructor(chat: Chat) {
+        if (chat.last_message) {
+            let msg = chat.last_message.content;
+            if (msg.length > 20) {
+                msg = `${msg.substring(0, 17)}...`;
+            }
+            chat.last_message.content = msg;
+        }
         super({ chat }, 'div', [new EmptyAvatar(), new ToBeReadBubble({ messagesNumber: chat.unread_count })]);
         this.addClass('chat-item');
 
@@ -57,6 +86,7 @@ export default class ChatItem extends Block<IChat> {
             time: '',
             content: '',
         };
+        message.time = timeToReadable(message.time);
         return Block.compile(`
         {{{avatar}}}
         <div class='chat-item__text'>

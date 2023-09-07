@@ -59,6 +59,8 @@ export default class RegistrationForm extends Block<Props> {
                 if (!res.reason) {
                     router.go('/messages');
                     AuthAPI.putUserInfoIntoApplication();
+                } else if (res.reason === 'Login already exists') {
+                    (this.children[2] as FormInput).setIncorrect();
                 }
             });
     }

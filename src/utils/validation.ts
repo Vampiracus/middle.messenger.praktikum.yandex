@@ -38,7 +38,7 @@ export function validatePhone(phone: string): boolean | string {
 
 export function validateChatName(title: string): boolean | string {
     if (!title.length) return '';
-    const regex = /^[А-Яа-яЁёA-Za-z 0-9!;:+-_()*?[\]]+$/;
+    const regex = /^[А-Яа-яЁёA-Za-z 0-9!;:+-_()*?'"[\]]+$/;
     if (regex.test(title)) return true;
     return 'Используются недопустимые символы';
 }

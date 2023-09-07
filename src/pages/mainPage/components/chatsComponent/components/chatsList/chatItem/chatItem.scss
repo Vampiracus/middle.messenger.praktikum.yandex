@@ -42,6 +42,7 @@ $text-color-2: #999;
         flex: 0;
         font-size: 0.6rem;
         color: $text-color-2;
+        white-space: nowrap;
 
         &__to-be-read {
             border-radius: 50%;

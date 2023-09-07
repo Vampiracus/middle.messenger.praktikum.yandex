@@ -1,5 +1,6 @@
 import ArrowButton from '../../../../../../components/arrowButton';
 import Block from '../../../../../../utils/Block';
+import store from '../../../../../../utils/Store';
 import MainPageInput from '../../../mainPageInput';
 import './sendArea.scss';
 import SendOptions from './sendOptions/sendOptions';
@@ -11,7 +12,14 @@ export default class SendArea extends Block<{}> {
         console.log({ message });
         if (message === '') {
             console.log('Валидация не удалась');
-        } else console.log('Успешная валидация');
+            return;
+        }
+        console.log('Успешная валидация');
+
+        if (store.curSocket) {
+            store.curSocket.sendMessage(message);
+            (this.children[1] as MainPageInput).setProps({ value: '' });
+        }
     }
 
     constructor() {

@@ -41,8 +41,12 @@ class ChatsAPI extends BaseAPI {
                     chatId,
                 },
             }))
-            .then(xhr => JSON.parse(xhr.response))
+            .then(xhr => {
+                if (xhr.response !== 'OK') return JSON.parse(xhr.response);
+                return 'OK';
+            })
             .then(res => {
+                if (res === 'OK') return res;
                 if (res.reason !== undefined) return 'Логин не найден';
                 return 'OK';
             });

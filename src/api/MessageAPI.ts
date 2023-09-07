@@ -50,4 +50,8 @@ export default class MessageAPI {
     close() {
         this._ws.close();
     }
+
+    get status() {
+        return this._ws.readyState;
+    }
 }

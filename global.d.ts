@@ -20,6 +20,13 @@ declare global {
         content: string,
     };
 
+    type WSMessage = {
+        content: string,
+        id: number,
+        time: string,
+        user_id: number,
+    }
+
     // Main page
     type Chat = {
         id: number,
