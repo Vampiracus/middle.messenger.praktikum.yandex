@@ -3,6 +3,7 @@ import './chatItem.scss';
 import ToBeReadBubble from './toBeReadBubble';
 import Block from '../../../../../../../utils/Block';
 import store from '../../../../../../../utils/Store';
+import ChatsAPI from '../../../../../../../api/ChatsAPI';
 
 interface IChat {
     chat: Chat,
@@ -18,6 +19,13 @@ export default class ChatItem extends Block<IChat> {
             store.OffSelectedChatChange(removeCls);
         };
         store.addOnSelectedChatChange(removeCls);
+
+        // Закрытие текущего сокета, если есть
+        if (store.curSocket !== null) store.curSocket.close();
+        ChatsAPI.getToken(this.props.chat.id)
+            .then(token => {
+                store.initSocket(this.props.chat, token);
+            });
     }
 
     constructor(chat: Chat) {

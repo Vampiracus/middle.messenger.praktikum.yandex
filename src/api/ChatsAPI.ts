@@ -67,6 +67,11 @@ class ChatsAPI extends BaseAPI {
     delete(chatId: number) {
         return this.http.delete('/', { data: { chatId } });
     }
+
+    getToken(chatId: number): Promise<string> {
+        return this.http.post(`/token/${chatId}`)
+            .then(xhr => JSON.parse(xhr.response).token);
+    }
 }
 
 export default new ChatsAPI();
