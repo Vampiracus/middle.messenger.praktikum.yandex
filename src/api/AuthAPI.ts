@@ -37,7 +37,6 @@ class AuthAPI extends BaseAPI {
                         store.user = res;
                         if (path === '/sign-up' || path === '/') router.go('/messages');
                     } else if (path !== '/sign-up') router.go('/');
-                    console.log('This is the User: ', res);
                 });
         } else {
             store.user = user;

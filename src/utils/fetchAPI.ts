@@ -1,3 +1,5 @@
+import Router from './Router';
+
 export const METHODS = {
     GET: 'GET',
     PUT: 'PUT',
@@ -95,7 +97,10 @@ export default class HTTPTransport {
             } else {
                 xhr.send(JSON.stringify(options.data));
             }
-        });
+        })
+            .catch(() => {
+                Router.go('/500');
+            }) as Promise<XMLHttpRequest>;
     }
 }
 

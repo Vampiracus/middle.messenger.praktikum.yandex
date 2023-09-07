@@ -3,7 +3,7 @@ import MainPageInput from '../../../mainPageInput';
 import Block from '../../../../../../utils/Block';
 import MyA from '../../../../../../components/myA/myA';
 import Router from '../../../../../../utils/Router';
-import CreateChatPopup from './createChatPopup/createChatPopup';
+import CreateChatPopup from './createChatPopup';
 
 const router = Router;
 
