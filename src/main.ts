@@ -6,6 +6,7 @@ import { DataSettingsPage, ProfileMainPage, PasswordSettingPage } from './pages/
 import Router from './utils/Router';
 import AuthAPI from './api/AuthAPI';
 import ChatsAPI from './api/ChatsAPI';
+import store from './utils/Store';
 
 Object.assign(window, { sentForUserInfo: true });
 
@@ -23,6 +24,7 @@ router
     .use(/^.*$/, Error404Page)
     .start();
 
-AuthAPI.putUserInfoIntoApplication();
-
-ChatsAPI.putChatsIntoApplication();
+(AuthAPI.putUserInfoIntoApplication() as Promise<unknown>)
+    .then(() => {
+        if (store.user.id !== -1) ChatsAPI.putChatsIntoApplication();
+    });

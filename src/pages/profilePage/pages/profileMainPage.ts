@@ -4,20 +4,11 @@ import BackToMainComponent from '../components/backToMainComponent';
 import ProfileMain from '../components/profileMain';
 import '../profilePage.scss';
 
-const me: UserInfo = {
-    email: 'pochta@yandex.ru',
-    login: 'ivanivanov',
-    firstName: 'Иван',
-    secondName: 'Иванов',
-    displayName: 'Иван',
-    phone: '+78001234567',
-};
-
 export default class ProfileMainPage extends Block {
     constructor() {
         super({}, 'div', [
             new BackToMainComponent(),
-            new ProfileMain(me),
+            new ProfileMain(),
             new ErrorModal({
                 errorName: 'Ошибка загрузки файла', recomendation: 'Попробуйте другой файл',
             }),

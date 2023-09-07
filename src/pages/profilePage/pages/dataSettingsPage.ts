@@ -3,20 +3,11 @@ import BackToMainComponent from '../components/backToMainComponent';
 import ChangeDataForm from '../components/changeDataForm';
 import '../profilePage.scss';
 
-const me: UserInfo = {
-    email: 'pochta@yandex.ru',
-    login: 'ivanivanov',
-    firstName: 'Иван',
-    secondName: 'Иванов',
-    displayName: 'Иван',
-    phone: '+78001234567',
-};
-
 export default class DataSettingsPage extends Block {
     constructor() {
         super({}, 'div', [
             new BackToMainComponent(),
-            new ChangeDataForm(me),
+            new ChangeDataForm(),
         ]);
         this.addClass('profile-page');
     }

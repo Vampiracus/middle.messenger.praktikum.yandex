@@ -28,9 +28,9 @@ class AuthAPI extends BaseAPI {
             .then(xhr => userAvatarNormalized(JSON.parse(xhr.response)));
     }
 
-    putUserInfoIntoApplication(user: User | null = null) {
+    putUserInfoIntoApplication(user: User | null = null): Promise<unknown> | boolean {
         if (user === null) {
-            this.read()
+            return this.read()
                 .then(res => {
                     const path = window.location.pathname;
                     if (res.id !== undefined) {
@@ -38,9 +38,9 @@ class AuthAPI extends BaseAPI {
                         if (path === '/sign-up' || path === '/') router.go('/messages');
                     } else if (path !== '/sign-up') router.go('/');
                 });
-        } else {
-            store.user = user;
         }
+        store.user = user;
+        return false;
     }
 
     logout() {

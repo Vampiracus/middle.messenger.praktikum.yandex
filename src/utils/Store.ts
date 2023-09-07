@@ -2,7 +2,7 @@ import MessageAPI from '../api/MessageAPI';
 import EventBus from './eventBus';
 
 export const emptyUser = {
-    id: 0,
+    id: -1,
     first_name: '',
     second_name: '',
     display_name: '',
