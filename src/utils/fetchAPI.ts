@@ -17,7 +17,8 @@ type Options = {
 
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
-type HTTPMethod = (path: string, options?: OptionsWithoutMethod) => Promise<XMLHttpRequest>
+type HTTPMethod = (path: string, options?: OptionsWithoutMethod) =>
+    Promise<Record<string, any>>;
 
 export default class HTTPTransport {
     static API_URL = 'https://ya-praktikum.tech/api/v2';
@@ -57,8 +58,8 @@ export default class HTTPTransport {
         url: string,
         options: Options = { method: METHODS.GET },
         timeout = 5000
-    ): Promise<XMLHttpRequest> {
-        return new Promise((resolve, reject) => {
+    ): Promise<Record<string, any>> {
+        return new Promise<XMLHttpRequest>((resolve, reject) => {
             const xhr = new XMLHttpRequest();
 
             if (options.method === METHODS.GET && options.data) {
@@ -98,15 +99,20 @@ export default class HTTPTransport {
                 xhr.send(JSON.stringify(options.data));
             }
         })
-            .catch(() => {
-                Router.go('/500');
-            }) as Promise<XMLHttpRequest>;
+            .then(xhr => {
+                if (xhr.response === 'OK') return { ok: 'OK' };
+                return JSON.parse(xhr.response);
+            }) as Promise<Record<string, any>>;
     }
+}
+
+export function avatarNormalized(avatar: string): string {
+    return `${HTTPTransport.API_URL}/resources${avatar}`;
 }
 
 export function userAvatarNormalized(user: User): User {
     return {
         ...user,
-        avatar: user.avatar ? `${HTTPTransport.API_URL}/resources${user.avatar}` : '/photoCamera.png',
+        avatar: user.avatar ? avatarNormalized(user.avatar) : '/photoCamera.png',
     };
 }

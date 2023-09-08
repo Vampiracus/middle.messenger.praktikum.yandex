@@ -9,3 +9,6 @@
   publish = "build" 
   command = "npm run-script build"
   
+[[redirects]]
+  from = "/old-path"
+  to = "/new-path"

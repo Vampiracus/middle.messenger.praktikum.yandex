@@ -18,6 +18,7 @@ export default class ChatsList extends Block<{ chats: Chat[] }> {
         super({ chats: [] }, 'div');
         this.addClass('chats-list');
         store.addOnChatsChange(this._updateChats.bind(this));
+        this._updateChats();
     }
 
     render() {

@@ -14,7 +14,7 @@ export default class MessageItem extends Block<WSMessage> {
     }
 
     render() {
-        const done = (this.props.user_id !== store.user.id ? '<img src=\'doneAll.png\'>' : '');
+        const done = (this.props.user_id === store.user.id ? '<img src=\'doneAll.png\'>' : '');
 
         return Block.compile(`
         {{text}}

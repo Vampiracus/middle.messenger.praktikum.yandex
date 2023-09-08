@@ -17,13 +17,12 @@ class ChatsAPI extends BaseAPI {
     // Возвращает чаты пользователя
     read(options: Options = {
         title: '', limit: 15, offset: 0,
-    }): Promise<XMLHttpRequest> {
-        return this.http.get(HTTPTransport.queryStringify(options));
+    }): Promise<Chat[]> {
+        return this.http.get(HTTPTransport.queryStringify(options)) as Promise<Chat[]>;
     }
 
     putChatsIntoApplication() {
         this.read()
-            .then(xhr => JSON.parse(xhr.response))
             .then(res => {
                 store.chats = res;
             });
@@ -41,9 +40,9 @@ class ChatsAPI extends BaseAPI {
                     chatId,
                 },
             }))
-            .then(xhr => {
-                if (xhr.response !== 'OK') return JSON.parse(xhr.response);
-                return 'OK';
+            .then(res => {
+                if (res.ok === 'OK') return 'OK';
+                return res;
             })
             .then(res => {
                 if (res === 'OK') return res;
@@ -60,8 +59,8 @@ class ChatsAPI extends BaseAPI {
                     chatId,
                 },
             }))
-            .then(xhr => {
-                if (xhr.response === 'OK') return 'OK';
+            .then(res => {
+                if (res.ok === 'OK') return 'OK';
                 return 'Логин не найден';
             });
     }
@@ -74,7 +73,7 @@ class ChatsAPI extends BaseAPI {
 
     getToken(chatId: number): Promise<string> {
         return this.http.post(`/token/${chatId}`)
-            .then(xhr => JSON.parse(xhr.response).token);
+            .then(res => res.token);
     }
 }
 

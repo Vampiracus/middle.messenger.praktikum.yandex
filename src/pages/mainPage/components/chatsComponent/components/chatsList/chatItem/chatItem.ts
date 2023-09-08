@@ -1,10 +1,11 @@
-import EmptyAvatar from '../../../../../../../components/emptyAvatar';
+import AnAvatar from '../../../../../../../components/emptyAvatar';
 import './chatItem.scss';
 import ToBeReadBubble from './toBeReadBubble';
 import Block from '../../../../../../../utils/Block';
 import store from '../../../../../../../utils/Store';
 import ChatsAPI from '../../../../../../../api/ChatsAPI';
 import { timeToReadable } from '../../../../../../../utils/otherScripts';
+import { avatarNormalized } from '../../../../../../../utils/fetchAPI';
 
 interface IChat {
     chat: Chat,
@@ -58,7 +59,7 @@ export default class ChatItem extends Block<IChat> {
             }
             chat.last_message.content = msg;
         }
-        super({ chat }, 'div', [new EmptyAvatar(), new ToBeReadBubble({ messagesNumber: chat.unread_count })]);
+        super({ chat }, 'div', [new AnAvatar(avatarNormalized(chat.avatar)), new ToBeReadBubble({ messagesNumber: chat.unread_count })]);
         this.addClass('chat-item');
 
         const { events = [] } = this.props;

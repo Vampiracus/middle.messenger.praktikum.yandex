@@ -14,7 +14,6 @@ export default class AddUserModal extends ActionModal {
             store.selectedChat.id
         )
             .then(res => {
-                console.log(res);
                 if (res !== 'OK') (this.children[0] as FormInput).setIncorrect();
                 else this.setProps({ active: false });
             });

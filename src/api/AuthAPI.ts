@@ -25,7 +25,7 @@ class AuthAPI extends BaseAPI {
 
     read(): Promise<User> {
         return this.http.get('/user')
-            .then(xhr => userAvatarNormalized(JSON.parse(xhr.response)));
+            .then(res => userAvatarNormalized(res as User));
     }
 
     putUserInfoIntoApplication(user: User | null = null): Promise<unknown> | boolean {

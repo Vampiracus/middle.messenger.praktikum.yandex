@@ -58,6 +58,6 @@ export function timeToReadable(time: string): string {
     if (timePassed < 24) return `${timePassed} h`;
     timePassed = Math.floor(timePassed / 24);
     const date = new Date(msgTime);
-    if (timePassed < 7) return `${weekDay[date.getDay()]}`;
+    if (timePassed < 7) return `${weekDay[date.getDay()]} ${date.getHours()}:${date.getMinutes()}`;
     return `${date.getDate() < 10 ? '0' : ''}${date.getDate()} ${month[date.getMonth()]}`;
 }

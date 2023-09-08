@@ -4,8 +4,10 @@
     padding: 10px 10px 15px;
     margin: 10px 0;
     max-width: calc(max(40%, 400px));
+    min-width: 40px;
     cursor: default;
     position: relative;
+    align-self: flex-start;
 
     &_iSent {
         align-self: flex-end;

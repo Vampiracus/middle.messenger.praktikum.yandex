@@ -15,11 +15,9 @@ export default class CreateChatPopup extends ActionModal {
         }
 
         ChatsAPI.create({ title: this.children[0].props.inputProps.value })
-            .then(xhr => JSON.parse(xhr.response))
             .then(() => {
                 this.setProps({ active: false });
                 ChatsAPI.read()
-                    .then(xhr => JSON.parse(xhr.response))
                     .then(res => {
                         store.chats = res;
                     });

@@ -8,7 +8,6 @@ export default class DeleteChatModal extends ActionModal {
     private _deleteChat(e: Event) {
         e.preventDefault();
         ChatsAPI.delete(store.selectedChat.id)
-            .then(xhr => JSON.parse(xhr.response))
             .then(res => {
                 if (!res.reason) {
                     this.setProps({ active: false });

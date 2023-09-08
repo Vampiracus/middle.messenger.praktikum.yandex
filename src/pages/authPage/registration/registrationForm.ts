@@ -54,7 +54,6 @@ export default class RegistrationForm extends Block<Props> {
             password,
             phone,
         })
-            .then(res => JSON.parse(res.response))
             .then(res => {
                 if (!res.reason) {
                     router.go('/messages');

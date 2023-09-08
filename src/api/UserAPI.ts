@@ -7,18 +7,16 @@ class UserAPI extends BaseAPI {
     }
 
     changeData(data: Omit<User, 'id' | 'avatar'>): Promise<User> {
-        return this.http.put('/profile', { data })
-            .then(res => JSON.parse(res.response));
+        return this.http.put('/profile', { data }) as Promise<User>;
     }
 
     changePassword(data: { oldPassword: string, newPassword: string }): Promise<string> {
         return this.http.put('/password', { data })
-            .then(res => res.response);
+            .then(res => res.ok);
     }
 
     read(id: string): Promise<User> {
-        return this.http.get(`/${id}`)
-            .then(xhr => JSON.parse(xhr.response));
+        return this.http.get(`/${id}`) as Promise<User>;
     }
 
     changeAvatar(data: FormData): Promise<User> {
@@ -26,12 +24,11 @@ class UserAPI extends BaseAPI {
             isFormData: true,
             data,
         })
-            .then(res => userAvatarNormalized(JSON.parse(res.response)));
+            .then(res => userAvatarNormalized(res as User));
     }
 
     getUserIDByLogin(login: string): Promise<number> {
         return this.http.post('/search', { data: { login } })
-            .then(xhr => JSON.parse(xhr.response))
             .then(res => {
                 if (res.reason !== undefined) return -1;
                 res = res.filter((user: User) => user.login === login);
