@@ -18,18 +18,21 @@ class ChatsAPI extends BaseAPI {
     read(options: Options = {
         title: '', limit: 15, offset: 0,
     }): Promise<Chat[]> {
-        return this.http.get(HTTPTransport.queryStringify(options)) as Promise<Chat[]>;
+        return this.http.get(HTTPTransport.queryStringify(options))
+            .catch(err => { console.log(err); }) as Promise<Chat[]>;
     }
 
     putChatsIntoApplication() {
         this.read()
             .then(res => {
                 store.chats = res;
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     create(data: { title: string }) {
-        return this.http.post('/', { data });
+        return this.http.post('/', { data })
+            .catch(err => { console.log(err); });
     }
 
     addUser(login: string, chatId: number): Promise<string> {
@@ -48,7 +51,8 @@ class ChatsAPI extends BaseAPI {
                 if (res === 'OK') return res;
                 if (res.reason !== undefined) return 'Логин не найден';
                 return 'OK';
-            });
+            })
+            .catch(err => { console.log(err); }) as Promise<string>;
     }
 
     deleteUser(login: string, chatId: number): Promise<string> {
@@ -62,18 +66,21 @@ class ChatsAPI extends BaseAPI {
             .then(res => {
                 if (res.ok === 'OK') return 'OK';
                 return 'Логин не найден';
-            });
+            })
+            .catch(err => { console.log(err); }) as Promise<string>;
     }
 
     update = undefined;
 
-    delete(chatId: number) {
-        return this.http.delete('/', { data: { chatId } });
+    delete(chatId: number): Promise<Record<string, any>> {
+        return this.http.delete('/', { data: { chatId } })
+            .catch(err => { console.log(err); }) as Promise<Record<string, any>>;
     }
 
     getToken(chatId: number): Promise<string> {
         return this.http.post(`/token/${chatId}`)
-            .then(res => res.token);
+            .then(res => res.token)
+            .catch(err => { console.log(err); });
     }
 }
 

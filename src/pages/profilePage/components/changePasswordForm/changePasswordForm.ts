@@ -52,7 +52,8 @@ export default class ChangePasswordForm extends ProfileFormWrapper<Props> {
                 if (res === 'OK') {
                     router.go('/messages');
                 }
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     componentDidUpdate(): boolean {

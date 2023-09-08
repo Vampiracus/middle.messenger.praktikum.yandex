@@ -5,7 +5,6 @@ import Block from '../../../utils/Block';
 import { validateLogin, validatePassword } from '../../../utils/validation';
 import Router from '../../../utils/Router';
 import AuthAPI from '../../../api/AuthAPI';
-import ChatsAPI from '../../../api/ChatsAPI';
 
 const router = Router;
 
@@ -38,17 +37,16 @@ function enter(this: AuthorizationForm, e: Event) {
             login: this.props.login,
             password: this.props.password,
         })
-            .then(xhr => xhr.response)
             .then(res => {
-                if (res === 'OK') {
+                if (res.ok === 'OK') {
                     router.go('/messages');
                 } else {
                     (this.children[1] as FormInput).setIncorrect();
                     (this.children[2] as FormInput).setIncorrect();
                 }
                 AuthAPI.putUserInfoIntoApplication();
-                ChatsAPI.putChatsIntoApplication();
-            });
+            })
+            .catch(err => { console.log(err); });
     });
 }
 

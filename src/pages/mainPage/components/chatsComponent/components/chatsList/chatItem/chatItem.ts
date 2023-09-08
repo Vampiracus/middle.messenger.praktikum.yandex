@@ -48,7 +48,8 @@ export default class ChatItem extends Block<IChat> {
         ChatsAPI.getToken(this.props.chat.id)
             .then(token => {
                 store.initSocket(this.props.chat, token);
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     constructor(chat: Chat) {

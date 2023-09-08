@@ -20,8 +20,10 @@ export default class CreateChatPopup extends ActionModal {
                 ChatsAPI.read()
                     .then(res => {
                         store.chats = res;
-                    });
-            });
+                    })
+                    .catch(err => { console.log(err); });
+            })
+            .catch(err => { console.log(err); });
     }
 
     constructor() {

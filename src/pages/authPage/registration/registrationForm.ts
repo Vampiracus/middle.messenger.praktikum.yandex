@@ -61,7 +61,8 @@ export default class RegistrationForm extends Block<Props> {
                 } else if (res.reason === 'Login already exists') {
                     (this.children[2] as FormInput).setIncorrect();
                 }
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     componentDidUpdate(): boolean {

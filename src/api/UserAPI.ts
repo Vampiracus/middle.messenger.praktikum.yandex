@@ -24,7 +24,8 @@ class UserAPI extends BaseAPI {
             isFormData: true,
             data,
         })
-            .then(res => userAvatarNormalized(res as User));
+            .then(res => userAvatarNormalized(res as User))
+            .catch(err => { console.log(err); }) as Promise<User>;
     }
 
     getUserIDByLogin(login: string): Promise<number> {
@@ -34,7 +35,8 @@ class UserAPI extends BaseAPI {
                 res = res.filter((user: User) => user.login === login);
                 if (res.length === 0) return -1;
                 return res[0].id;
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     create = undefined;

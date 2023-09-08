@@ -1,5 +1,3 @@
-import Router from '../utils/Router';
-
 export default class MessageAPI {
     private _ws: WebSocket;
 
@@ -15,7 +13,7 @@ export default class MessageAPI {
         this._user = user;
         this._ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${this._user.id}/${this._chat.id}/${this._token}`);
         this._ws.addEventListener('open', this._ping.bind(this));
-        this._ws.onerror = () => { Router.go('/500'); };
+        this._ws.onerror = e => { console.log(e); };
     }
 
     private _ping() {

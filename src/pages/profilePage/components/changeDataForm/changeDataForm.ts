@@ -60,7 +60,8 @@ export default class ChangeDataForm extends ProfileFormWrapper<UserWithoutIdAndA
                     AuthAPI.putUserInfoIntoApplication(res);
                     router.go('/messages');
                 }
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     constructor() {

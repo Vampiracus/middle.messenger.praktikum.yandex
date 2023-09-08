@@ -14,7 +14,8 @@ export default class DeleteChatModal extends ActionModal {
                     ChatsAPI.putChatsIntoApplication();
                     store.selectedChat = emptyChat;
                 }
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     constructor() {

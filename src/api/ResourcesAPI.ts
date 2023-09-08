@@ -6,7 +6,8 @@ class UserAPI extends BaseAPI {
     }
 
     read(path: string) {
-        return this.http.get(path);
+        return this.http.get(path)
+            .catch(err => { console.log(err); });
     }
 
     create = undefined;

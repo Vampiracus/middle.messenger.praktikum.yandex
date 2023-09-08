@@ -5,8 +5,6 @@ import MainPage from './pages/mainPage';
 import { DataSettingsPage, ProfileMainPage, PasswordSettingPage } from './pages/profilePage';
 import Router from './utils/Router';
 import AuthAPI from './api/AuthAPI';
-import ChatsAPI from './api/ChatsAPI';
-import store from './utils/Store';
 
 Object.assign(window, { sentForUserInfo: true });
 
@@ -25,6 +23,4 @@ router
     .start();
 
 (AuthAPI.putUserInfoIntoApplication() as Promise<unknown>)
-    .then(() => {
-        if (store.user.id !== -1) ChatsAPI.putChatsIntoApplication();
-    });
+    .catch(err => { console.log(err); });

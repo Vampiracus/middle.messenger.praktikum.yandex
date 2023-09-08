@@ -16,7 +16,8 @@ export default class DeleteUserModal extends ActionModal {
             .then(res => {
                 if (res !== 'OK') (this.children[0] as FormInput).setIncorrect();
                 else this.setProps({ active: false });
-            });
+            })
+            .catch(err => { console.log(err); });
     }
 
     constructor() {

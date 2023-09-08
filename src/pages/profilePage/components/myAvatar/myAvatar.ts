@@ -9,7 +9,8 @@ function changeAvatar(e: Event) {
     UserAPI.changeAvatar(new FormData(curForm))
         .then(res => {
             AuthAPI.putUserInfoIntoApplication(res);
-        });
+        })
+        .catch(err => { console.log(err); });
 }
 
 export default class MyAvatar extends Block<{ imgSrc: string, events: [string, EventListener][] }> {
