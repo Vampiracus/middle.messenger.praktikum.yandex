@@ -1,8 +1,26 @@
+$text-color-2: #999;
+
 .profile-main {
     display: flex;
     width: 100%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    max-height: calc(max(50%, 400px));
+    max-height: calc(max(70%, 600px));
+
+    &__info{
+        display: flex;
+        flex-direction: column;
+        min-width: calc(min(250px, 100%));
+
+        & > p {
+            display: flex;
+            margin: 5px 0;
+            justify-content: space-between;
+
+            & > span {
+                color: $text-color-2;
+            }
+        }
+    }
 }

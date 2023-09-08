@@ -49,7 +49,6 @@ export default class ProfileMainContent extends Block<{ firstName: string, secon
 
     render() {
         return Block.compile(`
-        <span>{{name}}</span>
         <br/>
         <br/>
         <br/>
@@ -58,7 +57,6 @@ export default class ProfileMainContent extends Block<{ firstName: string, secon
         {{{AToPassword}}}
         {{{AToEntr}}}
         `, {
-            name: `${this.props.firstName} ${this.props.secondName}`,
             AToData: this.children[0],
             AToPassword: this.children[1],
             AToEntr: this.children[2],
