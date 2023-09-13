@@ -38,27 +38,28 @@ export default class HTTPTransport {
         return res;
     }
 
-    get: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
+    get: HTTPMethod = (path, options = {}) => this.request(path, {
         ...options, method: 'GET',
     }, options.timeout);
 
-    put: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
+    put: HTTPMethod = (path, options = {}) => this.request(path, {
         ...options, method: 'PUT',
     }, options.timeout);
 
-    post: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
+    post: HTTPMethod = (path, options = {}) => this.request(path, {
         ...options, method: 'POST',
     }, options.timeout);
 
-    delete: HTTPMethod = (path, options = {}) => HTTPTransport.request(this.endpoint + path, {
+    delete: HTTPMethod = (path, options = {}) => this.request(path, {
         ...options, method: 'DELETE',
     }, options.timeout);
 
-    static request(
-        url: string,
+    request(
+        path: string,
         options: Options = { method: METHODS.GET },
         timeout = 5000
     ): Promise<Record<string, any>> {
+        const url = this.endpoint + path;
         return new Promise<XMLHttpRequest>((resolve, reject) => {
             const xhr = new XMLHttpRequest();
 
