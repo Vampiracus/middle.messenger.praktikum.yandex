@@ -1,26 +1,20 @@
 import './message.scss';
 import Block from '../../../../../../../utils/Block';
+import store from '../../../../../../../utils/Store';
+import { timeToReadable } from '../../../../../../../utils/otherScripts';
 
-export const MessageSentStatus: {
-    SENT_TO_ME: number,
-    SENT: number,
-    RECEIVED: number,
-} = {
-    SENT_TO_ME: 1, SENT: 2, RECEIVED: 3,
-};
-
-export default class MessageItem extends Block<Message> {
-    constructor(props: Message) {
+export default class MessageItem extends Block<WSMessage> {
+    constructor(props: WSMessage) {
+        props.time = timeToReadable(props.time);
         super(props, 'div');
         this.addClass('message');
-        if (props.sentStatus !== MessageSentStatus.SENT_TO_ME) {
+        if (props.user_id === store.user.id) {
             this.addClass('message_iSent');
         }
     }
 
     render() {
-        const done = (this.props.sentStatus === MessageSentStatus.RECEIVED ? '<img src=\'doneAll.png\'>' : '');
-        const image = this.props.imgLink !== undefined ? '<img src=\'camera.png\' alt=\'Изображение\'>' : '';
+        const done = (this.props.user_id === store.user.id ? '<img src=\'doneAll.png\'>' : '');
 
         return Block.compile(`
         {{text}}
@@ -28,8 +22,7 @@ export default class MessageItem extends Block<Message> {
         <div class='message__time'>{{{done}}}{{time}}</div>
         `, {
             done,
-            image,
-            text: this.props.text,
+            text: this.props.content,
             time: this.props.time,
         });
     }

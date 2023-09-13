@@ -1,8 +1,8 @@
 # Учебный проект: мессенджер
 
-Пул-реквест 2 спринт: [ссылка](https://github.com/Vampiracus/middle.messenger.praktikum.yandex/pull/4)
+Пул-реквест 3 спринт: [ссылка](https://github.com/Vampiracus/middle.messenger.praktikum.yandex/pull/5)
 
-На данном этапе сверстаны страницы будущего веб-приложения, реализован компонентный подход, реализован класс HTTPTransport для HTTP-запросов, настроена валидация форм и вывод объектов в консоль при отправке формы.
+На данном этапе в приложении полностью реализована основная функциональность: регистрация, авторизация, создание чатов, отправка сообщений в real-time, изменение данных пользователя. В третьем спринте добавился роутинг в приложении, реализованы API авторизации, чатов, профиля, использованы `WebSocket` для отправки сообщений в real-time
 
 Прототип приложения выполнен в [Figma](https://www.figma.com/file/7UINrrRL12ICT0lXqvFVbi/Messenger-Proto?type=design&node-id=0%3A1&mode=design&t=GvKlX8atBnVE22LR-1 "кликните, чтобы перейти по ссылке")
 
@@ -12,7 +12,9 @@
 
 Сборка настроена при помощи `Vite`
 
-Настроен автодеплой на Netlify, проект можно найти по [ссылке](https://cosmic-piroshki-2466bd.netlify.app/ "кликните, чтобы перейти по ссылке"). На Netlify выложена не раздача статики, как в локале с помощью express; а само приложение. Там можно увидеть лишь одну из сверстанных страниц.
+Настроен автодеплой на Netlify, проект можно найти по [ссылке](https://cosmic-piroshki-2466bd.netlify.app/ "кликните, чтобы перейти по ссылке").
+
+Настроена `Content-security-policy`
 
 Рекомендуется использование браузера Google Chome версии хотя бы `115.0.5790.110`
 
@@ -21,7 +23,6 @@
 ```
 $ git clone https://github.com/Vampiracus/middle.messenger.praktikum.yandex.git
 $ npm i
-$ cd vite
 $ npm run start
 ```
 Произойдет сборка проекта в папку `build` и запустится скрипт server.js, он будет раздавать статику по адресу http://localhost:3000/. 
@@ -69,18 +70,18 @@ npm run typeslint
 
 Ниже приведены относительные пути к самим страницам, а также адреса, по которым локальный сервер раздает их (с помощью express)
 
-- Страница входа: `static/authorization/index.html`, http://localhost:3000/authorization
+- Страница входа: http://localhost:3000/
 
-- Страница регистрации: `static/registration/index.html`, http://localhost:3000/registration
+- Страница регистрации: http://localhost:3000/sign-up
 
-- Ошибка 404: `static/404/index.html`, http://localhost:3000/404
+- Ошибка 404: http://localhost:3000/anyothertexthere
 
-- Ошибка 500: `static/500/index.html`, http://localhost:3000/500
+- Ошибка 500: http://localhost:3000/500
 
-- Страница с чатами `static/chats/index.html`, http://localhost:3000/chats
+- Страница с чатами http://localhost:3000/messages
 
-- Профиль `static/profile/index.html`, http://localhost:3000/profile
+- Профиль http://localhost:3000/settings
 
-- Профиль (изменение данных пользователя) `static/profiledata/index.html`, http://localhost:3000/profiledata
+- Профиль (изменение данных пользователя) http://localhost:3000/settings/data
 
-- Профиль (изменение пароля пользователя) `static/profilepassword/index.html`, http://localhost:3000/profilepassword
+- Профиль (изменение пароля пользователя) http://localhost:3000/settings/password

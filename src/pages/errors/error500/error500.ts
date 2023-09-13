@@ -11,7 +11,7 @@ export default class Error500Page extends Block<{}> {
         return Block.compile(`
         <h1>Ошибка 500</h1>
         <p>Похоже, сервер лежит</p>
-        <a href='./authorization'>На главную</a>
+        <a href='./'>На главную</a>
         `, {});
     }
 }

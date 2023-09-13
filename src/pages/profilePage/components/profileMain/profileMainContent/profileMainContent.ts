@@ -1,39 +1,54 @@
+import AuthAPI from '../../../../../api/AuthAPI';
 import MyA from '../../../../../components/myA/myA';
 import Block from '../../../../../utils/Block';
+import Router from '../../../../../utils/Router';
+import store from '../../../../../utils/Store';
 import './profileMainContent.scss';
 
-export default class ProfileMainContent extends Block<UserInfo> {
-    constructor(me: UserInfo) {
-        super(me, 'div', [
+const router = Router;
+
+function leave() {
+    AuthAPI.logout();
+    router.go('/');
+}
+
+export default class ProfileMainContent extends Block<{ firstName: string, secondName: string }> {
+    constructor() {
+        super({
+            firstName: store.user.first_name,
+            secondName: store.user.second_name,
+        }, 'div', [
             new MyA({
                 text: 'Изменить данные',
                 events: [
-                    ['click', () => { (globalThis as any).toChangeData(); }],
+                    ['click', () => { router.go('/settings/data'); }],
                 ],
             }),
             new MyA({
                 text: 'Изменить пароль',
                 events: [
-                    ['click', () => { (globalThis as any).toChangePassword(); }],
+                    ['click', () => { router.go('/settings/password'); }],
                 ],
             }),
             new MyA({
                 text: 'Выйти из аккаунта',
                 classes: ['red'],
                 events: [
-                    ['click', () => {
-                        (globalThis as any).toAuth();
-                        (globalThis as any).toEntr();
-                    }],
+                    ['click', leave],
                 ],
             }),
         ]);
         this.addClass('profile-main-content');
+        store.addOnUserChange(user => {
+            this.setProps({
+                firstName: user.first_name,
+                secondName: user.second_name,
+            });
+        });
     }
 
     render() {
         return Block.compile(`
-        <span>{{name}}</span>
         <br/>
         <br/>
         <br/>
@@ -42,7 +57,6 @@ export default class ProfileMainContent extends Block<UserInfo> {
         {{{AToPassword}}}
         {{{AToEntr}}}
         `, {
-            name: `${this.props.firstName} ${this.props.secondName}`,
             AToData: this.children[0],
             AToPassword: this.children[1],
             AToEntr: this.children[2],

@@ -1,30 +1,26 @@
 import './style.scss';
-import AuthPage from './pages/authPage';
-import { Error404Page /* Error500Page */ } from './pages/errors';
+import { AutPage, RegPage } from './pages/authPage';
+import { Error404Page, Error500Page } from './pages/errors';
 import MainPage from './pages/mainPage';
-import ProfilePage from './pages/profilePage';
+import { DataSettingsPage, ProfileMainPage, PasswordSettingPage } from './pages/profilePage';
+import Router from './utils/Router';
+import AuthAPI from './api/AuthAPI';
 
-const app: Element | null = document.querySelector('#app');
-const auth = new AuthPage();
-const err404 = new Error404Page();
-const main = new MainPage();
-const profile = new ProfilePage();
+Object.assign(window, { sentForUserInfo: true });
 
-Object.assign(globalThis, {
-    toAuth: () => {
-        app!.innerHTML = '';
-        app!.appendChild(auth.element);
-    },
-    toMain: () => {
-        app!.innerHTML = '';
-        app!.appendChild(main.element);
-    },
-    toProf: () => {
-        app!.innerHTML = '';
-        app!.appendChild(profile.element);
-    },
-});
+const router = Router;
 
-if (app) {
-    app.appendChild(err404.element);
-}
+const applicationName = 'MyChat';
+router
+    .use(/^\/$/, AutPage, `${applicationName}: Вход`)
+    .use(/^\/sign-up$/, RegPage, `${applicationName}: Регистрация`)
+    .use(/^\/messages$/, MainPage, `${applicationName}: Чаты`)
+    .use(/^\/settings$/, ProfileMainPage, `${applicationName}: Профиль`)
+    .use(/^\/settings\/data$/, DataSettingsPage, `${applicationName}: Данные профиля`)
+    .use(/^\/settings\/password$/, PasswordSettingPage, `${applicationName}: Пароль`)
+    .use(/^\/500$/, Error500Page)
+    .use(/^.*$/, Error404Page)
+    .start();
+
+(AuthAPI.putUserInfoIntoApplication() as Promise<unknown>)
+    .catch(err => { console.log(err); });

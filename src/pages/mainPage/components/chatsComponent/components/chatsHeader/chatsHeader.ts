@@ -2,6 +2,10 @@ import './chatsHeader.scss';
 import MainPageInput from '../../../mainPageInput';
 import Block from '../../../../../../utils/Block';
 import MyA from '../../../../../../components/myA/myA';
+import Router from '../../../../../../utils/Router';
+import CreateChatPopup from './createChatPopup';
+
+const router = Router;
 
 export default class ChatsHeader extends Block<{}> {
     constructor() {
@@ -11,14 +15,19 @@ export default class ChatsHeader extends Block<{}> {
             }),
             new MyA({
                 text: 'Профиль <strong>></strong>',
-                classes: ['chats-header__profileLink'],
+                classes: ['chats-header_link'],
                 events: [
-                    ['click', () => {
-                        (globalThis as any).toProf();
-                        (globalThis as any).toProfMain();
-                    }],
+                    ['click', () => { router.go('/settings'); }],
                 ],
             }),
+            new MyA({
+                text: 'Создать чат',
+                classes: ['chats-header_link'],
+                events: [
+                    ['click', () => { this.children[3].setProps({ active: true }); }],
+                ],
+            }),
+            new CreateChatPopup(),
         ]);
         this.addClass('chats-header');
     }
@@ -29,13 +38,17 @@ export default class ChatsHeader extends Block<{}> {
 
     render() {
         return Block.compile(`
+        {{{createChatPopup}}}
         {{{AToProf}}}
         <form class='chats-header__searchForm'>
             {{{mainPageInput}}}
+            {{{createChatA}}}
         </form>
         `, {
             AToProf: this.children[1],
             mainPageInput: this.children[0],
+            createChatA: this.children[2],
+            createChatPopup: this.children[3],
         });
     }
 }

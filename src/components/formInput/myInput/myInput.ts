@@ -40,6 +40,7 @@ export default class MyInput extends Block<IInput> {
     }
 
     componentDidUpdate(): boolean {
+        (this.element as HTMLInputElement).value = this.props.value;
         return false;
     }
 }

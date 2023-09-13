@@ -1,0 +1,55 @@
+$text-color-2: #999;
+
+.drop-out-menu {
+    display: flex;
+    cursor: default;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    bottom: -130px;
+    right: 0;
+    box-shadow: 0 0 7px inset #333;
+    padding: 10px;
+    border-radius: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    min-width: 16em;
+    background-color: rgba(64 64 64 / 100%);
+
+    &__hidden {
+        display: none;
+    }
+
+    & > div {
+        margin: 5px;
+        display: flex;
+        
+        & > a:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__option-picture {
+        margin-right: 11px;
+        padding: 1px 0 0 2px;
+        box-sizing: border-box;
+        width: 1.5em;
+        height: 1.5em;
+        text-align: center;
+        border: 2px solid $text_color_2;
+        border-radius: 50%;
+        color: $text_color_2;
+
+        &_large {
+            font-size: 1.2em;
+            width: 1.5rem;
+            height: 1.5rem;
+            padding-top: 0;
+        }
+
+        &_red {
+            border-color: #F33333;
+            color: #F33333;
+        }
+    }
+ }

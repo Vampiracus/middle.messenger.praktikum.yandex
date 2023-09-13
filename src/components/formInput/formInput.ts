@@ -58,6 +58,7 @@ export default class FormInput extends Block<Props> {
     }
 
     componentDidUpdate(): boolean {
+        this.children[0].setProps({ value: this.props.inputProps.value });
         return false;
     }
 

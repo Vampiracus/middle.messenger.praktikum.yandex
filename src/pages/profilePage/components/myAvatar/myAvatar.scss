@@ -11,13 +11,17 @@ $text-color-2: #999;
     cursor: pointer;
     position: relative;
     z-index: 1;
+    overflow: hidden;
 
     & > input[type='file'] {
         display: none;
     }
 
     & > img {
-        width: 50%;
+        background-size: cover;
+        height: 100%;
+        max-width: 200%;
+        max-height: 200%;
     }
 
     &__change {

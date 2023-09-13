@@ -2,26 +2,26 @@ import './chatHead.scss';
 import EmptyAvatar from '../../../../../../components/emptyAvatar';
 import Block from '../../../../../../utils/Block';
 import ChatOptions from './chatOptions';
+import store from '../../../../../../utils/Store';
 
-interface IChatName {
-    name: string,
-}
-
-export default class ChatHead extends Block<IChatName> {
-    constructor(props: IChatName) {
-        super(props, 'div', [new EmptyAvatar(), new ChatOptions()]);
+export default class ChatHead extends Block<{ title: string }> {
+    constructor() {
+        super({ title: '' }, 'div', [new EmptyAvatar(), new ChatOptions()]);
         this.addClass('chat-head');
+        store.addOnSelectedChatChange(() => {
+            this.setProps({ title: store.selectedChat.title });
+        });
     }
 
     render() {
         return Block.compile(`
         <div class='chat-head__name'>
             {{{avatar}}}
-            {{{name}}}
+            {{name}}
         </div>
         {{{chatOptions}}}
         `, {
-            name: this.props.name,
+            name: this.props.title,
             avatar: this.children[0],
             chatOptions: this.children[1],
         });

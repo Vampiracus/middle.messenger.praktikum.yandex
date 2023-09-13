@@ -1,8 +1,9 @@
 import ArrowButton from '../../../../../../components/arrowButton';
 import Block from '../../../../../../utils/Block';
+import store from '../../../../../../utils/Store';
 import MainPageInput from '../../../mainPageInput';
-import DropOutMenuSend from './dropOutMenuSend';
 import './sendArea.scss';
+import SendOptions from './sendOptions/sendOptions';
 
 export default class SendArea extends Block<{}> {
     private _send(e: Event) {
@@ -11,7 +12,14 @@ export default class SendArea extends Block<{}> {
         console.log({ message });
         if (message === '') {
             console.log('Валидация не удалась');
-        } else console.log('Успешная валидация');
+            return;
+        }
+        console.log('Успешная валидация');
+
+        if (store.curSocket) {
+            store.curSocket.sendMessage(message);
+            (this.children[1] as MainPageInput).setProps({ value: '' });
+        }
     }
 
     constructor() {
@@ -27,7 +35,7 @@ export default class SendArea extends Block<{}> {
         });
 
         super({}, 'div', [
-            new DropOutMenuSend(),
+            new SendOptions(),
             inpt,
             new ArrowButton({ id: 'sendMessageButton' }),
         ]);
@@ -40,15 +48,13 @@ export default class SendArea extends Block<{}> {
 
     render() {
         return Block.compile(`
-        {{{dropOutMenu}}}
-        <img src='{{imgSrc}}' alt="attach"/>
+        {{{sendOptions}}}
         <form class='send-area__form'>
             {{{myMessageInput}}}
             {{{sendButton}}}
         </form>
         `, {
-            dropOutMenu: this.children[0],
-            imgSrc: '/attach.png',
+            sendOptions: this.children[0],
             myMessageInput: this.children[1],
             sendButton: this.children[2],
         });
