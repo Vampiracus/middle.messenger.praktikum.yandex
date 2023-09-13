@@ -15,24 +15,34 @@
     "lint:quiet": "npx eslint --ext .ts src/ --quiet"
   },
   "devDependencies": {
+    "@types/mocha": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^6.3.0",
     "@typescript-eslint/parser": "^6.3.0",
     "eslint": "^8.47.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-typescript-enum": "^2.1.0",
+    "mocha": "^10.2.0",
     "postcss-sass": "^0.5.0",
     "stylelint": "^15.10.2",
     "stylelint-config-standard-scss": "^10.0.0",
+    "ts-mocha": "^10.0.0",
     "typescript": "^5.1.6",
     "vite": "^4.4.9"
   },
   "dependencies": {
+    "@types/chai": "^4.3.6",
+    "@types/sinon": "^10.0.16",
+    "@types/sinon-chai": "^3.2.9",
     "@types/uuid": "^9.0.2",
+    "chai": "^4.3.8",
     "express": "^4.18.2",
     "express-history-api-fallback": "^2.2.1",
     "handlebars": "^4.7.7",
+    "jsdom": "^22.1.0",
     "sass": "^1.65.1",
+    "sinon": "^16.0.0",
+    "sinon-chai": "^3.7.0",
     "uuid": "^9.0.0"
   },
   "engines": {
