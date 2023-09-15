@@ -40,22 +40,4 @@ export default class ActionModal extends PopupContent {
             ],
         });
     }
-
-    // render() {
-    //     const [childrenPlug, childrenObj] = forHandlebars(this.children);
-    //     return Block.compile(`
-    //     <div class='popup-content__content'>
-    //         <form class='action-modal {{formClass}}'>
-    //             <h3> {{name}} </h3>
-    //             {{{HTMLcontent}}}
-    //             ${childrenPlug}
-    //         </form>
-    //     </div>
-    //     `, {
-    //         name: this.name,
-    //         formClass: this.formClass,
-    //         HTMLcontent: this.HTMLcontent,
-    //         ...childrenObj,
-    //     });
-    // }
 }

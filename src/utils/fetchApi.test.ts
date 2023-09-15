@@ -79,6 +79,7 @@ describe('HTTPTransport tests', () => {
             http = new HTTPTransport('');
             request = sandbox.stub(http, 'request' as keyof HTTPTransport).callsFake(() => Promise.resolve({}));
         });
+
         it('should call request on get-method', () => {
             const obj = { data: { a: '1' } };
 

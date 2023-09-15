@@ -52,7 +52,7 @@ export default abstract class Block<P extends
         this.props = this._makePropsProxy(props);
         this._id = makeUUID();
         if (children) {
-            this.children = children;
+            this.children = [...children];
         }
 
         this.eventBus = () => eventBus;
@@ -60,9 +60,6 @@ export default abstract class Block<P extends
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    /**
-     * Создать прокси для поданного объекта
-     */
     // eslint-disable-next-line class-methods-use-this
     private _makePropsProxy(props: P) {
         return new Proxy(props, {
@@ -72,25 +69,25 @@ export default abstract class Block<P extends
         });
     }
 
-    _registerEvents() {
-        this.eventBus().on(Block.EVENTS.INIT, this.init.bind(this));
+    private _registerEvents() {
+        this.eventBus().on(Block.EVENTS.INIT, this._init.bind(this));
         this.eventBus().on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         this.eventBus().on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
         this.eventBus().on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     }
 
-    init() {
+    private _init() {
         this._createResources();
         this._addEvents();
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    _createResources() {
+    private _createResources() {
         const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
     }
 
-    _componentDidMount() {
+    private _componentDidMount() {
         this.componentDidMount();
     }
 
@@ -149,7 +146,7 @@ export default abstract class Block<P extends
         this.dispatchComponentDidMount();
     }
 
-    static compile(
+    protected static compile(
         template: string,
         props: Record<string, Block | string | undefined>
     ): DocumentFragment {
