@@ -45,6 +45,7 @@ export default class ChatItem extends Block<IChat> {
 
         // Закрытие текущего сокета, если есть
         if (store.curSocket !== null) store.curSocket.close();
+
         ChatsAPI.getToken(this.props.chat.id)
             .then(token => {
                 store.initSocket(this.props.chat, token);

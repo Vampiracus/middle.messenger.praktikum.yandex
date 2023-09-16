@@ -1,7 +1,7 @@
 import MessageAPI from '../api/MessageAPI';
 import EventBus from './eventBus';
 
-export const emptyUser = {
+export const emptyUser: Readonly<User> = {
     id: -1,
     first_name: '',
     second_name: '',
@@ -12,7 +12,7 @@ export const emptyUser = {
     login: '',
 };
 
-export const emptyChat = {
+export const emptyChat: Readonly<Chat> = {
     id: -1,
     title: '',
     avatar: '',
@@ -91,7 +91,7 @@ class Store {
     }
 
     set selectedChat(chat: Chat) {
-        this._store.selectedChat = chat;
+        this._store.selectedChat = { ...chat };
         this._eventBus.emit(Store.EVENTS.SELECTED_CHAT_CHANGED, chat);
     }
 
@@ -109,6 +109,7 @@ class Store {
 
     initSocket(chat: Chat, token: string) {
         if (this._store.curSocket !== null) throw new Error('There may only be one socket');
+
         this._store.curSocket = new MessageAPI(chat, token, this.user);
         this._store.curSocket.addOnClose(() => {
             this._store.curSocket = null;
@@ -127,10 +128,12 @@ class Store {
         this._eventBus.on(Store.EVENTS.SOCKET_CLOSED, callback);
     }
 
+    // User must unsubscribe on their own
     offSocketInit(callback: () => void) {
         this._eventBus.off(Store.EVENTS.SOCKET_INIT, callback);
     }
 
+    // User must unsubscribe on their own
     offSocketClosed(callback: () => void) {
         this._eventBus.off(Store.EVENTS.SOCKET_CLOSED, callback);
     }
@@ -139,3 +142,5 @@ class Store {
 const store = new Store();
 
 export default store;
+
+export { Store as StoreClass };
