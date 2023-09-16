@@ -18,7 +18,6 @@ describe('validation tests', () => {
             expect(typeof validation.validateEmail('1@1.9')).to.eq('boolean');
             expect(typeof validation.validateEmail('-@-.-')).to.eq('boolean');
             expect(typeof validation.validateEmail('_@_._')).to.eq('boolean');
-            expect(1).to.eq(0);
         });
     });
 
