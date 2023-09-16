@@ -54,10 +54,5 @@
   "engines": {
     "node": "18.15.0",
     "npm": "9.5.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run test && npm rum lint:all"
-    }
   }
 }
