@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as validation from './validation';
+import * as validation from './validation'
 
 describe('validation tests', () => {
     describe('email', () => {
