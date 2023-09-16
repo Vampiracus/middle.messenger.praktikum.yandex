@@ -1,5 +1,5 @@
 {
     "extension": ["ts"],
-    "spec": "src/**/*validation.test.ts",
+    "spec": "src/**/*.test.ts",
     "require": ["./mochaSetup.js"]
 }

@@ -45,7 +45,7 @@
             "ImportDeclaration": { "multiline": true },
             "ExportDeclaration": { "multiline": true }
         }],
-        // "no-console": "off",
+        "no-console": "off",
         "import/no-unresolved": "off",
         "no-use-before-define": ["error", {
             "functions": false,

@@ -12,7 +12,9 @@
     "typeslint": "tsc --noEmit",
     "lint": "npx eslint --ext .ts src/",
     "lint:fix": "npx eslint --ext .ts src/ --fix",
-    "lint:quiet": "npx eslint --ext .ts src/ --quiet"
+    "lint:quiet": "npx eslint --ext .ts src/ --quiet",
+    "lint:all": "npm run lint && npm run typeslint && npm run stylelint",
+    "test": "ts-mocha"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
@@ -22,6 +24,7 @@
     "eslint-config-airbnb": "^19.0.4",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-typescript-enum": "^2.1.0",
+    "husky": "^8.0.3",
     "mocha": "^10.2.0",
     "postcss-sass": "^0.5.0",
     "stylelint": "^15.10.2",
@@ -50,5 +53,10 @@
   "engines": {
     "node": "18.15.0",
     "npm": "9.5.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test && npm rum lint:all"
+    }
   }
 }
