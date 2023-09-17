@@ -200,4 +200,23 @@ describe('Store tests', () => {
             expect(() => { store.offSocketClosed(() => {}); }).to.not.throw();
         });
     });
+
+    describe('notification tests', () => {
+        it('should let get notification', () => {
+            expect(() => store.user).to.not.throw();
+        });
+
+        it('should change notification when a new value is set', () => {
+            store.notification = '123';
+
+            expect(store.notification).to.eq('123');
+        });
+
+        it('should call callback when new value is set', () => {
+            store.addOnNotificationChanged(callback);
+            store.notification = '123';
+
+            expect(callbackCount).to.eq(1);
+        });
+    });
 });
