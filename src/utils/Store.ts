@@ -30,6 +30,7 @@ type StoreType = {
     chats: Chat[],
     selectedChat: Chat,
     curSocket: MessageAPI | null,
+    notification: string,
 }
 
 class Store {
@@ -48,6 +49,8 @@ class Store {
         SOCKET_INIT: 'socket:init',
         // Cокет закрылся
         SOCKET_CLOSED: 'socket:closed',
+        // Изменился текст уведомления
+        NOTIFICATION_CHANGED: 'notification:changed',
     };
 
     constructor() {
@@ -56,6 +59,7 @@ class Store {
             chats: [],
             selectedChat: emptyChat,
             curSocket: null,
+            notification: '',
         };
         this._eventBus = new EventBus();
     }
@@ -136,6 +140,19 @@ class Store {
     // User must unsubscribe on their own
     offSocketClosed(callback: () => void) {
         this._eventBus.off(Store.EVENTS.SOCKET_CLOSED, callback);
+    }
+
+    get notification() {
+        return this._store.notification;
+    }
+
+    set notification(value: string) {
+        this._store.notification = value;
+        this._eventBus.emit(Store.EVENTS.NOTIFICATION_CHANGED);
+    }
+
+    addOnNotificationChanged(callback: () => void) {
+        this._eventBus.on(Store.EVENTS.NOTIFICATION_CHANGED, callback);
     }
 }
 
