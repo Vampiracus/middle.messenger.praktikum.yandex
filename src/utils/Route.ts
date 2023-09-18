@@ -2,7 +2,7 @@ import Block from './Block';
 
 function renderCurrentPage(query: string, block: Block) {
     const root = document.querySelector(query);
-    if (!root) return root;
+    if (!root) throw new Error('root not found');
     root.innerHTML = '';
     root.appendChild(block.element);
     block.componentDidMount();

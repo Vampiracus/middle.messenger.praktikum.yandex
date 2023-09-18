@@ -5,6 +5,7 @@ import MainPage from './pages/mainPage';
 import { DataSettingsPage, ProfileMainPage, PasswordSettingPage } from './pages/profilePage';
 import Router from './utils/Router';
 import AuthAPI from './api/AuthAPI';
+import NotificationPopup from './components/notificationPopup';
 
 Object.assign(window, { sentForUserInfo: true });
 
@@ -24,3 +25,6 @@ router
 
 (AuthAPI.putUserInfoIntoApplication() as Promise<unknown>)
     .catch(err => { console.log(err); });
+
+const notificationPopup = new NotificationPopup();
+notificationPopup.start();

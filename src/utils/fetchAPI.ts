@@ -1,5 +1,3 @@
-import Router from './Router';
-
 export const METHODS = {
     GET: 'GET',
     PUT: 'PUT',
@@ -101,7 +99,6 @@ export default class HTTPTransport {
             }
         })
             .then(xhr => {
-                if (xhr.status === 500) Router.go('/500');
                 if (xhr.response === 'OK') return { ok: 'OK' };
                 return JSON.parse(xhr.response);
             }) as Promise<Record<string, any>>;

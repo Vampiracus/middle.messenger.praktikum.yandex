@@ -15,7 +15,10 @@ export default class DeleteUserModal extends ActionModal {
         )
             .then(res => {
                 if (res !== 'OK') (this.children[0] as FormInput).setIncorrect();
-                else this.setProps({ active: false });
+                else {
+                    this.setProps({ active: false });
+                    store.notification = 'Пользователь успешно удален из чата!';
+                }
             })
             .catch(err => { console.log(err); });
     }

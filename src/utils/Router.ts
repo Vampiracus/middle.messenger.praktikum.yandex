@@ -23,7 +23,7 @@ class Router {
         return this;
     }
 
-    getRoute(pathname: string) {
+    getRoute(pathname: string): Route<any> | undefined {
         return this.routes.find(route => route.match(pathname));
     }
 
@@ -48,14 +48,8 @@ class Router {
         this.history.pushState({}, '', pathname);
         this._onRoute(pathname);
     }
-
-    back() {
-        this.history.back();
-    }
-
-    forward() {
-        this.history.forward();
-    }
 }
+
+export { Router as RouterClass };
 
 export default new Router('#app');
