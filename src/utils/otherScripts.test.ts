@@ -2,6 +2,8 @@ import { expect } from 'chai';
 import forHandlebars, { timeToReadable } from './otherScripts';
 
 describe('Other scripts tests', () => {
+    global.Date.now = () => 1695017031516;
+
     beforeEach(() => {
     });
 
@@ -41,7 +43,7 @@ describe('Other scripts tests', () => {
 
         it('test funtion to get the current timestamp should work to test properly', () => {
             // eslint-disable-next-line no-unused-expressions
-            expect(getTimestamp(new Date(1695017031516)).match(regex)).to.not.be.null;
+            expect(getTimestamp(new Date(Date.now())).match(regex)).to.not.be.null;
         });
 
         it('should return same if time is incorrect format', () => {
@@ -49,7 +51,7 @@ describe('Other scripts tests', () => {
         });
 
         it('should return time in minutes if less than 60 min have passed', () => {
-            const d = getTimestamp(new Date(1695017031516));
+            const d = getTimestamp(new Date(Date.now()));
 
             const res = timeToReadable(d);
 
@@ -57,7 +59,7 @@ describe('Other scripts tests', () => {
         });
 
         it('should return time in hours if less than 24 h have passed', () => {
-            const d = getTimestamp(new Date(1695017031516));
+            const d = getTimestamp(new Date(Date.now()));
 
             const res = timeToReadable(d);
 
@@ -65,7 +67,7 @@ describe('Other scripts tests', () => {
         });
 
         it('should return time in hours if less than 24 h have passed', () => {
-            const d = getTimestamp(new Date(1695017031516 - 1000 * 60 * 62));
+            const d = getTimestamp(new Date(Date.now() - 1000 * 60 * 62));
 
             const res = timeToReadable(d);
 
@@ -73,7 +75,7 @@ describe('Other scripts tests', () => {
         });
 
         it('should return time as weekday dd:mm if less than 7 days have passed', () => {
-            const d = getTimestamp(new Date(1695017031516 - 1000 * 60 * 60 * 25));
+            const d = getTimestamp(new Date(Date.now() - 1000 * 60 * 60 * 25));
 
             const res = timeToReadable(d);
 
@@ -82,7 +84,7 @@ describe('Other scripts tests', () => {
         });
 
         it('should return time as dd Month hh:mm in other cases', () => {
-            const d = getTimestamp(new Date(1695017031516 - 1000 * 60 * 60 * 24 * 8));
+            const d = getTimestamp(new Date(Date.now() - 1000 * 60 * 60 * 24 * 8));
 
             const res = timeToReadable(d);
 
