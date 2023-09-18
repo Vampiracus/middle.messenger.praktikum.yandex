@@ -1,5 +1,3 @@
-import Router from './Router';
-
 export const METHODS = {
     GET: 'GET',
     PUT: 'PUT',
