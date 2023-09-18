@@ -25,8 +25,7 @@ const {
 } = proxyquire.noCallThru().load('./Store', { '../api/MessageAPI': DummyMessageAPI });
 
 describe('Store tests', () => {
-    // @ts-ignore
-    let store: StoreClass;
+    let store: any;
     let callbackCount = 0;
     const callback = () => { callbackCount += 1; };
 
