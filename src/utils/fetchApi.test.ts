@@ -8,7 +8,6 @@ describe('HTTPTransport tests', () => {
     const sandbox = createSandbox();
     let request: SinonStub<any>;
     let http: HTTPTransport;
-
     let xhr: SinonFakeXMLHttpRequestStatic;
     const requests: SinonFakeXMLHttpRequest[] = [];
 
