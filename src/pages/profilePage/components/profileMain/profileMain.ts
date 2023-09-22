@@ -1,6 +1,6 @@
 import './profileMain.scss';
 import Block from '../../../../utils/Block';
-import MyAvatar from '../myAvatar';
+import MyAvatar from './myAvatar';
 import ProfileMainContent from './profileMainContent';
 import store from '../../../../utils/Store';
 

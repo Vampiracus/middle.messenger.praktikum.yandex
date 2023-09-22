@@ -1,5 +1,5 @@
 import store from '../utils/Store';
-import HTTPTransport from '../utils/fetchAPI';
+import HTTPTransport, { avatarNormalized } from '../utils/fetchAPI';
 import BaseAPI from './BaseAPI';
 import UserAPI from './UserAPI';
 
@@ -19,6 +19,10 @@ class ChatsAPI extends BaseAPI {
         title: '', limit: 15, offset: 0,
     }): Promise<Chat[]> {
         return this.http.get(HTTPTransport.queryStringify(options))
+            .then(res => res.map((chat: Chat) => ({
+                ...chat,
+                avatar: avatarNormalized(chat.avatar),
+            })))
             .catch(err => { console.log(err); }) as Promise<Chat[]>;
     }
 
@@ -81,6 +85,18 @@ class ChatsAPI extends BaseAPI {
         return this.http.post(`/token/${chatId}`)
             .then(res => res.token)
             .catch(err => { console.log(err); });
+    }
+
+    changeAvatar(data: FormData): Promise<Chat> {
+        return this.http.put('/avatar', {
+            isFormData: true,
+            data,
+        })
+            .then(res => ({
+                ...res,
+                avatar: avatarNormalized(res.avatar),
+            }))
+            .catch(err => { console.log(err); }) as Promise<Chat>;
     }
 }
 

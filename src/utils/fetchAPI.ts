@@ -105,8 +105,8 @@ export default class HTTPTransport {
     }
 }
 
-export function avatarNormalized(avatar: string): string {
-    return `${HTTPTransport.API_URL}/resources${avatar}`;
+export function avatarNormalized(avatar: string | null): string {
+    return avatar === null ? '' : `${HTTPTransport.API_URL}/resources${avatar}`;
 }
 
 export function userAvatarNormalized(user: User): User {

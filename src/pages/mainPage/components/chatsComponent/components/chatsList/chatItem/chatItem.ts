@@ -61,8 +61,7 @@ export default class ChatItem extends Block<IChat> {
             }
             chat.last_message.content = msg;
         }
-        const chatAvatar = chat.avatar === null ? '' : avatarNormalized(chat.avatar);
-        super({ chat }, 'div', [new AnAvatar(chatAvatar), new ToBeReadBubble({ messagesNumber: chat.unread_count })]);
+        super({ chat }, 'div', [new AnAvatar(chat.avatar), new ToBeReadBubble({ messagesNumber: chat.unread_count })]);
         this.addClass('chat-item');
 
         const { events = [] } = this.props;

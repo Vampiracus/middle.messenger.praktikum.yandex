@@ -1,7 +1,7 @@
-import AuthAPI from '../../../../api/AuthAPI';
-import UserAPI from '../../../../api/UserAPI';
-import Block from '../../../../utils/Block';
-import store from '../../../../utils/Store';
+import AuthAPI from '../../../../../api/AuthAPI';
+import UserAPI from '../../../../../api/UserAPI';
+import Block from '../../../../../utils/Block';
+import store from '../../../../../utils/Store';
 import './myAvatar.scss';
 
 function changeAvatar(e: Event) {
