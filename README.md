@@ -1,8 +1,8 @@
 # Учебный проект: мессенджер
 
-Пул-реквест 4 спринт: [ссылка](https://github.com/Vampiracus/middle.messenger.praktikum.yandex/pull/6)
-
 На данном этапе в приложении полностью реализована основная функциональность. Написаны тесты. Настроен прекоммит.
+
+Настроен автодеплой на `Netlify`, проект можно найти по [ссылке](https://cosmic-piroshki-2466bd.netlify.app/ "кликните, чтобы перейти по ссылке").
 
 Прототип приложения выполнен в [Figma](https://www.figma.com/file/7UINrrRL12ICT0lXqvFVbi/Messenger-Proto?type=design&node-id=0%3A1&mode=design&t=GvKlX8atBnVE22LR-1 "кликните, чтобы перейти по ссылке")
 
@@ -11,8 +11,6 @@
 Использовался препроцессор `SASS`
 
 Сборка настроена при помощи `Vite`
-
-Настроен автодеплой на Netlify, проект можно найти по [ссылке](https://cosmic-piroshki-2466bd.netlify.app/ "кликните, чтобы перейти по ссылке").
 
 Настроена `Content-security-policy`
 
