@@ -32,6 +32,7 @@ Precommit выполняется с помощью `Husky`
 После установки репозитория локально и после подтягивания зависимостей: для запуска проекта необходимо перейти в папку запустить `npm run start`:
 ```
 $ git clone https://github.com/Vampiracus/middle.messenger.praktikum.yandex.git
+$ cd <название папки с проектом>
 $ npm i
 $ npm run start
 ```
